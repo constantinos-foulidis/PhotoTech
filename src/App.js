@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import SelectorCards from './SelectorCards/SelectorCards';
 import Resourceposition from './ProgramRecources/RecourcePlacement';
+import Login from './Login/Login'
 
 import {
   BrowserRouter as Router,
@@ -20,10 +21,9 @@ function App() {
         <img className="headerpic" src="/PhotoSc.png"/>
       </header>
         <Router>
-      <h2 className="mb-5">Επιλέξτε Κατηγορία</h2>
           <Route exact path="/" component={SelectorCards} />
           <Route path="/recource" component={Resourceposition}/>
-          <Route path="/dashboard" component={Resourceposition}/>
+          <Route path="/simple_user" component={Login}/>
         </Router>
     </div>
   );

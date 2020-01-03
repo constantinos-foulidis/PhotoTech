@@ -9,6 +9,7 @@ class SelectorCards extends Component {
     return (
 
         <div className="Container">
+          <h2 className="mb-5">Επιλέξτε Κατηγορία</h2>
           <div className="row">
               <div className="col">
               <Cards refe="admin" name="Διαχηρηστής Προγράμματος"/>
