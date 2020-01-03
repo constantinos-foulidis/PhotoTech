@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import '../Cards/Cards.css';
+import {
+  BrowserRouter as Router,
+  Swinpmtch,
+  Route,
+  Link
+} from "react-router-dom";
 
-
+import resourceposition from '../ProgramRecources/RecourcePlacement';
 class Cards extends Component {
   constructor(props){
     super();
     this.name = props.name;
-    this.ref  = props.ref;
+    this.refe  = props.refe;
+    console.log(props.refe);
   }
   render () {
     return (
           <div className="card mb-5 cardwidth">
             <div className="card-body">
-             <a href="{this.ref}" className="card-link textSize">{this.name}</a>
+             <Link className="linkblack" to={`/${this.refe}`}  className="card-link textSize">{this.name}</Link>
             </div>
           </div>
+
     );
   }
 }
