@@ -1,0 +1,41 @@
+input[type="text"] {
+  width: 700px;
+  height:45px ;
+}
+input[type="password"] {
+  width: 700px;
+  height:45px ;
+}
+input[type="submit"] {
+  width: 160px;
+  height:35px ;
+  border: 1px solid black;
+    border-radius: 42%;
+
+}
+input[type="checkbox"]{
+
+  width: 1.3em;
+     height: 1.3em;
+     background-color: white;
+     border-radius: 50%;
+     vertical-align: middle;
+     border: 1px solid #ddd;
+     -webkit-appearance: none;
+     outline: none;
+     cursor: pointer;
+}
+
+.background_form{
+  padding-top:  55px;
+  padding-bottom: 30px;
+  padding-left: 10px;
+  background-color: #f2f2f2 !important;
+    border-radius: 10px;
+    border-style: groove;
+}
+form{
+  position: fixed;
+  left :20%;
+  width: 1000px;
+}

@@ -3,6 +3,7 @@ import './App.css';
 import SelectorCards from './SelectorCards/SelectorCards';
 import Resourceposition from './ProgramRecources/RecourcePlacement';
 import Login from './Login/Login'
+import Products from './ProductsRecources/ProductRecources'
 
 import {
   BrowserRouter as Router,
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/" component={SelectorCards} />
           <Route path="/recource" component={Resourceposition}/>
           <Route path="/simple_user" component={Login}/>
+          <Route path="/products" component={Products}/>
         </Router>
     </div>
   );
