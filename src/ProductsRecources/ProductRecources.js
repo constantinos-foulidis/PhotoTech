@@ -19,9 +19,11 @@ class Products extends Component {
   render() {
     return (<Container className="bg-white">
       <Row>
+        <Col className="col-1">
+          <NavigationDrawer/>
+        </Col>
         <Col>
           <h1>Προιόντα:</h1>
-          <NavigationDrawer/>
         </Col>
       </Row>
       <Row className="offset-1" >
