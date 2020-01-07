@@ -9,6 +9,6 @@
 .headerpic{
   width: 160px;
   height: 48px;
-  margin-bottom: calc((124px/2) - (48px/2));
-  margin-top: calc((124px/2) - (48px/2)); 
+  margin-bottom: calc(((124px - 2 * 1rem)/2) - (48px/2));
+  margin-top: calc(((124px - 2 * 1rem)/2) - (48px/2)); 
 }
