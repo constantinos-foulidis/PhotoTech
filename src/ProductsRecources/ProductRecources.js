@@ -33,7 +33,7 @@ class Products extends Component {
         <Dropdawn name="Προσθήκη νέου"/>
       </Row>
       <Row >
-      <Col className="offset-5">
+      <Col className="offset-7">
       <ExporPDF/>
       <ExportExcel/>
       </Col>
