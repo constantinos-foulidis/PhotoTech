@@ -13,7 +13,7 @@ function App() {
   return (
 
     <div className="App">
-      <header className="App-header shadow p-3 mb-5 ">      
+      <header className="App-header shadow p-3 mb-5 ">
         <img className="headerpic" src="/PhotoSc.png"/>
       </header>
         <Router>

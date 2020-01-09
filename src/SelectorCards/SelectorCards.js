@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import '../SelectorCards/SelectorCards.css';
 import Cards from '../Cards/Cards';
-import Resourceposition from '../ProgramRecources/RecourcePlacement'
-import { Route, Link } from 'react-router-dom';
+
 
 class SelectorCards extends Component {
   render () {

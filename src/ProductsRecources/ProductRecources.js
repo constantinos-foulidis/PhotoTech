@@ -3,12 +3,15 @@ import '../ProductsRecources/ProductRecources.css';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import ProductItem from '../ProductItem/ProductItem';
 import Dropdawn from '../Dropdawn/Dropdawn';
+import NewItem from '../AddnewItem/AddNewItem';
 import ProductSpecs from '../ProductSpecks/ProductSpecks';
 import Container from 'react-bootstrap/Container'
 import ExporPDF from '../ExportTOPdf/ExportToPdf'
 import ExportExcel from '../ExportTOExcel/ExportToExcel'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button';
+import NavigateButton from '../NavigateButton/NavigateButton';
 import {
   BrowserRouter as Router,
   Route,
@@ -22,6 +25,13 @@ class Products extends Component {
   //  console.log(state);
 //}
   }
+  handleAddnew = () => {
+     console.log("here");
+     this.props.history.push({
+     pathname : "/products/add",
+     //state: {username: this.state.username}
+     });
+   }
 
   render() {
     return (<Container className="bg-white">
@@ -33,12 +43,12 @@ class Products extends Component {
           <h1>Προιόντα:</h1>
         </Col>
       </Row>
-      
+
       <Row className="offset-1" >
         <Dropdawn name="Προιόντα φωτογραφίας"/>
         <Dropdawn name="Δώρα"/>
         <Dropdawn name="Υλικα Εργαστηρίου"/>
-        <Dropdawn name="Προσθήκη νέου"/>
+          <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>
       <Row >
       <Col className="offset-7">
@@ -49,6 +59,7 @@ class Products extends Component {
       <Row className="offset-1">
       <Router>
         <Route exact path="/products" component={ProductItem}/>
+        <Route exact path="/products/add" component={NewItem}/>
         <Route exact path="/products/id" component={ProductSpecs}/>
       </Router>
       </Row>
