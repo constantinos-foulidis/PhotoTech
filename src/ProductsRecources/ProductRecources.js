@@ -33,6 +33,7 @@ class Products extends Component {
           <h1>Προιόντα:</h1>
         </Col>
       </Row>
+      
       <Row className="offset-1" >
         <Dropdawn name="Προιόντα φωτογραφίας"/>
         <Dropdawn name="Δώρα"/>
