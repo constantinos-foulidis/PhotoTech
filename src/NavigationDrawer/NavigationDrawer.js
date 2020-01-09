@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './NavigationDrawer.css'
+import Dropdawn from '../Dropdawn/Dropdawn';
 class NavigationDrawer extends Component {
   state = {
     state: {
@@ -45,18 +46,24 @@ class NavigationDrawer extends Component {
 
     return (
       <React.Fragment>
+
         <span onClick={this.openNavClick} className="open-nav">
           &#9776;
         </span>
         <div onClick={this.navCoverClick} className="nav-cover" style={navCoverStyle} />
         <div name="side-nav" className="side-nav" style={sideNavStyle}>
+         <h2>Κατηγοριες</h2>
           <a href="#" onClick={this.closeNavClick} className="close-nav">
             &times;
           </a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a>
+            <Dropdawn className="side-dropdown" name="Προιόντα φωτογραφίας"/>
+          <a href="#">Προιοντα Φωτογραφιας</a>
+          <a href="#">Δωρα</a>
+          <a href="#">Υλικα εργαστηρίου</a>
+          <a href="#">Προσθήκη νέου</a>
+            <Dropdawn name="Προιόντα φωτογραφίας"/>
+          <a href="#">Διαχείρηση</a>
+          <a href="#">Προσθήκη νέου</a>
         </div>
       </React.Fragment>
     );

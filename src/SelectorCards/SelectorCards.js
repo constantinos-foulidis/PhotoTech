@@ -8,9 +8,9 @@ class SelectorCards extends Component {
   render () {
     return (
 
-        <div className="Container">
+        <div className="Container ">
           <h2 className="mb-5 text-center">Επιλέξτε Κατηγορία</h2>
-          <div className="row">
+          <div className="row justify-content-center">
               <div className="col">
               <Cards refe="admin" name="Διαχηρηστής Προγράμματος"/>
               </div>
@@ -21,7 +21,7 @@ class SelectorCards extends Component {
               <Cards refe="office" name="Γραφειο Θεσσαλονικης"/>
               </div>
           </div>
-          <div className="row">
+          <div className="row justify-content-center">
               <div className="col ">
                 <Cards refe="sellers" name="Πωλητές"/>
               </div>

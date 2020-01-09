@@ -3,19 +3,26 @@ import '../ProductsRecources/ProductRecources.css';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import ProductItem from '../ProductItem/ProductItem';
 import Dropdawn from '../Dropdawn/Dropdawn';
+import ProductSpecs from '../ProductSpecks/ProductSpecks';
 import Container from 'react-bootstrap/Container'
 import ExporPDF from '../ExportTOPdf/ExportToPdf'
 import ExportExcel from '../ExportTOExcel/ExportToExcel'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import {
+  BrowserRouter as Router,
+  Route,
+} from "react-router-dom";
 
 class Products extends Component {
   constructor(props) {
     super(props);
-    const state = this.props.location.state.username;
-    console.log(state);
-
+  //  if(!this.props.location.state.username){
+  //  const state = this.props.location.state.username;
+  //  console.log(state);
+//}
   }
+
   render() {
     return (<Container className="bg-white">
       <Row>
@@ -39,9 +46,10 @@ class Products extends Component {
       </Col>
       </Row>
       <Row className="offset-1">
-        <ProductItem/>
-        <ProductItem/>
-        <ProductItem/>
+      <Router>
+        <Route exact path="/products" component={ProductItem}/>
+        <Route exact path="/products/id" component={ProductSpecs}/>
+      </Router>
       </Row>
     </Container>);
   }

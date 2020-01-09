@@ -4,11 +4,22 @@ import Button from 'react-bootstrap/Button';
 
 class ProductItem extends Component {
   constructor(props){
-    super();
-    this.name = props.name;
-    this.refe  = props.refe;
+    super(props);
+  //  this.name = props.name;
+  //  this.refe  = props.refe;
     console.log(props.refe);
   }
+
+  handleSpecified = () => {
+   // alert('A name was submitted: ' + this.state.username+this.state.password);
+   //dad event.preventDefault();
+    //console.log(event.preventDefault());
+     this.props.history.push({
+     pathname : "/products/id",
+     //state: {username: this.state.username}
+     });
+  }
+
   render () {
     return (
       <div className="card cardWidth ml-5">
@@ -18,7 +29,7 @@ class ProductItem extends Component {
           <p className="card-text">Διαθεσημοτητα : 150</p>
           <p className="card-text border-bottom">Κωδικός : 123456</p>
           <Button className="buttonWidth mb-2" variant="info">Διαγραφή Προιόντος</Button>
-          <Button className="buttonWidth mb-2" variant="info">Επεξεργασία αποθέματος</Button>
+          <Button className="buttonWidth mb-2" variant="info" onClick={this.handleSpecified}>Επεξεργασία αποθέματος</Button>
           </div>
       </div>
 
