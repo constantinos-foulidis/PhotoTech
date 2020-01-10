@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import '../NavigateButton/Navigatebtn.css';
+//import '../NavigateButton/Navigatebtn.css';
 import Button from 'react-bootstrap/Button';
 
 
-class NavigateButton extends Component {
+class AddNewUser extends Component {
   constructor(props){
     super(props);
   }
@@ -20,4 +20,4 @@ class NavigateButton extends Component {
   }
 }
 
-export default NavigateButton;
+export default AddNewUser;

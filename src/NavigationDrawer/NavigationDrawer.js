@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import './NavigationDrawer.css'
 import Dropdawn from '../Dropdawn/Dropdawn';
+import {Link} from "react-router-dom";
 class NavigationDrawer extends Component {
   state = {
     state: {
@@ -53,17 +54,17 @@ class NavigationDrawer extends Component {
         <div onClick={this.navCoverClick} className="nav-cover" style={navCoverStyle} />
         <div name="side-nav" className="side-nav" style={sideNavStyle}>
          <h2>Κατηγοριες</h2>
-          <a href="#" onClick={this.closeNavClick} className="close-nav">
+          <Link to="#" onClick={this.closeNavClick} className="close-nav">
             &times;
-          </a>
+          </Link>
             <Dropdawn className="side-dropdown" name="Προιόντα φωτογραφίας"/>
-          <a href="#">Προιοντα Φωτογραφιας</a>
-          <a href="#">Δωρα</a>
-          <a href="#">Υλικα εργαστηρίου</a>
-          <a href="#">Προσθήκη νέου</a>
+          <Link to="#">Προιοντα Φωτογραφιας</Link>
+          <Link to="#">Δωρα</Link>
+          <Link to="#">Υλικα εργαστηρίου</Link>
+          <Link to="#">Προσθήκη νέου</Link>
             <Dropdawn name="Προιόντα φωτογραφίας"/>
-          <a href="#">Διαχείρηση</a>
-          <a href="#">Προσθήκη νέου</a>
+          <Link to="#">Διαχείρηση</Link>
+          <Link to="/products/adduser">Προσθήκη νέου</Link>
         </div>
       </React.Fragment>
     );

@@ -8,11 +8,12 @@ import ProductSpecs from '../ProductSpecks/ProductSpecks';
 import Container from 'react-bootstrap/Container'
 import ExporPDF from '../ExportTOPdf/ExportToPdf'
 import ExportExcel from '../ExportTOExcel/ExportToExcel'
+import AddNewUser from '../AddNewUser/AddNewUser'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
 import NavigateButton from '../NavigateButton/NavigateButton';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route,Switch,withRouter } from "react-router-dom";
 
 class Products extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Products extends Component {
     //}
   }
   handleAddnew = () => {
-    console.log("here");
+    console.log(this.props);
     this.props.history.push({
       pathname: "/products/add",
       //state: {username: this.state.username}
@@ -52,13 +53,16 @@ class Products extends Component {
           <ExportExcel/>
         </Col>
       </Row>
+
       <Row className="offset-1">
         <Router>
-          <Route exact="exact" path="/products" component={ProductItem}/>
-          <Route exact="exact" path="/products/add" component={NewItem}/>
-          <Route exact="exact" path="/products/id" component={ProductSpecs}/>
-        </Router>
+          <Route exact path="/products" component={withRouter(ProductItem)}/>
+          <Route  path="/products/add" component={withRouter(NewItem)}/>
+          <Route path="/products/id" component={withRouter(ProductSpecs)}/>
+          <Route  path="/products/adduser" component={withRouter(AddNewUser)}/>
+      </Router>
       </Row>
+
     </Container>);
   }
 }
