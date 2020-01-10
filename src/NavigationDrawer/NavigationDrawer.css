@@ -58,8 +58,8 @@
   }
 
   .open-nav {
-    position: fixed;
-    left:100px;
+    position: absolute;
+    left:-160px;
     font-size: 2rem;
     cursor: pointer;
   }

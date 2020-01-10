@@ -12,26 +12,23 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
 import NavigateButton from '../NavigateButton/NavigateButton';
-import {
-  BrowserRouter as Router,
-  Route,
-} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 class Products extends Component {
   constructor(props) {
     super(props);
-  //  if(!this.props.location.state.username){
-  //  const state = this.props.location.state.username;
-  //  console.log(state);
-//}
+    //  if(!this.props.location.state.username){
+    //  const state = this.props.location.state.username;
+    //  console.log(state);
+    //}
   }
   handleAddnew = () => {
-     console.log("here");
-     this.props.history.push({
-     pathname : "/products/add",
-     //state: {username: this.state.username}
-     });
-   }
+    console.log("here");
+    this.props.history.push({
+      pathname: "/products/add",
+      //state: {username: this.state.username}
+    });
+  }
 
   render() {
     return (<Container className="bg-white">
@@ -43,25 +40,24 @@ class Products extends Component {
           <h1>Προιόντα:</h1>
         </Col>
       </Row>
-
-      <Row className="offset-1" >
+      <Row className="offset-1">
         <Dropdawn name="Προιόντα φωτογραφίας"/>
         <Dropdawn name="Δώρα"/>
         <Dropdawn name="Υλικα Εργαστηρίου"/>
-          <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
+        <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>
       <Row >
-      <Col className="offset-7">
-      <ExporPDF/>
-      <ExportExcel/>
-      </Col>
+        <Col className="offset-7">
+          <ExporPDF/>
+          <ExportExcel/>
+        </Col>
       </Row>
       <Row className="offset-1">
-      <Router>
-        <Route exact path="/products" component={ProductItem}/>
-        <Route exact path="/products/add" component={NewItem}/>
-        <Route exact path="/products/id" component={ProductSpecs}/>
-      </Router>
+        <Router>
+          <Route exact="exact" path="/products" component={ProductItem}/>
+          <Route exact="exact" path="/products/add" component={NewItem}/>
+          <Route exact="exact" path="/products/id" component={ProductSpecs}/>
+        </Router>
       </Row>
     </Container>);
   }

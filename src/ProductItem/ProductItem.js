@@ -1,39 +1,38 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../ProductItem/ProductItem.css';
 import Button from 'react-bootstrap/Button';
 
 class ProductItem extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  //  this.name = props.name;
-  //  this.refe  = props.refe;
+    //  this.name = props.name;
+    //  this.refe  = props.refe;
     console.log(props.refe);
   }
 
   handleSpecified = () => {
-   // alert('A name was submitted: ' + this.state.username+this.state.password);
-   //dad event.preventDefault();
+    // alert('A name was submitted: ' + this.state.username+this.state.password);
+    //dad event.preventDefault();
     //console.log(event.preventDefault());
-     this.props.history.push({
-     pathname : "/products/id",
-     //state: {username: this.state.username}
-     });
+    this.props.history.push({
+      pathname: "/products/id",
+      //state: {username: this.state.username}
+    });
   }
 
-  render () {
+  render() {
     return (
-      <div className="card cardWidth ml-5">
-         <img className="card-img-top imgWidth" src="/PhotoSc.png"/>
-          <div className="card-body">
-          <h5 className="card-title">Φωτηστικο Τεστ</h5>
-          <p className="card-text">Διαθεσημοτητα : 150</p>
-          <p className="card-text border-bottom">Κωδικός : 123456</p>
-          <Button className="buttonWidth mb-2" variant="info">Διαγραφή Προιόντος</Button>
-          <Button className="buttonWidth mb-2" variant="info" onClick={this.handleSpecified}>Επεξεργασία αποθέματος</Button>
-          </div>
+    <div className="card cardWidth ml-5">
+      <img className="card-img-top imgWidth" src="/PhotoSc.png"/>
+      <div className="card-body">
+        <h5 className="card-title">Φωτηστικο Τεστ</h5>
+        <p className="card-text">Διαθεσημοτητα : 150</p>
+        <p className="card-text border-bottom">Κωδικός : 123456</p>
+        <Button className="buttonWidth mb-2" variant="info">Διαγραφή Προιόντος</Button>
+        <Button className="buttonWidth mb-2" variant="info" onClick={this.handleSpecified}>Επεξεργασία αποθέματος</Button>
       </div>
-
-    );
+    </div>
+  );
   }
 }
 

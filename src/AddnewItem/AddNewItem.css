@@ -1,0 +1,7 @@
+.form{
+  position: absolute;
+  width:1000px;
+  overflow:auto;
+  height: inherit;
+  left: 0%;
+}
