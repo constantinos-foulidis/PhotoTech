@@ -23,7 +23,7 @@ class NewItem extends Component{
        </div>
        <div className="row ">
        <div className="col ">
-       <Form className="border p-3 form">
+       <Form className="border p-4 form">
        <Form.Group controlId="exampleForm.ControlTextarea1">
          <Form.Label>Περιγραφή προιόντος</Form.Label>
          <Form.Control as="textarea" rows="3" />

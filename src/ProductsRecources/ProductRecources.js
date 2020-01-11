@@ -55,12 +55,12 @@ class Products extends Component {
       </Row>
 
       <Row className="offset-1">
-        <Router>
+
           <Route exact path="/products" component={withRouter(ProductItem)}/>
           <Route  path="/products/add" component={withRouter(NewItem)}/>
           <Route path="/products/id" component={withRouter(ProductSpecs)}/>
           <Route  path="/products/adduser" component={withRouter(AddNewUser)}/>
-      </Router>
+      
       </Row>
 
     </Container>);
