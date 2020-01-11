@@ -59,7 +59,7 @@
 
   .open-nav {
     position: absolute;
-    left:-160px;
+    left:0px;
     font-size: 2rem;
     cursor: pointer;
   }

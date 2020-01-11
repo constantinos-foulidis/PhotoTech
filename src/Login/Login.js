@@ -51,7 +51,7 @@ class Login extends Component {
         </div>
         <div className="row">
           <div className="col ">
-            <Checkbox defaultChecked="defaultChecked" color="default" value="default" inputProps={{
+            <Checkbox  color="default" value="default" inputProps={{
                 'aria-label' : 'checkbox with default color'
               }}/>
             <label >

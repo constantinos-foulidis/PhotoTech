@@ -10,6 +10,10 @@ class NewItem extends Component{
     super(props);
 
   }
+
+  return = ()=>{
+    this.props.history.goBack();
+  }
   render() {
     return   (
       <div className="Container">
@@ -68,7 +72,7 @@ class NewItem extends Component{
     <Col sm={{ span: 10}}>
     <Form.Label className="mr-3">Φωτογραφία</Form.Label>
       <Button className="mr-5" variant="info" type="button">Ανεβασμα Φωτογραφιας</Button>
-      <Button className="mr-2" type="button" variant="info">Ακυρωση</Button>
+      <Button className="mr-2" type="button" variant="info" onClick={this.return} >Ακυρωση</Button>
       <Button type="button" variant="info">Καταχωρηση</Button>
     </Col>
   </Form.Group>
