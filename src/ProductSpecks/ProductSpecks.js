@@ -13,6 +13,7 @@ class ProductSpecs extends Component {
     		this.handleClose = this.handleClose.bind(this);
 
     		this.state = {
+          errorMessage:'',
           remain:1000,
           number:10,
     			show: false,
@@ -37,12 +38,19 @@ addNumber=()=>{
 
 removeNumber=()=>{
   const firstRemain =Number(this.state.remain);
+  if(!(Number(this.state.number)>firstRemain)){
   const addedValue = Number(this.state.number);
   const sum=firstRemain-addedValue;
   this.setState({remain:sum});
+}else{
+  this.setState({errorMessage:'Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα'});
+  alert('Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα');
+}
+
 }
 
 numberChanged=(event)=>{
+
  this.setState({number:event.target.value});
  console.log("inside number changed");
 }
@@ -109,7 +117,7 @@ numberChanged=(event)=>{
       <Container>
         <Row className="show-grid mb-4">
           <Col xs={12} md={8}>
-            <input type="number" placeholder="Αριθμος για αφαιρεση η προσθεση αποθεματος" value={this.state.number} onChange={(event) => this.numberChanged(event)}/>
+            <input type="number" placeholder="Αριθμος για αφαιρεση η προσθεση αποθεματος"  onChange={(event) => this.numberChanged(event)}/>
           </Col>
         </Row>
         <Row className="show-grid">
