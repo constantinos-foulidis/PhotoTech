@@ -76,7 +76,6 @@ class NewItem extends Component{
       <Button type="button" variant="info">Καταχωρηση</Button>
     </Col>
   </Form.Group>
-
 </Form>
        </div>
        </div>

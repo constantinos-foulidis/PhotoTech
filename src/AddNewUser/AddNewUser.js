@@ -36,19 +36,12 @@ if(password != confirmpassword){
 
 }
 };
-/*
-  handleNewItem = () => {
-    console.log(this.props);
-     this.props.history.push("/products/add");
-  }
-*/
+
 return = () => {
   this.props.history.goBack();
 }
-// [validated, setValidated] = useState(false);
+
 handleUserInput = (e) => {
-  const name = e.target.name;
-  const value = e.target.value;
   console.log(e.target.name);
   console.log(e.target.value);
  this.setState({formData:{
