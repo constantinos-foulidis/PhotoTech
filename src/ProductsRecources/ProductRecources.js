@@ -15,7 +15,8 @@ import Button from 'react-bootstrap/Button';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import {BrowserRouter as Router, Route,Switch,withRouter } from "react-router-dom";
 import UserHandle from '../UserHandler/UserHandler'
-
+import Category from '../Data/Category'
+import { useRouteMatch } from "react-router-dom";
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,10 @@ class Products extends Component {
     //  const state = this.props.location.state.username;
     //  console.log(state);
     //}
+    console.log(this.props.location.pathname);
+    this.state = {
+      path: this.props.location.pathname
+    }
   }
   handleAddnew = () => {
     console.log(this.props);
@@ -30,10 +35,17 @@ class Products extends Component {
       pathname: "/products/add",
       //state: {username: this.state.username}
     });
+
   }
 
+ getDerivedStateFromProps(props,state){
+    console.log(this.props.location.pathname);
+  return {path: props.location.pathname};
+ }
+
   render() {
-    return (<Container className="bg-white">
+    let products = (
+      <React.Fragment>
       <Row>
         <Col className="col-1">
           <NavigationDrawer/>
@@ -43,12 +55,27 @@ class Products extends Component {
         </Col>
       </Row>
       <Row className="offset-1">
-        <Dropdawn name="Προιόντα φωτογραφίας" subcategory={["-Κύριο Προιόν","-Δευτερεύον Προιόν","-Τριτεύον Προιόν"]}/>
-        <Dropdawn name="Δώρα"  subcategory={["-Α΄ Τάξης","-Χριστουγέννων","-Συλλόγου","-Πάσχα","-ΣΤ΄ Τάξης"]} />
-        <Dropdawn name="Υλικα Εργαστηρίου" subcategory={["-Υλικά εκτύπωσης", "-Υλικά συσκευασίας"]} />
-        <Dropdawn name="Διάφορα"  subcategory={[]}/>
+      {Category.map((category, index)=>(
+        <Dropdawn key={category.name} category={category} />
+      ))}
+
         <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>
+      </ React.Fragment>
+    );
+    console.log(this.state.path);
+    if(this.state.path === "/products/handleuser"){
+      products = (
+        <Row>
+          <Col className="col-1">
+            <NavigationDrawer/>
+          </Col>
+        </Row>
+        );
+    }
+
+    return (<Container className="bg-white">
+      {products}
       <Row className="offset-1">
           <Route exact path="/products" component={withRouter(ProductItem)}/>
           <Route  path="/products/add" component={withRouter(NewItem)}/>

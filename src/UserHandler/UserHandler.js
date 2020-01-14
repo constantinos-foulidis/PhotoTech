@@ -6,7 +6,7 @@ const UserHandle = (props) => {
        <h1 className="text-center">Χρήστες</h1>
         <Button className=" mb-2 mr-2" variant="info">Διαχείρηση</Button>
           <Button className=" mb-2 " variant="secondary">Προσθήκη νέου</Button>
-      <table class="table table-bordered">
+      <table className="table table-bordered">
     <thead>
       <tr>
         <th scope="col">όνομα Χρηστη</th>
@@ -29,7 +29,7 @@ const UserHandle = (props) => {
         <td>Διαγραφή</td>
       </tr>
       <tr>
-        <td colspan="2">Larry the Bird</td>
+        <td colSpan="2">Larry the Bird</td>
         <td>@twitter</td>
       </tr>
     </tbody>
