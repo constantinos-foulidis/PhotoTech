@@ -14,6 +14,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import {BrowserRouter as Router, Route,Switch,withRouter } from "react-router-dom";
+import UserHandle from '../UserHandler/UserHandler'
 
 class Products extends Component {
   constructor(props) {
@@ -56,12 +57,11 @@ class Products extends Component {
       </Row>
 
       <Row className="offset-1">
-        <Router>
           <Route exact path="/products" component={withRouter(ProductItem)}/>
           <Route  path="/products/add" component={withRouter(NewItem)}/>
           <Route path="/products/id" component={withRouter(ProductSpecs)}/>
           <Route  path="/products/adduser" component={withRouter(AddNewUser)}/>
-      </Router>
+          <Route  path="/products/handleuser" component={withRouter(UserHandle)}/>
       </Row>
 
     </Container>);
