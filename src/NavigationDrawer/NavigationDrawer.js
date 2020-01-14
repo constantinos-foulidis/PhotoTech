@@ -57,13 +57,13 @@ class NavigationDrawer extends Component {
           <Link to="#" onClick={this.closeNavClick} className="close-nav">
             &times;
           </Link>
-            <Dropdawn className="side-dropdown" name="Προιόντα φωτογραφίας"/>
+            <Dropdawn className="side-dropdown" name="Προιόντα φωτογραφίας" subcategory={[]}/>
           <Link to="#">Προιοντα Φωτογραφιας</Link>
           <Link to="#">Δωρα</Link>
           <Link to="#">Υλικα εργαστηρίου</Link>
           <Link to="#">Προσθήκη νέου</Link>
-            <Dropdawn name="Προιόντα φωτογραφίας"/>
-          <Link to="#">Διαχείρηση</Link>
+            <Dropdawn name="Προιόντα φωτογραφίας" subcategory={[]}/>
+          <Link to="/products/handleuser">Διαχείρηση</Link>
           <Link to="/products/adduser">Προσθήκη νέου</Link>
         </div>
       </React.Fragment>

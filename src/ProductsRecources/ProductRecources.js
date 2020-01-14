@@ -30,7 +30,7 @@ class Products extends Component {
       pathname: "/products/add",
       //state: {username: this.state.username}
     });
-  }
+  }//////
 */
   render() {
     return (<Container className="bg-white">
@@ -43,18 +43,12 @@ class Products extends Component {
         </Col>
       </Row>
       <Row className="offset-1">
-        <Dropdawn name="Προιόντα φωτογραφίας"/>
-        <Dropdawn name="Δώρα"/>
-        <Dropdawn name="Υλικα Εργαστηρίου"/>
-        <NavigateButton/>
+        <Dropdawn name="Προιόντα φωτογραφίας" subcategory={["-Κύριο Προιόν","-Δευτερεύον Προιόν","-Τριτεύον Προιόν"]}/>
+        <Dropdawn name="Δώρα"  subcategory={["-Α΄ Τάξης","-Χριστουγέννων","-Συλλόγου","-Πάσχα","-ΣΤ΄ Τάξης"]} />
+        <Dropdawn name="Υλικα Εργαστηρίου" subcategory={["-Υλικά εκτύπωσης", "-Υλικά συσκευασίας"]} />
+        <Dropdawn name="Διάφορα"  subcategory={[]}/>
+        <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>
-      <Row >
-        <Col className="offset-7">
-          <ExporPDF/>
-          <ExportExcel/>
-        </Col>
-      </Row>
-
       <Row className="offset-1">
           <Route exact path="/products" component={ProductItem}/>
           <Route  path="/products/add" component={NewItem}/>
