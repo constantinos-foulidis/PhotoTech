@@ -49,13 +49,6 @@ class Products extends Component {
         <Dropdawn name="Διάφορα"  subcategory={[]}/>
         <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>
-      <Row >
-        <Col className="offset-7">
-          <ExporPDF/>
-          <ExportExcel/>
-        </Col>
-      </Row>
-
       <Row className="offset-1">
           <Route exact path="/products" component={withRouter(ProductItem)}/>
           <Route  path="/products/add" component={withRouter(NewItem)}/>

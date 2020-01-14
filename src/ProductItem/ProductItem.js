@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import '../ProductItem/ProductItem.css';
 import Button from 'react-bootstrap/Button';
-
+import ExporPDF from '../ExportTOPdf/ExportToPdf'
+import ExportExcel from '../ExportTOExcel/ExportToExcel'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +25,9 @@ class ProductItem extends Component {
 
   render() {
     return (
+      <div>
+          <ExporPDF/>
+          <ExportExcel/>
     <div className="card cardWidth ml-5">
       <img className="card-img-top imgWidth" src="/PhotoSc.png"/>
       <div className="card-body">
@@ -31,6 +37,7 @@ class ProductItem extends Component {
         <Button className="buttonWidth mb-2" variant="info">Διαγραφή Προιόντος</Button>
         <Button className="buttonWidth mb-2" variant="info" onClick={this.handleSpecified}>Επεξεργασία αποθέματος</Button>
       </div>
+    </div>
     </div>
   );
   }

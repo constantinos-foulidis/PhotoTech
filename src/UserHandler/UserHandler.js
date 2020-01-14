@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 const UserHandle = (props) => {
     return   (
       <div className="w-100">
+        <Button className=" mb-2 mr-2" variant="info">Διαχείρηση</Button>
+          <Button className=" mb-2 " variant="secondary">Προσθήκη νέου</Button>
       <table class="table table-bordered">
     <thead>
       <tr>
