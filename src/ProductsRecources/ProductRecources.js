@@ -51,7 +51,7 @@ class Products extends Component {
       </Row>
 
       <Row className="offset-1">
-        <Route exact="exact" path="/products" component={ProductItem}/>
+        <Route exact path="/products" component={ProductItem}/>
         <Route path="/products/add" component={NewItem}/>
         <Route path="/products/id" component={ProductSpecs}/>
         <Route path="/products/adduser" component={AddNewUser}/>
