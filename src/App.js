@@ -7,18 +7,13 @@ import Products from './ProductsRecources/ProductRecources'
 
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
 } from "react-router-dom";
 function App() {
   return (
 
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+      <header className="App-header shadow p-3 mb-5 ">
         <img className="headerpic" src="/PhotoSc.png"/>
       </header>
         <Router>

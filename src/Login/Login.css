@@ -10,7 +10,7 @@ input[type="submit"] {
   width: 160px;
   height:35px ;
   border: 1px solid black;
-    border-radius: 42%;
+    border-radius: 15px;
 
 }
 input[type="checkbox"]{
@@ -30,6 +30,7 @@ input[type="checkbox"]{
   padding-top:  55px;
   padding-bottom: 30px;
   padding-left: 10px;
+  text-align: center;
   background-color: #f2f2f2 !important;
     border-radius: 10px;
     border-style: groove;
