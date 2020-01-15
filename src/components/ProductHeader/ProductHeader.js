@@ -22,7 +22,7 @@ class ProductHeader  extends Component {
   render(){
     return   (
   <React.Fragment>
-   <Container>
+   <Container className="mb-5">
    <div className="headerCenter mb-4">
     <h1>Προιόντα:</h1>
     </div>

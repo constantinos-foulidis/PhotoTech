@@ -42,9 +42,19 @@ h2 {
   display: block;
   transition: 0.53s;
 }
-
+.dropdownStylingnav{
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #818181;
+  display: block;
+  transition: 0.53s;
+}
+.btnwidthdrawer{
+  width: 200px;
+}
 .side-nav a:hover {
-  color: #f1f1f1;
+  color: black;
 }
 
 .side-nav .close-nav {

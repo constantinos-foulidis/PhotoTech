@@ -24,7 +24,7 @@ class Products extends Component {
 
     return (
       <Container className="bg-white">
-      <Row className="mb-5">
+      <Row className="mb-4">
           <NavigationDrawer/>
       </Row>
 
