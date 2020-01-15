@@ -24,12 +24,10 @@ class ProductHeader  extends Component {
     return   (
   <React.Fragment>
    <Container>
-    <Row className="text-center mb-4">
-       <Col>
-      <h1>Προιόντα:</h1>
-      </Col>
-    </Row>
-    <Row>
+   <div className="headerCenter mb-4">
+    <h1>Προιόντα:</h1>
+    </div>
+  <Row>
         {Category.map((category, index) => (<Dropdawn key={category.name} category={category}/>))}
         <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>

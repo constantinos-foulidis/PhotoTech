@@ -59,9 +59,9 @@ class ProductSpecs extends Component {
   render() {
     return (
       <React.Fragment>
-      <ProductHeader/>
       <div className="Container">
-      <div className="row ">
+      <ProductHeader/>
+      <div className="row">
         <div className="col-5 border">
           <img className="imgflex" src="/PhotoSc.png" />
         </div>
