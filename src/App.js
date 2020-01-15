@@ -14,14 +14,14 @@ function App() {
 
     <div className="App">
       <header className="App-header shadow p-3 mb-5 ">
-        <img className="headerpic" src="/PhotoSc.png"/>
+        <img className="headerpic" src="/PhotoSc.png" />
       </header>
-        <Router>
-          <Route exact path="/" component={SelectorCards} />
-          <Route path="/recource" component={Resourceposition}/>
-          <Route path="/simple_user" component={Login}/>
-          <Route path="/products" component={Products}/>
-        </Router>
+      <Router>
+        <Route exact path="/" component={SelectorCards} />
+        <Route path="/recource" component={Resourceposition} />
+        <Route path="/simple_user" component={Login} />
+        <Route path="/products" component={Products} />
+      </Router>
     </div>
   );
 }

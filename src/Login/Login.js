@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../Login/Login.css';
-import {Checkbox} from '@material-ui/core';
+import { Checkbox } from '@material-ui/core';
 
 class Login extends Component {
   constructor(props) {
@@ -17,10 +17,10 @@ class Login extends Component {
   }
 
   handleUsername(event) {
-    this.setState({username: event.target.value});
+    this.setState({ username: event.target.value });
   }
   handlePassword(event) {
-    this.setState({password: event.target.value});
+    this.setState({ password: event.target.value });
   }
 
   handleSubmit(event) {
@@ -37,33 +37,33 @@ class Login extends Component {
 
   render() {
     return (
-    <form onSubmit={this.handleSubmit}>
-      <div className="Container background_form">
-        <div className="row mb-5">
-          <div className="col ">
-            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/>
+      <form onSubmit={this.handleSubmit}>
+        <div className="Container background_form">
+          <div className="row mb-5">
+            <div className="col ">
+              <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername} />
+            </div>
           </div>
-        </div>
-        <div className="row mb-5">
-          <div className="col">
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
+          <div className="row mb-5">
+            <div className="col">
+              <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword} />
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col ">
-            <Checkbox  color="default" value="default" inputProps={{
-                'aria-label' : 'checkbox with default color'
-              }}/>
-            <label >
-              Να Παράμεινω Συνδεμενος
+          <div className="row">
+            <div className="col ">
+              <Checkbox color="default" value="default" inputProps={{
+                'aria-label': 'checkbox with default color'
+              }} />
+              <label >
+                Να Παράμεινω Συνδεμενος
             </label>
-          </div>
-          <div className="col-5">
-            <input type="submit" value="Συνδεση"/>
+            </div>
+            <div className="col-5">
+              <input type="submit" value="Συνδεση" />
+            </div>
           </div>
         </div>
-      </div>
-    </form>)
+      </form>)
   };
 }
 

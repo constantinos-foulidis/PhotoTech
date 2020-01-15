@@ -9,31 +9,31 @@ import {
 
 import resourceposition from '../ProgramRecources/RecourcePlacement';
 class Cards extends Component {
-  constructor(props){
+  constructor(props) {
     super();
     let indexOf = props.name.indexOf(" ");
     console.log("Index of: ", indexOf);
-    if(indexOf >= 0){
+    if (indexOf >= 0) {
       this.first = props.name.slice(0, indexOf);
       this.rest = props.name.slice(indexOf);
     } else {
       this.first = props.name;
       this.rest = null;
     }
-    this.refe  = props.refe;
-    
+    this.refe = props.refe;
+
     console.log(props.refe);
   }
-  render () {
+  render() {
     return (
-          <div className="card mb-5 cardwidth">
-            <div className="card-body">
-              <Link className="linkblack" to={`/${this.refe}`}  className="card-link textSize">
-                <span>{this.first}</span>
-                {this.rest !== null ? (<br/>): null}
-                {this.rest !== null ? <span>{this.rest}</span>: null}</Link>
-            </div>
-          </div>
+      <div className="card mb-5 cardwidth">
+        <div className="card-body">
+          <Link className="linkblack" to={`/${this.refe}`} className="card-link textSize">
+            <span>{this.first}</span>
+            {this.rest !== null ? (<br />) : null}
+            {this.rest !== null ? <span>{this.rest}</span> : null}</Link>
+        </div>
+      </div>
 
     );
   }

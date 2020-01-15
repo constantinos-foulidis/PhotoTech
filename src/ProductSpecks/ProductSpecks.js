@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import '../ProductSpecks/ProductSpecks.css';
 import Modal from 'react-bootstrap/Modal'
@@ -20,11 +20,11 @@ class ProductSpecs extends Component {
     };
   }
   handleClose() {
-    this.setState({show: false});
+    this.setState({ show: false });
   }
 
   handleShow() {
-    this.setState({show: true});
+    this.setState({ show: true });
   }
 
   addNumber = () => {
@@ -33,7 +33,7 @@ class ProductSpecs extends Component {
     const addedValue = Number(this.state.number);
     const sum = firstRemain + addedValue;
     console.log(sum);
-    this.setState({remain: sum});
+    this.setState({ remain: sum });
   }
 
   removeNumber = () => {
@@ -41,9 +41,9 @@ class ProductSpecs extends Component {
     if (!(Number(this.state.number) > firstRemain)) {
       const addedValue = Number(this.state.number);
       const sum = firstRemain - addedValue;
-      this.setState({remain: sum});
+      this.setState({ remain: sum });
     } else {
-      this.setState({errorMessage: 'Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα'});
+      this.setState({ errorMessage: 'Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα' });
       alert('Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα');
     }
 
@@ -51,7 +51,7 @@ class ProductSpecs extends Component {
 
   numberChanged = (event) => {
 
-    this.setState({number: event.target.value});
+    this.setState({ number: event.target.value });
     console.log("inside number changed");
   }
 
@@ -59,7 +59,7 @@ class ProductSpecs extends Component {
     return (<div className="Container">
       <div className="row ">
         <div className="col-5 border">
-          <img className="imgflex" src="/PhotoSc.png"/>
+          <img className="imgflex" src="/PhotoSc.png" />
         </div>
         <div className="col mb-2 border ml-4 ">
           <div className="row">
@@ -116,7 +116,7 @@ class ProductSpecs extends Component {
           <Container>
             <Row className="show-grid mb-4">
               <Col xs={12} md={8}>
-                <input type="number" placeholder="Αριθμος για αφαιρεση η προσθεση αποθεματος" onChange={(event) => this.numberChanged(event)}/>
+                <input type="number" placeholder="Αριθμος για αφαιρεση η προσθεση αποθεματος" onChange={(event) => this.numberChanged(event)} />
               </Col>
             </Row>
             <Row className="show-grid">

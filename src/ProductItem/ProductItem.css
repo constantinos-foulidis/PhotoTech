@@ -1,13 +1,12 @@
-.cardWidth{
+.cardWidth {
   width: 220px;
   height: 435px;
   border: 2px solid grey !important;
 }
-.imgWidth{
- height: 210px !important;
+.imgWidth {
+  height: 210px !important;
 }
-.buttonWidth{
+.buttonWidth {
   width: 15em !important;
   font-size: 12px !important;
-
 }

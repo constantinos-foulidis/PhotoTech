@@ -4,20 +4,20 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from "react-router-dom";
 
 class NavigateButton extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
   }
 
   handleNewItem = () => {
     console.log(this.props);
-     this.props.history.push("/products/add");
+    this.props.history.push("/products/add");
   }
 
-  render () {
+  render() {
     return (
 
-          <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleNewItem}>Προσθήκη νέου</Button>
+      <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleNewItem}>Προσθήκη νέου</Button>
 
 
     );

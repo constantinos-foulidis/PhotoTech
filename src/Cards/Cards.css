@@ -1,5 +1,5 @@
-.cardwidth{
- padding: 20px 20px;
+.cardwidth {
+  padding: 20px 20px;
   min-height: 150px;
   margin: 25px 150px;
   font-size: 23px;
@@ -10,4 +10,6 @@
   text-align: center;
   width: 300px;
 }
-a:visited {color:black}
+a:visited {
+  color: black;
+}
