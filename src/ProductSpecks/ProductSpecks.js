@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
 import '../ProductSpecks/ProductSpecks.css';
-import Modal from 'react-bootstrap/Modal'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
+import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import ProductHeader from '../ProductHeader/ProductHeader';
 
 class ProductSpecs extends Component {
   constructor(props) {
@@ -56,7 +57,10 @@ class ProductSpecs extends Component {
   }
 
   render() {
-    return (<div className="Container">
+    return (
+      <React.Fragment>
+      <ProductHeader/>
+      <div className="Container">
       <div className="row ">
         <div className="col-5 border">
           <img className="imgflex" src="/PhotoSc.png"/>
@@ -133,7 +137,8 @@ class ProductSpecs extends Component {
           <Button onClick={this.handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
-    </div>);
+    </div>
+  </React.Fragment>);
   }
 }
 

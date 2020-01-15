@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import '../ProductItem/ProductItem.css';
 import Button from 'react-bootstrap/Button';
-import ExporPDF from '../ExportTOPdf/ExportToPdf'
-import ExportExcel from '../ExportTOExcel/ExportToExcel'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import ExporPDF from '../ExportTOPdf/ExportToPdf';
+import ExportExcel from '../ExportTOExcel/ExportToExcel';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ProductHeader from '../ProductHeader/ProductHeader';
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +27,7 @@ class ProductItem extends Component {
   render() {
     return (
       <div>
+      <ProductHeader/>
           <ExporPDF/>
           <ExportExcel/>
     <div className="card cardWidth ml-5">

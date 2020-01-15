@@ -23,35 +23,20 @@ class Products extends Component {
     //}
 
   }
-  handleAddnew = () => {
-    console.log(this.props);
-    this.props.history.push({
-      pathname: "/products/add",
-      //state: {username: this.state.username}
-    });
 
-  }
 
   render() {
 
     return (
       <Container className="bg-white">
-      <Row>
-        <Col className="col-1">
+      <Row className="mb-5">
+
           <NavigationDrawer/>
-        </Col>
-        <Col>
-          <h1>Προιόντα:</h1>
-        </Col>
-      </Row>
-      <Row className="offset-1">
-        {Category.map((category, index) => (<Dropdawn key={category.name} category={category}/>))}
 
-        <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>
 
-      <Row className="offset-1">
-        <Route exact="exact" path="/products" component={ProductItem}/>
+      <Row>
+        <Route exact path="/products" component={ProductItem}/>
         <Route path="/products/add" component={NewItem}/>
         <Route path="/products/id" component={ProductSpecs}/>
         <Route path="/products/adduser" component={AddNewUser}/>

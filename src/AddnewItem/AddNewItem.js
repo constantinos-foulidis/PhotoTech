@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import '../AddnewItem/AddNewItem.css';
-
+import ProductHeader from '../ProductHeader/ProductHeader';
 class NewItem extends Component{
   constructor(props){
     super(props);
@@ -16,7 +16,9 @@ class NewItem extends Component{
   }
   render() {
     return   (
+      <React.Fragment>
       <div className="Container">
+        <ProductHeader/>
        <div className="row justify-content-start">
          <div className="col">
             <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Χειροκίνητα</Button>
@@ -80,6 +82,7 @@ class NewItem extends Component{
        </div>
        </div>
       </div>
+      </React.Fragment>
  )}
 
 
