@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 //import '../NavigateButton/Navigatebtn.css';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 class AddNewUser extends Component {
   constructor(props){
     super(props);
@@ -54,6 +54,7 @@ handleUserInput = (e) => {
   render () {
     return (
         <div className="Conteiner">
+          <NavigationDrawer/>
           <div className="row justify-content-start">
           <div className="col">
              <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Διαχείρηση</Button>

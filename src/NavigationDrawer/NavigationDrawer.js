@@ -64,8 +64,8 @@ class NavigationDrawer extends Component {
           <Link to="#">Υλικα εργαστηρίου</Link>
           <Link to="#">Προσθήκη νέου</Link>
             <Dropdawn  category={Category[0]}/>
-          <Link to="/products/handleuser">Διαχείρηση</Link>
-          <Link to="/products/adduser">Προσθήκη νέου</Link>
+          <Link to="/handleuser">Διαχείρηση</Link>
+          <Link to="/adduser">Προσθήκη νέου</Link>
         </div>
       </React.Fragment>
     );
