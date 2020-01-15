@@ -1,0 +1,9 @@
+.imgflex {
+  max-width: 21vw;
+}
+
+.headerCenter{
+  position: relative;
+    /* text-align: center!important; */
+    left: 400px;
+}
