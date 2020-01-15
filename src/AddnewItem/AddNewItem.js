@@ -6,10 +6,6 @@ import Col from 'react-bootstrap/Col'
 import '../AddnewItem/AddNewItem.css';
 
 class NewItem extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   return = () => {
     this.props.history.goBack();

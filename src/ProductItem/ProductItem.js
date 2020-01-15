@@ -3,8 +3,7 @@ import '../ProductItem/ProductItem.css';
 import Button from 'react-bootstrap/Button';
 import ExporPDF from '../ExportTOPdf/ExportToPdf'
 import ExportExcel from '../ExportTOExcel/ExportToExcel'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +28,7 @@ class ProductItem extends Component {
         <ExporPDF />
         <ExportExcel />
         <div className="card cardWidth ml-5">
-          <img className="card-img-top imgWidth" src="/PhotoSc.png" />
+          <img alt="logo" className="card-img-top imgWidth" src="/PhotoSc.png" />
           <div className="card-body">
             <h5 className="card-title">Φωτηστικο Τεστ</h5>
             <p className="card-text">Διαθεσημοτητα : 150</p>

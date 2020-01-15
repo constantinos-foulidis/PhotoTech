@@ -4,10 +4,6 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from "react-router-dom";
 
 class NavigateButton extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   handleNewItem = () => {
     console.log(this.props);
