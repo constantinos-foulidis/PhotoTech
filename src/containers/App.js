@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import SelectorCards from './SelectorCards/SelectorCards';
-import Resourceposition from './ProgramRecources/RecourcePlacement';
-import Login from './Login/Login'
-import Products from './ProductsRecources/ProductRecources'
+import SelectorCards from '../SelectorCards/SelectorCards';
+import Resourceposition from '../ProgramRecources/RecourcePlacement';
+import Login from '../Login/Login'
+import Products from '../ProductsRecources/ProductRecources'
 
 import {
   BrowserRouter as Router,
@@ -14,7 +14,7 @@ function App() {
 
     <div className="App">
       <header className="App-header shadow p-3 mb-5 ">
-        <img className="headerpic" src="/PhotoSc.png" />
+        <img alt="logo" className="headerpic" src="/PhotoSc.png" />
       </header>
       <Router>
         <Route exact path="/" component={SelectorCards} />
