@@ -18,6 +18,15 @@ class AddNewUser extends Component {
       errors: {},
     }
   }
+
+ handleUser = () => {
+   console.log(this.props);
+   this.props.history.push({
+     pathname: "/products/add",
+     //state: {username: this.state.username}
+   });
+ }
+
   handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -57,7 +66,7 @@ class AddNewUser extends Component {
       <div className="Conteiner">
         <div className="row justify-content-start">
           <div className="col">
-            <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Διαχείρηση</Button>
+            <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleUser}>Διαχείρηση</Button>
           </div>
           <div className="col">
             <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη Νέου</Button>
