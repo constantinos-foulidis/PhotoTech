@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Route } from "react-router-dom";
-
-import Category from '../../Data/Category';
 import NewItem from '../AddnewItem/AddNewItem';
 import AddNewUser from '../AddNewUser/AddNewUser';
-import Dropdawn from '../Dropdawn/Dropdawn';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import ProductItem from '../ProductItem/ProductItem';
 import ProductSpecs from '../ProductSpecks/ProductSpecks';

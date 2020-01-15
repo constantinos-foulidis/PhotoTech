@@ -4,7 +4,6 @@ import Category from '../../Data/Category'
 import Dropdawn from '../Dropdawn/Dropdawn';
 import Button from 'react-bootstrap/Button';
 import { withRouter } from "react-router";
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 class ProductHeader  extends Component {
   constructor(props){

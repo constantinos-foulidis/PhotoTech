@@ -35,7 +35,7 @@ class AddNewUser extends Component {
     const { password, confirmpassword } = formData;
     console.log(password);
     console.log(confirmpassword);
-    if (password != confirmpassword) {
+    if (password !== confirmpassword) {
       this.setState({ // update errors using setState -- never directly modify a component's state
         errors: {
           ...errors,
