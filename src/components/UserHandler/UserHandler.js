@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 const UserHandle = (props) => {
   return (
     <div className="w-100">
-      <h1 className="text-center">Χρήστες</h1>
+      <h1 className="headerCenter mb-4">Χρήστες</h1>
       <Button className=" mb-2 mr-2" variant="info">Διαχείρηση</Button>
       <Button className=" mb-2 " variant="secondary">Προσθήκη νέου</Button>
       <table className="table table-bordered">

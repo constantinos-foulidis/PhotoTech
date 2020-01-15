@@ -63,7 +63,10 @@ class AddNewUser extends Component {
 
   render() {
     return (
+
+
       <div className="Conteiner">
+        <h1 className="headerCenter mb-4">Χρήστες</h1>
         <div className="row justify-content-start">
           <div className="col">
             <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleUser}>Διαχείρηση</Button>
@@ -100,6 +103,7 @@ class AddNewUser extends Component {
           </div>
         </div>
       </div>
+
     );
   }
 }
