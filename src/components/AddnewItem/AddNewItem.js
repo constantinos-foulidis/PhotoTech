@@ -7,10 +7,24 @@ import './AddNewItem.css';
 import ProductHeader from '../ProductHeader/ProductHeader';
 
 class NewItem extends Component {
+  state = {
+    selectedFile: null
+  }
 
   return = () => {
     this.props.history.goBack();
   }
+
+fileSelectedHandler = event =>{
+  console.log(event.target.files[0]);
+  this.setState({
+    selectedFile: event.target.files[0]
+  })
+}
+fileUploadHandler = () => {
+ // use axios to upload file after button click
+}
+
   render() {
     return (
       <React.Fragment>
@@ -71,12 +85,13 @@ class NewItem extends Component {
               <Form.Group as={Row}>
                 <Col sm={{ span: 10 }}>
                   <Form.Label className="mr-3">Φωτογραφία</Form.Label>
-                  <Button className="mr-5" variant="info" type="button">Ανεβασμα Φωτογραφιας</Button>
+                  <input className="mr-5 p-1"  type="file" onChange={this.fileSelectedHandler}/>
                   <Button className="mr-2" type="button" variant="info" onClick={this.return} >Ακυρωση</Button>
                   <Button type="button" variant="info">Καταχωρηση</Button>
                 </Col>
               </Form.Group>
             </Form>
+            <input type="file"  accept="image/*"/>
           </div>
         </div>
       </div>
