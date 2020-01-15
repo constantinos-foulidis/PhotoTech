@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../ProductItem/ProductItem.css';
+import './ProductItem.css';
 import Button from 'react-bootstrap/Button';
 import ExporPDF from '../ExportTOPdf/ExportToPdf'
 import ExportExcel from '../ExportTOExcel/ExportToExcel'

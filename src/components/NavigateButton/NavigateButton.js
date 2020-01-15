@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../NavigateButton/Navigatebtn.css';
+import './Navigatebtn.css';
 import Button from 'react-bootstrap/Button';
 import { withRouter } from "react-router-dom";
 

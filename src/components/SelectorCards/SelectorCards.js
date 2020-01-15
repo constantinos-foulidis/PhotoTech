@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../SelectorCards/SelectorCards.css';
+import './SelectorCards.css';
 import Cards from '../Cards/Cards';
 
 

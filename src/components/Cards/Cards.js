@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Cards/Cards.css';
+import './Cards.css';
 import {
   BrowserRouter as Router,
   Swinpmtch,

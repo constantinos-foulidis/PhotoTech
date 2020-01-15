@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown'
-import '../Dropdawn/Dropdown.css';
+import './Dropdown.css';
 const Dropdawn = (props) => {
   return (
     <Dropdown className="mr-2 marginBottomdropdawn">

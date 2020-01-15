@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Login/Login.css';
+import './Login.css';
 import { Checkbox } from '@material-ui/core';
 
 class Login extends Component {
