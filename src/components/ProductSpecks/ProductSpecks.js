@@ -102,9 +102,9 @@ class ProductSpecs extends Component {
           </div>
           <div className="row">
             <div className="col">
-              <Button className="buttonWidth mb-2 mr-1" variant="info">Αποθήκευση</Button>
-              <Button className="buttonWidth mb-2 mr-1" variant="info">Διαγραφή Προιόντος</Button>
-              <Button className="buttonWidth mb-2" variant="info">Επεξεργασία αποθέματος</Button>
+              <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info">Αποθήκευση</Button>
+              <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info">Διαγραφή Προιόντος</Button>
+              <Button className="buttonWidth mb-2 mb-3 mt-2" variant="info">Επεξεργασία αποθέματος</Button>
             </div>
           </div>
         </div>
