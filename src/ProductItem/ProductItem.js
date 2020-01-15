@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import './ProductItem.css';
+import React, {Component} from 'react';
+import '../ProductItem/ProductItem.css';
 import Button from 'react-bootstrap/Button';
-import ExporPDF from '../ExportTOPdf/ExportToPdf'
-import ExportExcel from '../ExportTOExcel/ExportToExcel'
+import ExporPDF from '../ExportTOPdf/ExportToPdf';
+import ExportExcel from '../ExportTOExcel/ExportToExcel';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import ProductHeader from '../ProductHeader/ProductHeader';
-
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -26,12 +27,9 @@ class ProductItem extends Component {
   render() {
     return (
       <div>
-      <div className="Container">
-
       <ProductHeader/>
           <ExporPDF/>
           <ExportExcel/>
-
     <div className="card cardWidth ml-5">
       <img className="card-img-top imgWidth" src="/PhotoSc.png"/>
       <div className="card-body">
@@ -43,8 +41,7 @@ class ProductItem extends Component {
       </div>
     </div>
     </div>
-    </div>
-    );
+  );
   }
 }
 

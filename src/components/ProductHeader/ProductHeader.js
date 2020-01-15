@@ -24,7 +24,7 @@ class ProductHeader  extends Component {
     return   (
   <React.Fragment>
    <Container>
-    <Row className="offset-3 mb-4">
+    <Row className="text-center mb-4">
        <Col>
       <h1>Προιόντα:</h1>
       </Col>
