@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import './ProductRecources.css';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { Route } from "react-router-dom";
+
+import Category from '../../Data/Category';
+import NewItem from '../AddnewItem/AddNewItem';
+import AddNewUser from '../AddNewUser/AddNewUser';
+import Dropdawn from '../Dropdawn/Dropdawn';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import ProductItem from '../ProductItem/ProductItem';
-import Dropdawn from '../Dropdawn/Dropdawn';
-import NewItem from '../AddnewItem/AddNewItem';
 import ProductSpecs from '../ProductSpecks/ProductSpecks';
-import Container from 'react-bootstrap/Container';
-import AddNewUser from '../AddNewUser/AddNewUser';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import { Route } from "react-router-dom";
-import UserHandle from '../UserHandler/UserHandler'
-import Category from '../../Data/Category'
+import UserHandle from '../UserHandler/UserHandler';
+import './ProductRecources.css';
 
 class Products extends Component {
 
