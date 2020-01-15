@@ -1,42 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Cards.css';
-import {
-  BrowserRouter as Router,
-  Swinpmtch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import resourceposition from '../ProgramRecources/RecourcePlacement';
-class Cards extends Component {
-  constructor(props) {
-    super();
-    let indexOf = props.name.indexOf(" ");
-    console.log("Index of: ", indexOf);
-    if (indexOf >= 0) {
-      this.first = props.name.slice(0, indexOf);
-      this.rest = props.name.slice(indexOf);
-    } else {
-      this.first = props.name;
-      this.rest = null;
-    }
-    this.refe = props.refe;
+const card = (props) => {
+  //find first word
+  let indexOf = props.name.indexOf(" ");
+  let first;
+  let rest;
 
-    console.log(props.refe);
+  //If there is more than one word split the name in the first word and the rest.
+  if (indexOf >= 0) {
+    first = props.name.slice(0, indexOf);
+    rest = props.name.slice(indexOf);
+  } else {
+    first = props.name;
+    rest = null;
   }
-  render() {
-    return (
-      <div className="card mb-5 cardwidth">
-        <div className="card-body">
-          <Link className="linkblack" to={`/${this.refe}`} className="card-link textSize">
-            <span>{this.first}</span>
-            {this.rest !== null ? (<br />) : null}
-            {this.rest !== null ? <span>{this.rest}</span> : null}</Link>
-        </div>
+  
+  return (
+    <div className="card mb-5 cardwidth">
+      <div className="card-body">
+        <Link className="linkblack card-link textSize" to={`/${props.refe}`} >
+          <span>{first}</span>
+          {rest !== null ? (<br />) : null}
+          {rest !== null ? <span>{rest}</span> : null}</Link>
       </div>
+    </div>
 
-    );
-  }
+  );
 }
 
-export default Cards;
+export default card;
