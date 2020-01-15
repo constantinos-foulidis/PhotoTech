@@ -3,6 +3,7 @@ import './ProductItem.css';
 import Button from 'react-bootstrap/Button';
 import ExporPDF from '../ExportTOPdf/ExportToPdf'
 import ExportExcel from '../ExportTOExcel/ExportToExcel'
+import ProductHeader from '../ProductHeader/ProductHeader';
 
 const productItem = (props) => {
   const handleSpecified = () =>
@@ -12,6 +13,7 @@ const productItem = (props) => {
 
   return (
     <div>
+      <ProductHeader/>
       <ExporPDF />
       <ExportExcel />
       <div className="card cardWidth ml-5">
