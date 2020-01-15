@@ -4,7 +4,7 @@ import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import ProductItem from '../ProductItem/ProductItem';
 import Dropdawn from '../Dropdawn/Dropdawn';
 import NewItem from '../AddnewItem/AddNewItem';
-import ProductSpecs from '../../ProductSpecks/ProductSpecks';
+import ProductSpecs from '../ProductSpecks/ProductSpecks';
 import Container from 'react-bootstrap/Container';
 import AddNewUser from '../AddNewUser/AddNewUser';
 import Row from 'react-bootstrap/Row';

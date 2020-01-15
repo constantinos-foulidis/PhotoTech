@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import SelectorCards from '../SelectorCards/SelectorCards';
-import Resourceposition from '../ProgramRecources/RecourcePlacement';
-import Login from '../Login/Login'
-import Products from '../ProductsRecources/ProductRecources'
+import SelectorCards from '../components/SelectorCards/SelectorCards';
+import Resourceposition from '../components/ProgramRecources/RecourcePlacement';
+import Login from '../components/Login/Login'
+import Products from '../components/ProductsRecources/ProductRecources'
 
 import {
   BrowserRouter as Router,

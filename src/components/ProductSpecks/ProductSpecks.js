@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import '../ProductSpecks/ProductSpecks.css';
+import './ProductSpecks.css';
 import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
