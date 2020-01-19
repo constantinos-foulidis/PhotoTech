@@ -28,7 +28,7 @@ class Login extends Component {
     //dad event.preventDefault();
     console.log(event.preventDefault());
     this.props.history.push({
-      pathname: "/products",
+      pathname: "/recource/products",
       state: {
         username: this.state.username
       }

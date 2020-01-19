@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import './ProductSpecks.css';
+import './ProductDetails.css';
 import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import ProductHeader from '../ProductHeader/ProductHeader';
+import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
 
 class ProductSpecs extends Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class ProductSpecs extends Component {
       <ProductHeader/>
       <div className="row">
         <div className="col-5 border">
-          <img className="imgflex" src="/PhotoSc.png" />
+          <img alt="Product" className="imgflex" src="/PhotoSc.png" />
         </div>
         <div className="col mb-2 border ml-4 ">
           <div className="row">

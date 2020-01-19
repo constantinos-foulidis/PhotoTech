@@ -6,10 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from "react-router";
 import Container from 'react-bootstrap/Container';
 class ProductHeader  extends Component {
-  constructor(props){
-    super(props);
-
-  }
 
   handleAddnew = () => {
     console.log(this.props);

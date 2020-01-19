@@ -1,9 +1,9 @@
 import React from 'react';
 import './ProductItem.css';
 import Button from 'react-bootstrap/Button';
-import ExporPDF from '../ExportTOPdf/ExportToPdf'
-import ExportExcel from '../ExportTOExcel/ExportToExcel'
-import ProductHeader from '../ProductHeader/ProductHeader';
+import ExporPDF from '../../../../components/ExportTOPdf/ExportToPdf'
+import ExportExcel from '../../../../components/ExportTOExcel/ExportToExcel'
+import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
 
 const productItem = (props) => {
   const handleSpecified = () =>

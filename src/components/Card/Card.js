@@ -1,5 +1,5 @@
 import React from 'react';
-import './Cards.css';
+import './Card.css';
 import { Link } from "react-router-dom";
 
 const card = (props) => {
@@ -20,7 +20,7 @@ const card = (props) => {
   return (
     <div className="card mb-5 cardwidth">
       <div className="card-body">
-        <Link className="linkblack card-link textSize" to={`/${props.refe}`} >
+        <Link className="linkblack card-link textSize" to={props.refe} >
           <span>{first}</span>
           {rest !== null ? (<br />) : null}
           {rest !== null ? <span>{rest}</span> : null}</Link>

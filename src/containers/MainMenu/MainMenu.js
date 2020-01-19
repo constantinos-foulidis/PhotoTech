@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './SelectorCards.css';
-import Cards from '../Cards/Cards';
+import './MainMenu.css';
+import Cards from '../../components/Card/Card';
 
 
-class SelectorCards extends Component {
+class MainMenu extends Component {
   render() {
     return (
 
@@ -11,24 +11,24 @@ class SelectorCards extends Component {
         <h2 className="mb-5 text-center">Επιλέξτε Κατηγορία</h2>
         <div className="row justify-content-center">
           <div className="col">
-            <Cards refe="admin" name="Διαχηρηστής Προγράμματος" />
+            <Cards refe="/admin" name="Διαχηρηστής Προγράμματος" />
           </div>
           <div className="col">
-            <Cards refe="lab" name="Εργαστήριο Αιγινίου" />
+            <Cards refe="/lab" name="Εργαστήριο Αιγινίου" />
           </div>
           <div className="col">
-            <Cards refe="office" name="Γραφειο Θεσσαλονικης" />
+            <Cards refe="/office" name="Γραφειο Θεσσαλονικης" />
           </div>
         </div>
         <div className="row justify-content-center">
           <div className="col ">
-            <Cards refe="sellers" name="Πωλητές" />
+            <Cards refe="/sellers" name="Πωλητές" />
           </div>
           <div className="col">
-            <Cards refe="photo" name="Φωτογραφίες" />
+            <Cards refe="/photo" name="Φωτογραφίες" />
           </div>
           <div className="col">
-            <Cards refe="recource" name="Πρόγραμμα Αποθήκης" />
+            <Cards refe="/recource" name="Πρόγραμμα Αποθήκης" />
           </div>
         </div>
       </div>
@@ -37,4 +37,4 @@ class SelectorCards extends Component {
   }
 }
 
-export default SelectorCards;
+export default MainMenu;
