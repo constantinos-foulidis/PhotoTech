@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Cards from "../../../components/Card/Card";
-import UserManagement from "../User Management/UserHandler/UserHandler";
+import UserManagement from "../User Management/UserManagement";
 import Products from "../Product Management/ProductsRecources/ProductRecources";
 import Login from "../../../components/Login/Login";
 const ResourceProgramMenu = props => {

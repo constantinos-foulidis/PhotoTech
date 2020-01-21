@@ -71,8 +71,8 @@ class NavigationDrawer extends Component {
             Χρήστες
             </Dropdown.Toggle>
           </Dropdown>
-          <Link to="/products/handleuser">-Διαχείρηση</Link>
-          <Link to="/products/adduser">-Προσθήκη νέου</Link>
+          <Link to="/recource/user_management">-Διαχείρηση</Link>
+          <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
         </div>
       </React.Fragment>
     );

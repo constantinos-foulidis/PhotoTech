@@ -10,7 +10,7 @@ class ProductHeader  extends Component {
   handleAddnew = () => {
     console.log(this.props);
     this.props.history.push({
-      pathname: "/products/add",
+      pathname: "/recource/products/add",
       //state: {username: this.state.username}
     });
 

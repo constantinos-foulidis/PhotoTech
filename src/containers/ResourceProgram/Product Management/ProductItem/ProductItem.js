@@ -8,7 +8,7 @@ import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
 const productItem = (props) => {
   const handleSpecified = () =>
     props.history.push({
-      pathname: "/products/id",
+      pathname: props.match.url +"/id",
     });
 
   return (

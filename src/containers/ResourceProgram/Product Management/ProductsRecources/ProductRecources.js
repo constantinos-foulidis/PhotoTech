@@ -3,11 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Route } from "react-router-dom";
 import NewItem from '../../../../components/AddnewItem/AddNewItem';
-import AddNewUser from '../../User Management/AddNewUser/AddNewUser';
 import NavigationDrawer from '../../../../components/NavigationDrawer/NavigationDrawer';
 import ProductItem from '../ProductItem/ProductItem';
 import ProductSpecs from '../ProductDetails/ProductDetails';
-import UserHandle from '../../User Management/UserHandler/UserHandler';
 import './ProductRecources.css';
 
 class Products extends Component {
@@ -32,8 +30,6 @@ class Products extends Component {
         <Route exact path={this.props.match.url} component={ProductItem}/>
         <Route path={this.props.match.url + "/add"} component={NewItem}/>
         <Route path={this.props.match.url + "/id"} component={ProductSpecs}/>
-        <Route path="/products/adduser" component={AddNewUser}/>
-        <Route path="/products/handleuser" component={UserHandle}/>
       </Row>
 
     </Container>
