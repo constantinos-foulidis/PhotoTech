@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import './NavigationDrawer.css';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import Dropdown from 'react-bootstrap/Dropdown'
-import { toggleNavigator } from '../../store/actions/navigator'
+import Dropdown from 'react-bootstrap/Dropdown';
+import { toggleNavigator } from '../../store/actions/navigator';
 class NavigationDrawer extends Component {
-  
+
   render() {
     const { showNav } = this.props;
     let sideNavStyle = { width: showNav ? "250px" : "0" };
@@ -75,7 +75,7 @@ const mapDispatchToProps = dispatch => {
       e.preventDefault();
       document.removeEventListener("keydown", handler);
       dispatch(toggleNavigator());
-    } 
+    }
   }
 }
 export const navigationToggleButton  = connect((state, props) => ({ ...props }), mapDispatchToProps)(toggleButton);

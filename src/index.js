@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers,applyMiddleware,compose } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { navigatorReducer } from './store/reducers/navigator';
+import { loginAuthReducer } from './store/reducers/loginAuth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
-    navigator: navigatorReducer
+    navigator: navigatorReducer,
+    login: loginAuthReducer
 })
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,applyMiddleware(thunk));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

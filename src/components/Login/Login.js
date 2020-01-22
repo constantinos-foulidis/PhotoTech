@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
+import { login } from '../../store/actions/loginAuth';
+import { connect } from 'react-redux';
 import { Checkbox } from '@material-ui/core';
 
 class Login extends Component {
@@ -27,15 +29,25 @@ class Login extends Component {
     // alert('A name was submitted: ' + this.state.username+this.state.password);
     //dad event.preventDefault();
     console.log(event.preventDefault());
+    console.log(this.state.username);
+    const formdata={
+      username:this.state.username,
+      password:this.state.password
+    };
+  this.props.onAuth(formdata);
+/*
+  this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
     this.props.history.push({
       pathname: "/recource/products",
       state: {
         username: this.state.username
       }
     });
+    */
   }
 
   render() {
+    //const { handleSubmit } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="Container background_form">
@@ -66,5 +78,18 @@ class Login extends Component {
       </form>)
   };
 }
+const mapStateToProps = (state, props) => {
+  return {
+    username: state.login.userName,
+    isAdmin:state.login.isAdmin,
+    isLogedIn: state.login.isLogedIn,
+    ...props,
+  }
+};
+const mapDispatchToProps = dispatch => {
+   return{
+     onAuth:(formdata) =>dispatch(login(formdata))
+   }
+}
 
-export default Login;
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

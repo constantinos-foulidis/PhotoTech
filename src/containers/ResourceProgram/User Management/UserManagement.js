@@ -5,6 +5,7 @@ import AddNewUser from './AddNewUser/AddNewUser';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import NavigationDrawer from '../../../components/NavigationDrawer/NavigationDrawer';
+import {navigationToggleButton as NtogleButton} from '../../../components/NavigationDrawer/NavigationDrawer';
 
 const userManagment = props => {
   console.log(props);
@@ -13,6 +14,7 @@ const userManagment = props => {
     <Container className="bg-white">
     <Row className="mb-4">
         <NavigationDrawer/>
+        <NtogleButton/>
     </Row>
 
     <Row>
