@@ -10,9 +10,9 @@ export const loginAuthReducer = (state = initialState, action) => {
     if(action.type === LOGIN){
         return {
             ...state,
-            isLogedIn: action.result.isLogedIn,
-            isAdmin: action.result.isAdmin,
-            userName: action.result.userName,
+            isLogedIn: action.result.data.isLogedIn,
+            isAdmin: action.result.data.isAdmin,
+            userName: action.result.data.userName,
         }
     }
     return state;
