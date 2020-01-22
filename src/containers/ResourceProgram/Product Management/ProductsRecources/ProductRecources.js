@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import { Route } from "react-router-dom";
 import NewItem from '../../../../components/AddnewItem/AddNewItem';
 import NavigationDrawer from '../../../../components/NavigationDrawer/NavigationDrawer';
-import ProductItem from '../ProductItem/ProductItem';
+import ProductItems from '../ProductItems/ProductItems';
 import ProductSpecs from '../ProductDetails/ProductDetails';
 import './ProductRecources.css';
 
@@ -27,7 +27,7 @@ class Products extends Component {
       </Row>
 
       <Row>
-        <Route exact path={this.props.match.url} component={ProductItem}/>
+        <Route exact path={this.props.match.url} component={ProductItems}/>
         <Route path={this.props.match.url + "/add"} component={NewItem}/>
         <Route path={this.props.match.url + "/id"} component={ProductSpecs}/>
       </Row>
