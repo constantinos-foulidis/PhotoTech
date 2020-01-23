@@ -1,4 +1,5 @@
 import Axios from "axios";
+import FormData from 'form-data';
 
 const baseUrl = 'http://localhost:4040/api/';
 const productsUri = 'product/';
@@ -26,7 +27,18 @@ const updateProducts = (products) => {
 
 const addProduct = (product) => {
     return (dispatch, getState) => {
-        Axios.post(baseUrl + productsUri, )
+        const data = new FormData();
+        data.append("myimage", product.file, product.fileName);
+        data.append("productDetail", product.productDetail);
+        data.append("productCode", product.productCode);
+        data.append("productCategory", product.productCategory);
+        data.append("productSubcategory", product.productSubcategory);
+        data.append("productQuantity", product.productQuantity);
+        data.append("productPosition", product.productPosition);
+        data.append("productOrder", product.productOrder);
+        Axios.post(baseUrl + productsUri, data).then(response => {
+            dispatch(addProductCreator(response.data.data));
+        })
     }
 };
 
