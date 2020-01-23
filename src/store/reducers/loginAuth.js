@@ -1,4 +1,4 @@
-import { LOGIN } from '../actions/loginAuth'
+
 import * as actionTypes from '../actionTypes';
 import { updateObject } from '../utility';
 const initialState = {

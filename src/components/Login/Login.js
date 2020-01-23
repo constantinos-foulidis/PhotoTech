@@ -113,6 +113,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuth: (formdata) => dispatch(login(formdata))
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
