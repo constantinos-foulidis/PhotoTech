@@ -1,0 +1,8 @@
+.cardWidth {
+    width: 220px;
+    height: 435px;
+    border: 2px solid grey !important;
+  }
+  .imgWidth {
+    height: 210px !important;
+  }
