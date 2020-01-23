@@ -8,11 +8,13 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { navigatorReducer } from './store/reducers/navigator';
 import { loginAuthReducer } from './store/reducers/loginAuth';
+import productsReducer from './store/reducers/products';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
     navigator: navigatorReducer,
-    login: loginAuthReducer
+    login: loginAuthReducer,
+    products: productsReducer
 })
 const store = createStore(rootReducer,applyMiddleware(thunk));
 

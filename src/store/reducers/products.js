@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/products';
 
 
 const initialState = {
-    products: []
+    products: null
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -16,8 +16,8 @@ const productsReducer = (state = initialState, action) => {
 }
 
 const updateProducts = (state, newProducts) => ({
-    products: newProducts,
-    ...state
+    ...state,
+    products: newProducts
 });
 
 const addProduct = (state, product) => {
