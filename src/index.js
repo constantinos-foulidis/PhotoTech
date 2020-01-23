@@ -7,7 +7,7 @@ import { createStore, combineReducers,applyMiddleware,compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { navigatorReducer } from './store/reducers/navigator';
-import { loginAuthReducer } from './store/reducers/loginAuth';
+import  loginAuthReducer  from './store/reducers/loginAuth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({

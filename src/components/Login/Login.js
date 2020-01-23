@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Login.css';
-import { login } from '../../store/actions/loginAuth';
-import { connect } from 'react-redux';
-import { Checkbox } from '@material-ui/core';
+import {login} from '../../store/actions/loginAuth';
+import {connect} from 'react-redux';
+import {Checkbox} from '@material-ui/core';
+import Spinner from 'react-bootstrap/Spinner'
 
 class Login extends Component {
   constructor(props) {
@@ -19,10 +20,10 @@ class Login extends Component {
   }
 
   handleUsername(event) {
-    this.setState({ username: event.target.value });
+    this.setState({username: event.target.value});
   }
   handlePassword(event) {
-    this.setState({ password: event.target.value });
+    this.setState({password: event.target.value});
   }
 
   handleSubmit(event) {
@@ -30,12 +31,12 @@ class Login extends Component {
     //dad event.preventDefault();
     console.log(event.preventDefault());
     console.log(this.state.username);
-    const formdata={
-      username:this.state.username,
-      password:this.state.password
+    const formdata = {
+      username: this.state.username,
+      password: this.state.password
     };
-  this.props.onAuth(formdata);
-/*
+    this.props.onAuth(formdata);
+    /*
   this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
     this.props.history.push({
       pathname: "/recource/products",
@@ -48,48 +49,70 @@ class Login extends Component {
 
   render() {
     //const { handleSubmit } = this.props;
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="Container background_form">
-          <div className="row mb-5">
-            <div className="col ">
-              <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername} />
-            </div>
-          </div>
-          <div className="row mb-5">
-            <div className="col">
-              <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col ">
-              <Checkbox color="default" value="default" inputProps={{
-                'aria-label': 'checkbox with default color'
-              }} />
-              <label >
-                Να Παράμεινω Συνδεμενος
-            </label>
-            </div>
-            <div className="col-5">
-              <input type="submit" value="Συνδεση" />
-            </div>
+    let spinner = null;
+    if (this.props.loading) {
+      spinner = (<Spinner animation="border"/>);
+    }
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = (<p>{this.props.error.message}</p>);
+    }
+    if(this.props.isAdmin===true){
+      this.props.history.push({
+        pathname: "/recource/products",
+      });
+    }
+    if(this.props.isAdmin===false){
+      this.props.history.push({
+        pathname: "/recource/products",
+      });
+    }
+
+    return (<form onSubmit={this.handleSubmit}>
+      {spinner}
+      <div className="Container background_form">
+        <div className="row mb-5">
+          <div className="col ">
+            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/>
           </div>
         </div>
-      </form>)
+        <div className="row mb-5">
+          <div className="col">
+            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col ">
+            <Checkbox color="default" value="default" inputProps={{
+                'aria-label' : 'checkbox with default color'
+              }}/>
+            <label >
+              Να Παράμεινω Συνδεμενος
+            </label>
+          </div>
+          <div className="col-5">
+            <input type="submit" value="Συνδεση"/>
+          </div>
+          {errorMessage}
+        </div>
+      </div>
+    </form>)
   };
 }
 const mapStateToProps = (state, props) => {
   return {
     username: state.login.userName,
-    isAdmin:state.login.isAdmin,
+    isAdmin: state.login.isAdmin,
     isLogedIn: state.login.isLogedIn,
-    ...props,
+    loading: state.login.loading,
+    error: state.login.error,
+    ...props
   }
 };
 const mapDispatchToProps = dispatch => {
-   return{
-     onAuth:(formdata) =>dispatch(login(formdata))
-   }
+  return {
+    onAuth: (formdata) => dispatch(login(formdata))
+  }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
