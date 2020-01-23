@@ -25,10 +25,11 @@ const updateProducts = (products) => {
     };
 }
 
-const addProduct = (product) => {
+export const addProduct = (product) => {
     return (dispatch, getState) => {
         const data = new FormData();
-        data.append("myimage", product.file, product.fileName);
+        console.log("[ProductActions] addProduct - product: ", product);
+        data.append("myimage", product.selectedFile, product.selectedFile.name);
         data.append("productDetail", product.productDetail);
         data.append("productCode", product.productCode);
         data.append("productCategory", product.productCategory);
