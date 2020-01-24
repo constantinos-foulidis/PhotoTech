@@ -25,12 +25,20 @@ const getUsers = (state, action) => {
       loading: false
     });
 };
+const deleteUser = (state, action) => {
+    return updateObject(state, {
+      users:action.users,
+      error: null,
+      loading: false
+    });
+};
 
  const userReducer = (state = initialState, action) => {
      switch(action.type){
        case actionTypes.CALL_START:return callStart(state,action);
        case actionTypes.CALL_FAIL: return callFail(state, action);
        case actionTypes.GET_USERS: return getUsers(state, action);
+      case actionTypes.DELETE_USER: return deleteUser(state, action);
        default:
            return state;
      }

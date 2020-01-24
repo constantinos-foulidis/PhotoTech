@@ -21,6 +21,13 @@ export const createUserSuccess = (user) => {
     users: user
   };
 };
+export const deleteUserSuccess = (user) => {
+  console.log(user);
+  return {
+    type: actionTypes.DELETE_USER ,
+    users: user
+  };
+};
 
 export const callFail = (error) => {
   return {
@@ -60,6 +67,24 @@ export const createUser = (formdata) => {
     //todo async actions
     let url = `http://localhost:4040/api/users`;
     axios.post(url,formdata).
+    then(res => {
+      if (res.data.error) {
+        dispatch(callFail(res.data.error));
+      } else {
+        dispatch(getUserSuccess(res.data));
+      }
+    }).catch(err => {
+      dispatch(callFail(err));
+    });
+  }
+};
+export const deleteUser = (userName) => {
+  console.log("here users",userName);
+  return dispatch => {
+    dispatch(callStart());
+    //todo async actions
+    let url = `http://localhost:4040/api/users/delete`;
+    axios.delete(url,userName).
     then(res => {
       if (res.data.error) {
         dispatch(callFail(res.data.error));

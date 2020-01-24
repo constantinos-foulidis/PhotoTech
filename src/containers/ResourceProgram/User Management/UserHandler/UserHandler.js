@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import Button from 'react-bootstrap/Button';
-import {getUsers} from '../../../../store/actions/users';
+import {getUsers,deleteUser} from '../../../../store/actions/users';
 import {connect} from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner'
 class UserHandle extends Component {
@@ -17,6 +17,13 @@ props.getAllusers();
       pathname: "/recource/user_management/add",
       //state: {username: this.state.username}
     });
+  }
+  deleteUser(username) {
+    let formData=null;
+    formData={
+      userName:username
+    }
+    this.props.deleteUser(formData);
   }
   render(){
     let users = [];
@@ -57,7 +64,7 @@ props.getAllusers();
             <td>{users.username}</td>
             <td>{users.fullName}</td>
             <td>{users.password}</td>
-            <td>Διαγραφή</td>
+            <td>   <Button className=" mb-2 float-right" onClick={() => this.props.deleteUser(users.username)} variant="info">Διαγραφή</Button></td>
           </tr>
 
         );
@@ -80,7 +87,8 @@ const mapStateToProps = (state, props) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    getAllusers: () => dispatch(getUsers())
+    getAllusers: () => dispatch(getUsers()),
+    deleteUser: (userName) =>dispatch(deleteUser(userName))
   }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(UserHandle);
