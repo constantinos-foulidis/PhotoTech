@@ -24,10 +24,11 @@ class ProductHeader  extends Component {
    <div className="headerCenter mb-4">
     <h1>Προιόντα:</h1>
     </div>
-  <Row>
+     <Row>
         <Col>
-          <NavigationToggleButton />
-        </Col>
+  <NavigationToggleButton />
+       </Col>
+
         {Category.map((category, index) => (<Dropdawn key={category.name} category={category}/>))}
         <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>

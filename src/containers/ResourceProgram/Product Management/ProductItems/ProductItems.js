@@ -10,10 +10,14 @@ import * as actions from '../../../../store/actions/products';
 const productItems = (props) => {
   let products = [];
 
-  if (props.products) {
+  if (!props.products) {
+    console.log("Get products called");
     props.getProducts();
+  }else {
     products = props.products;
   }
+
+  console.log("[ProductItems] props: ", props);
 
   const basePath = props.match.url;
   return (
@@ -33,7 +37,7 @@ const productItems = (props) => {
         <div className="row">
           {products.map((product) => {
             return (
-              <div className="col">
+              <div key={product._id} className="col">
                 <ProductItem basePath={basePath} onDelete={() => props.delete(product.productCode)} product={product} />
               </div>
             );
@@ -47,7 +51,7 @@ const productItems = (props) => {
 const mapStateToProps = (state, props) => {
   return {
     ...props,
-    products: state.products
+    products: state.products.products
   };
 }
 

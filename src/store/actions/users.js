@@ -45,7 +45,7 @@ export const getUsers = () => {
   //  dispatch(saveResult(res));
 
   }).catch(err => {
-                dispatch(callFail(err.response.data.error));
+                dispatch(callFail(err));
             });
 
 

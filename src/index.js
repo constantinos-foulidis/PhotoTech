@@ -9,13 +9,16 @@ import { Provider } from 'react-redux';
 import { navigatorReducer } from './store/reducers/navigator';
 import  loginAuthReducer  from './store/reducers/loginAuth';
 import  userReducer from './store/reducers/userReducer';
+import productsReducer from './store/reducers/products';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
     navigator: navigatorReducer,
     login: loginAuthReducer,
-    user:userReducer
+    user:userReducer,
+      products: productsReducer,
 });
+
 const store = createStore(rootReducer,applyMiddleware(thunk));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));

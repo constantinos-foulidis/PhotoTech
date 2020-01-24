@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "fibers": "^4.0.2",
+    "form-data": "^3.0.0",
     "jquery": "^3.4.1",
     "mini-create-react-context": "^0.3.2",
     "node-sass": "^4.13.1",

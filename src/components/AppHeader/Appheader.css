@@ -1,0 +1,18 @@
+.appHeaderInput{
+   border: 3px;
+   border-color: black;
+    border-radius: 8px;
+    margin-bottom: calc(((124px - 2 * 1rem) / 2) - (48px / 2));
+    margin-top: calc(((124px - 2 * 1rem) / 2) - (48px / 2));
+}
+
+.appheaderProfile{
+  width:30px;
+  height: 30px;
+
+}
+
+.center{
+  margin-bottom: calc(((124px - 2 * 1rem) / 2) - (48px / 2));
+  margin-top: calc(((124px - 2 * 1rem) / 2) - (48px / 2));
+}
