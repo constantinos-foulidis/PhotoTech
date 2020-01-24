@@ -2,7 +2,7 @@
 import * as actionTypes from '../actionTypes';
 import { updateObject } from '../utility';
 const initialState = {
-    isLogedIn: true,
+    isLogedIn: false,
     isAdmin:null,
     userName:"none",
     loading:false,
@@ -14,9 +14,10 @@ const authStart = ( state, action ) => {
 };
 
 const authSuccess = (state, action) => {
+  console.log("username for sending",action.username);
     return updateObject( state, {
         isAdmin: action.isAdmin,
-        userName: action.username,
+        userName: action.userName,
         isLogedIn:true,
         error: null,
         loading: false
