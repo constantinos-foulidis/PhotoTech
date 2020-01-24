@@ -26,10 +26,10 @@ class ProductHeader  extends Component {
     </div>
      <Row>
         <Col>
-  <NavigationToggleButton />
+  <NavigationToggleButton/>
        </Col>
 
-        {Category.map((category, index) => (<Dropdawn key={category.name} category={category}/>))}
+        {Category.map((category, index) => (<Dropdawn  key={category.name} category={category}/>))}
         <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Προσθήκη νέου</Button>
       </Row>
       </Container>

@@ -16,13 +16,12 @@
 .side-nav {
   height: 100%;
   width: 0; /* to be set in js */
-  position: fixed;
+  position: absolute;
   overflow-x: hidden;
   z-index: var(--sidenav-z-index);
   top: 8em;
   left: 0;
   background: #f2f2f2;
-  padding-top: 3.5rem;
   transition: 0.5s;
 }
 .side-dropdown {
