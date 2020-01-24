@@ -11,13 +11,19 @@ class UserHandle extends Component {
     }
 props.getAllusers();
   }
-
+  addnewUser = () => {
+    console.log(this.props);
+    this.props.history.push({
+      pathname: "/recource/user_management/add",
+      //state: {username: this.state.username}
+    });
+  }
   render(){
     let users = [];
     if (this.props.users) {
       users = this.props.users;
     }
-    
+
     let spinner = null;
     if (this.props.loading) {
       spinner = (<Spinner animation="border"/>);
@@ -27,7 +33,7 @@ props.getAllusers();
       {spinner}
       <h1 className="headerCenter mb-4">Χρήστες</h1>
       <Button className=" mb-2 mr-2" variant="info">Διαχείρηση</Button>
-      <Button className=" mb-2 " variant="secondary">Προσθήκη νέου</Button>
+      <Button className=" mb-2 " variant="secondary" onClick={this.addnewUser}>Προσθήκη νέου</Button>
       <table className="table table-bordered">
         <thead>
           <tr>
