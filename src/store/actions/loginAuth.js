@@ -53,7 +53,7 @@ export const login = (formdata) => {
   //  dispatch(saveResult(res));
 
   }).catch(err => {
-                dispatch(authFail(err.response.data.error));
+                dispatch(authFail(err));
             });
 
 

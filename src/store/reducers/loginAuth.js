@@ -2,7 +2,7 @@
 import * as actionTypes from '../actionTypes';
 import { updateObject } from '../utility';
 const initialState = {
-    isLogedIn: false,
+    isLogedIn: true,
     isAdmin:null,
     userName:"none",
     loading:false,
@@ -17,6 +17,7 @@ const authSuccess = (state, action) => {
     return updateObject( state, {
         isAdmin: action.isAdmin,
         userName: action.username,
+        isLogedIn:true,
         error: null,
         loading: false
      } );
