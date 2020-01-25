@@ -9,7 +9,10 @@ class UserHandle extends Component {
     this.state = {
       users: [],
     }
-props.getAllusers();
+
+  }
+  componentDidMount(){
+   this.props.getAllusers();
   }
   addnewUser = () => {
     console.log(this.props);
@@ -21,13 +24,15 @@ props.getAllusers();
   deleteUser(username) {
     let formData=null;
     formData={
-      userName:username
+      data:{
+      username:username
+       }
     }
     this.props.deleteUser(formData);
   }
   render(){
     let users = [];
-    if (this.props.users) {
+    if (this.props.users.length > 0) {
       users = this.props.users;
     }
 
@@ -64,7 +69,7 @@ props.getAllusers();
             <td>{users.username}</td>
             <td>{users.fullName}</td>
             <td>{users.password}</td>
-            <td>   <Button className=" mb-2 float-right" onClick={() => this.props.deleteUser(users.username)} variant="info">Διαγραφή</Button></td>
+            <td>   <Button className=" mb-2 float-right" onClick={() => this.deleteUser(users.username)} variant="info">Διαγραφή</Button></td>
           </tr>
 
         );

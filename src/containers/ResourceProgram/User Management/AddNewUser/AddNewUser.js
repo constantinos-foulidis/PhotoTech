@@ -50,9 +50,10 @@ class AddNewUser extends Component {
    let formdata=null;
     if (this.state.password === this.state.confirmpassword) {
          formdata={
-           userName:this.state.userName,
+           username:this.state.userName,
            fullName:this.state.fullName,
-           password:this.state.password
+           password:this.state.password,
+           isAdmin:"1"
          }
       this.props.createUser(formdata);
 
