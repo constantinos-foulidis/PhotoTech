@@ -57,7 +57,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    delete: (id) => dispatch({ type: "DELETE" }),
+    delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
     getProducts: () => dispatch(actions.getProducts())
   }
 }
