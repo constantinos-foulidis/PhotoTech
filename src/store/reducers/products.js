@@ -3,7 +3,8 @@ import { updateObject } from '../utility';
 
 
 const initialState = {
-    products: null
+    products: null,
+    allProducts:null
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -48,10 +49,18 @@ const updateProduct = (state, productId, updatedProduct) => {
 };
 const filterProduct = (state, productCategory) => {
   console.log("insided filter",productCategory);
+  if(state.allProducts===null){
   let updateproducts=state.products.filter(product => product.productCategory === productCategory );
     return updateObject(state, {
+      allProducts:state.products,
       products: updateproducts
     });
+  }else{
+    let updateproducts=state.allProducts.filter(product => product.productCategory === productCategory );
+      return updateObject(state, {
+        products: updateproducts
+      });
+  }
 };
 const deleteProduct = (state, productId) => {
     console.log("[products reducer] state.products: ", state.products);
