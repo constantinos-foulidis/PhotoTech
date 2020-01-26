@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { toggleNavigator } from '../../store/actions/navigator';
-import {login} from '../../store/actions/loginAuth';
 class NavigationDrawer extends Component {
 
   render() {

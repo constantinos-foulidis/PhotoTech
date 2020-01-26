@@ -28,7 +28,7 @@ const getUsers = (state, action) => {
 };
 const deleteUser = (state, action) => {
   console.log("insided delete reducer");
-  let updateusers=state.users.filter(user => user._id != action.id );
+  let updateusers=state.users.filter(user => user._id !== action.id );
     return updateObject(state, {
       users: updateusers,
       deleted:true,
