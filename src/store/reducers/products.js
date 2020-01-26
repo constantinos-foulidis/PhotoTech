@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/products';
+import { updateObject } from '../utility';
 
 
 const initialState = {
@@ -11,6 +12,7 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.ADD_PRODUCT: return addProduct(state, action.product);
         case actionTypes.UPDATE_PRODUCT: return updateProduct(state, action.productCode, action.updatedProduct);
         case actionTypes.DELETE_PRODUCT: return deleteProduct(state, action.productCode);
+        case actionTypes.FILTER_PRODUCT: return filterProduct(state,action.productCategory);
         default: return state;
     }
 }
@@ -44,7 +46,13 @@ const updateProduct = (state, productId, updatedProduct) => {
         products: newProducts
     }
 };
-
+const filterProduct = (state, productCategory) => {
+  console.log("insided filter",productCategory);
+  let updateproducts=state.products.filter(product => product.productCategory === productCategory );
+    return updateObject(state, {
+      products: updateproducts
+    });
+};
 const deleteProduct = (state, productId) => {
     console.log("[products reducer] state.products: ", state.products);
     return {

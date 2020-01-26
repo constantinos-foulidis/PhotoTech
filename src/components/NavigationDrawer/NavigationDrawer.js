@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { toggleNavigator } from '../../store/actions/navigator';
+import * as actions from '../../store/actions/products';
 class NavigationDrawer extends Component {
+
+  filterProducts(categoryName){
+    console.log("inside navigationDrawer",categoryName);
+    if(this.props.products!==null){
+    this.props.filterProducts(categoryName);
+  }
+  }
 
   render() {
     const { showNav } = this.props;
@@ -35,9 +43,9 @@ class NavigationDrawer extends Component {
               Προιοντα
             </Dropdown.Toggle>
           </Dropdown>
-          <Link to="#">-Προιοντα Φωτογραφιας</Link>
-          <Link to="#">-Δωρα</Link>
-          <Link to="#">-Υλικα εργαστηρίου</Link>
+          <Link to="#" onClick={() =>{ this.filterProducts("Προιοντα Φωτογραφιας")}}>-Προιοντα Φωτογραφιας</Link>
+          <Link to="#" onClick={() =>{ this.filterProducts("Δώρα")}} >-Δωρα</Link>
+          <Link to="#" onClick={() =>{ this.filterProducts("Υλικα εργαστηρίου")}}>-Υλικα εργαστηρίου</Link>
           <Link to="#" className="mb-3">-Προσθήκη νέου</Link>
           {adminExtras}
         </div>
@@ -58,6 +66,7 @@ const mapStateToProps = (state, props) => {
   return {
     showNav: state.navigator.open,
     isAdmin: state.login.isAdmin,
+    products:state.products.products,
     ...props,
   }
 };
@@ -83,7 +92,8 @@ const mapDispatchToProps = dispatch => {
       e.preventDefault();
       document.removeEventListener("keydown", handler);
       dispatch(toggleNavigator());
-    }
+    },
+    filterProducts: (categoryName) => dispatch(actions.filterProducts(categoryName))
   }
 }
 export const navigationToggleButton  = connect((state, props) => ({ ...props }), mapDispatchToProps)(toggleButton);

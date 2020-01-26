@@ -8,6 +8,7 @@ export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const FILTER_PRODUCT = "FILTER_PRODUCT";
 
 export const getProducts = () => {
     console.log("inside get products");
@@ -73,6 +74,13 @@ const addProductCreator = (product) => {
     };
 }
 
+export const filterProducts = (productCategory) => {
+  console.log("filterProduct",productCategory);
+  return {
+      type: FILTER_PRODUCT,
+      productCategory: productCategory,
+  }
+}
 export const deleteProduct = (productCode) => {
     return (dispatch, getState) => {
         Axios.delete(baseUrl + productsUri + deleteUri, { data: { productCode: productCode }}).then(response =>{
