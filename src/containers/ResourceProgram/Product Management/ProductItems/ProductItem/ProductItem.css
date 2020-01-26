@@ -1,8 +1,15 @@
 .cardWidth {
     width: 220px;
-    height: 435px;
+    height: 400px;
     border: 2px solid grey !important;
   }
   .imgWidth {
-    height: 210px !important;
+    height: 160px !important;
   }
+.productItembtn{
+    width: 14em !important;
+    font-size: 11px !important;
+}
+.titleCardFontSize{
+  font-size: 1rem !important;
+}

@@ -1,5 +1,5 @@
 .cardWidth {
-  width: 220px;
+  width: 240px;
   height: 435px;
   border: 2px solid grey !important;
 }
@@ -8,5 +8,5 @@
 }
 .buttonWidth {
   width: 15em !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
 }

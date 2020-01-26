@@ -34,10 +34,10 @@ const productItems = (props) => {
             <ExportExcel />
           </div>
         </div>
-        <div className="row">
+        <div className="row offset-2">
           {products.map((product) => {
             return (
-              <div key={product._id} className="col">
+              <div key={product._id} className="col-4">
                 <ProductItem basePath={basePath} onDelete={() => props.delete(product.productCode)} product={product} />
               </div>
             );
