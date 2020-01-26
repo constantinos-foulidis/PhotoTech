@@ -9,8 +9,8 @@ const productsReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.UPDATE_PRODUCTS: return updateProducts(state, action.products);
         case actionTypes.ADD_PRODUCT: return addProduct(state, action.product);
-        case actionTypes.UPDATE_PRODUCT: return updateProduct(state, action.productId, action.updatedProduct);
-        case actionTypes.DELETE_PRODUCT: return deleteProduct(state, action.productId);
+        case actionTypes.UPDATE_PRODUCT: return updateProduct(state, action.productCode, action.updatedProduct);
+        case actionTypes.DELETE_PRODUCT: return deleteProduct(state, action.productCode);
         default: return state;
     }
 }
@@ -46,6 +46,7 @@ const updateProduct = (state, productId, updatedProduct) => {
 };
 
 const deleteProduct = (state, productId) => {
+    console.log("[products reducer] state.products: ", state.products);
     return {
         ...state,
         products: state.products.filter((product) => product.productCode !== productId)

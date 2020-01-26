@@ -37,7 +37,7 @@ const productItems = (props) => {
         <div className="row offset-2">
           {products.map((product) => {
             return (
-              <div key={product._id} className="col-4">
+              <div key={product.productCode} className="col-4">
                 <ProductItem basePath={basePath} onDelete={() => props.delete(product.productCode)} product={product} />
               </div>
             );
@@ -57,7 +57,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    delete: (id) => dispatch({ type: "DELETE" }),
+    delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
     getProducts: () => dispatch(actions.getProducts())
   }
 }

@@ -9,9 +9,14 @@ const productItem = (props) => {
       pathname: props.basePath+"/id",
     });
 
+    let imagePath = "/PhotoSc.png";
+    if(props.product.originalname){
+      imagePath = props.product.originalname;
+    }
+
     return (
         <div className="card cardWidth ml-5">
-              <img alt="logo" className="card-img-top imgWidth" src="/PhotoSc.png" />
+              <img alt="logo" className="card-img-top imgWidth" src={imagePath} />
               <div className="card-body text-center">
                 <h5 className="card-title titleCardFontSize">{props.product.productDetail}</h5>
                 <p className="card-text">Διαθεσημοτητα : {props.product.productQuantity}</p>

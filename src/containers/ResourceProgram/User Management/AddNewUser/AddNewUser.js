@@ -69,7 +69,7 @@ class AddNewUser extends Component {
     return (
 
 
-      <div className="Conteiner">
+      <div className="Conteiner offset-2">
         <h1 className="headerCenter mb-4">Χρήστες</h1>
         <div className="row justify-content-start">
           <div className="col">

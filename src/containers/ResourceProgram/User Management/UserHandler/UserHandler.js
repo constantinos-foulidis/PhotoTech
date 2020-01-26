@@ -44,7 +44,7 @@ class UserHandle extends Component {
       spinner = (<Spinner animation="border"/>);
     }
   return (
-    <div className="w-100">
+    <div className="w-100 offset-2">
       {spinner}
       <h1 className="headerCenter mb-4">Χρήστες</h1>
       <Button className=" mb-2 mr-2" variant="info">Διαχείρηση</Button>
@@ -80,7 +80,6 @@ class UserHandle extends Component {
         })}
           </tbody>
       </table>
-      <Button className=" mb-2 float-right" variant="info">Διαγραφή</Button>
       <DeleteModal ref={(modal) => { this._modal = modal;}} onOkey={() => this.deleteUser(this.state.usernameForDelete)} />
     </div>
   )
