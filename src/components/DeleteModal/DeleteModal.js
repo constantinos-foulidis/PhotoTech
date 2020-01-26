@@ -1,9 +1,7 @@
 import React,{Component} from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+
 
 class DeleteModal extends Component {
 

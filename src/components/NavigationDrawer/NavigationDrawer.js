@@ -9,7 +9,20 @@ class NavigationDrawer extends Component {
   render() {
     const { showNav } = this.props;
     let sideNavStyle = { width: showNav ? "250px" : "0" };
-
+    let adminExtras=null;
+    if(this.props.isAdmin===true){
+    adminExtras = (
+       <>
+       <Dropdown className="mb-2 dropdownStylingnav">
+        <Dropdown.Toggle className="btnwidthdrawer" variant="info" id="dropdown-basic">
+          Χρήστες
+        </Dropdown.Toggle>
+      </Dropdown>
+      <Link to="/recource/user_management">-Διαχείρηση</Link>
+      <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
+     </>
+  );
+}
     return (
       <React.Fragment>
         <div name="side-nav" className="side-nav" style={sideNavStyle}>
@@ -26,13 +39,7 @@ class NavigationDrawer extends Component {
           <Link to="#">-Δωρα</Link>
           <Link to="#">-Υλικα εργαστηρίου</Link>
           <Link to="#" className="mb-3">-Προσθήκη νέου</Link>
-          <Dropdown className="mb-2 dropdownStylingnav">
-            <Dropdown.Toggle className="btnwidthdrawer" variant="info" id="dropdown-basic">
-              Χρήστες
-            </Dropdown.Toggle>
-          </Dropdown>
-          <Link to="/recource/user_management">-Διαχείρηση</Link>
-          <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
+          {adminExtras}
         </div>
       </React.Fragment>
     );
@@ -50,6 +57,7 @@ const toggleButton = (props) => {
 const mapStateToProps = (state, props) => {
   return {
     showNav: state.navigator.open,
+    isAdmin: state.login.isAdmin,
     ...props,
   }
 };
