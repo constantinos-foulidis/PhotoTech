@@ -9,17 +9,34 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 export const getProducts = () => {
-  console.log("inside get products");
+    console.log("inside get products");
     return (dispatch, getState) => {
-        Axios.get(baseUrl + productsUri).then((response)=>{
+        Axios.get(baseUrl + productsUri).then((response) => {
             console.log("Products: ", response.data);
-            dispatch(updateProducts(response.data.data));
+            let products = response.data.data.map((product) => {
+                let filename;
+                if(product.originalname){
+                    filename = product.originalname.substr(1, product.filename.length).replace("\\", "/");
+                }
+                return {
+                    productDetail: product.productDetail,
+                    productCode: product.productCode,
+                    productCategory: product.productCategory,
+                    productSubcategory: product.productSubcategory,
+                    productQuantity: product.productQuantity,
+                    productPosition: product.productPosition,
+                    productOrder: product.productOrder,
+                    filename: product.filename,
+                    originalname: filename,
+                };
+            });
+            dispatch(updateProducts(products));
         })
     }
 }
 
 const updateProducts = (products) => {
-  console.log(products);
+    console.log(products);
     return {
         type: UPDATE_PRODUCTS,
         products: products
@@ -39,7 +56,11 @@ export const addProduct = (product) => {
         data.append("productPosition", product.productPosition);
         data.append("productOrder", product.productOrder);
         Axios.post(baseUrl + productsUri, data).then(response => {
-            dispatch(addProductCreator(response.data.data));
+            if (getState().products.products === null) {
+                dispatch(getProducts());
+            } else {
+                dispatch(addProductCreator(response.data.data));
+            }
         })
     }
 };

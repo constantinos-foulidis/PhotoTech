@@ -37,7 +37,7 @@ const productItems = (props) => {
         <div className="row">
           {products.map((product) => {
             return (
-              <div key={product._id} className="col">
+              <div key={product.productCode} className="col">
                 <ProductItem basePath={basePath} onDelete={() => props.delete(product.productCode)} product={product} />
               </div>
             );
