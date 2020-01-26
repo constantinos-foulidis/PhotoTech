@@ -9,8 +9,8 @@ const productItem = (props) => {
     });
 
     let imagePath = "/PhotoSc.png";
-    if(props.product.filename){
-      imagePath = props.product.filename;
+    if(props.product.originalname){
+      imagePath = props.product.originalname;
     }
 
     return (
