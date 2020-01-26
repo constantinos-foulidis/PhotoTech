@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Route } from "react-router-dom";
-import NewItem from '../../../../components/AddnewItem/AddNewItem';
+import NewItem from '../AddnewItem/AddNewItem';
 import NavigationDrawer from '../../../../components/NavigationDrawer/NavigationDrawer';
 import ProductItems from '../ProductItems/ProductItems';
 import ProductSpecs from '../ProductDetails/ProductDetails';

@@ -4,8 +4,8 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './AddNewItem.css';
-import ProductHeader from '../ProductHeader/ProductHeader';
-import { addProduct } from '../../store/actions/products';
+import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
+import { addProduct } from '../../../../store/actions/products';
 import { connect } from 'react-redux';
 
 class NewItem extends Component {
