@@ -9,6 +9,7 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const FILTER_PRODUCT = "FILTER_PRODUCT";
+export const CACHED_PRODUCTS = "CACHED_PRODUCTS"
 
 export const getProducts = () => {
     console.log("inside get products");
@@ -79,6 +80,11 @@ export const filterProducts = (productCategory) => {
   return {
       type: FILTER_PRODUCT,
       productCategory: productCategory,
+  }
+}
+export const cachedProducts = () =>{
+  return {
+      type: CACHED_PRODUCTS,
   }
 }
 export const deleteProduct = (productCode) => {

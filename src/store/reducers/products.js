@@ -14,6 +14,7 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.UPDATE_PRODUCT: return updateProduct(state, action.productCode, action.updatedProduct);
         case actionTypes.DELETE_PRODUCT: return deleteProduct(state, action.productCode);
         case actionTypes.FILTER_PRODUCT: return filterProduct(state,action.productCategory);
+        case actionTypes.CACHED_PRODUCTS : return cachedProducts(state);
         default: return state;
     }
 }
@@ -69,6 +70,11 @@ const deleteProduct = (state, productId) => {
         products: state.products.filter((product) => product.productCode !== productId)
     }
 };
+const cachedProducts = (state) =>{
+  return updateObject(state, {
+    products: state.allProducts,
+  });
+}
 
 
 export default productsReducer;

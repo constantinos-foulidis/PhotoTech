@@ -13,6 +13,9 @@ class NavigationDrawer extends Component {
     this.props.filterProducts(categoryName);
   }
   }
+  cachedProducts(){
+      this.props.cachedProducts();
+  }
 
   render() {
     const { showNav } = this.props;
@@ -39,14 +42,14 @@ class NavigationDrawer extends Component {
             &times;
           </Link>
           <Dropdown className="mb-3 dropdownStylingnav">
-            <Dropdown.Toggle className="btnwidthdrawer" variant="info" id="dropdown-basic">
+            <Dropdown.Toggle className="btnwidthdrawer" variant="info" id="dropdown-basic" onClick={() =>{ this.cachedProducts("Προιοντα Φωτογραφιας")}}>
               Προιοντα
             </Dropdown.Toggle>
           </Dropdown>
-          <Link to="#" onClick={() =>{ this.filterProducts("Προιοντα Φωτογραφιας")}}>-Προιοντα Φωτογραφιας</Link>
-          <Link to="#" onClick={() =>{ this.filterProducts("Δώρα")}} >-Δωρα</Link>
-          <Link to="#" onClick={() =>{ this.filterProducts("Υλικα εργαστηρίου")}}>-Υλικα εργαστηρίου</Link>
-          <Link to="#" className="mb-3">-Προσθήκη νέου</Link>
+          <Link to="/recource/products" onClick={() =>{ this.filterProducts("Προιοντα Φωτογραφιας")}}>-Προιοντα Φωτογραφιας</Link>
+          <Link to="/recource/products" onClick={() =>{ this.filterProducts("Δώρα")}} >-Δωρα</Link>
+          <Link to="/recource/products" onClick={() =>{ this.filterProducts("Υλικα εργαστηρίου")}}>-Υλικα εργαστηρίου</Link>
+          <Link to="/recource/products/add" className="mb-3">-Προσθήκη νέου</Link>
           {adminExtras}
         </div>
       </React.Fragment>
@@ -93,7 +96,8 @@ const mapDispatchToProps = dispatch => {
       document.removeEventListener("keydown", handler);
       dispatch(toggleNavigator());
     },
-    filterProducts: (categoryName) => dispatch(actions.filterProducts(categoryName))
+    filterProducts: (categoryName) => dispatch(actions.filterProducts(categoryName)),
+    cachedProducts: () => dispatch(actions.cachedProducts())
   }
 }
 export const navigationToggleButton  = connect((state, props) => ({ ...props }), mapDispatchToProps)(toggleButton);
