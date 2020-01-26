@@ -2,7 +2,10 @@ import * as actionTypes from '../actions/products';
 
 
 const initialState = {
-    products: null
+    products: null,
+    loading: false,
+    error: null,
+    success: false,
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -11,7 +14,26 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.ADD_PRODUCT: return addProduct(state, action.product);
         case actionTypes.UPDATE_PRODUCT: return updateProduct(state, action.productCode, action.updatedProduct);
         case actionTypes.DELETE_PRODUCT: return deleteProduct(state, action.productCode);
+        case actionTypes.LOADING: return loading(state);
+        case actionTypes.ERROR: return error(state, action.message);
         default: return state;
+    }
+}
+
+const loading = state => {
+    return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+    }
+}
+
+const error = (state, message) => {
+    return {
+        ...state,
+        loading: false,
+        error: message
     }
 }
 
@@ -23,7 +45,10 @@ const updateProducts = (state, newProducts) => ({
 const addProduct = (state, product) => {
     return {
         ...state,
-        products: [...state.products, product]
+        products: [...state.products, product],
+        success: true,
+        loading: false,
+        error: null,
     }
 };
 
