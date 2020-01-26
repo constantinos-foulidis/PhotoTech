@@ -53,7 +53,7 @@ class AddNewUser extends Component {
            username:this.state.userName,
            fullName:this.state.fullName,
            password:this.state.password,
-           isAdmin:"1"
+           isAdmin:"0"
          }
       this.props.createUser(formdata);
 
