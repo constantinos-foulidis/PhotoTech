@@ -3,7 +3,8 @@ import { updateObject } from '../utility';
 const initialState = {
     users:[],
     loading:false,
-    error:null
+    error:null,
+    deleted:false
 };
 
 const callStart = ( state, action ) => {
@@ -26,8 +27,17 @@ const getUsers = (state, action) => {
     });
 };
 const deleteUser = (state, action) => {
+  console.log("insided delete reducer");
+  let updateusers=state.users.filter(user => user._id != action.id );
     return updateObject(state, {
-      users:action.users,
+      users: updateusers,
+      deleted:true,
+      error: null,
+      loading: false
+    });
+};
+const createUser = (state, action) => {
+    return updateObject(state, {
       error: null,
       loading: false
     });
@@ -39,6 +49,7 @@ const deleteUser = (state, action) => {
        case actionTypes.CALL_FAIL: return callFail(state, action);
        case actionTypes.GET_USERS: return getUsers(state, action);
       case actionTypes.DELETE_USER: return deleteUser(state, action);
+      case actionTypes.CREATE_USER: return createUser(state, action);
        default:
            return state;
      }

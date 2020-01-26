@@ -1,10 +1,11 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import { withRouter } from "react-router-dom";
 
 const productItem = (props) => {
     const handleSpecified = () =>
-    props.history.push({
-      pathname: props.basePath,
+      props.history.push({
+      pathname: props.basePath+"/id",
     });
 
     let imagePath = "/PhotoSc.png";
@@ -26,4 +27,4 @@ const productItem = (props) => {
     );
 }
 
-export default productItem;
+export default withRouter(productItem);

@@ -2,14 +2,19 @@ import React,{Component} from 'react';
 import Button from 'react-bootstrap/Button';
 import {getUsers,deleteUser} from '../../../../store/actions/users';
 import {connect} from 'react-redux';
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner';
+import DeleteModal from '../../../../components/DeleteModal/DeleteModal';
 class UserHandle extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
+      usernameForDelete:""
     }
-props.getAllusers();
+
+  }
+  componentDidMount(){
+   this.props.getAllusers();
   }
   addnewUser = () => {
     console.log(this.props);
@@ -21,13 +26,16 @@ props.getAllusers();
   deleteUser(username) {
     let formData=null;
     formData={
-      userName:username
+      data:{
+      username:username
+       }
     }
     this.props.deleteUser(formData);
   }
+  //    <td>   <Button className=" mb-2 float-right" onClick={() => this.deleteUser(users.username)} variant="info">Διαγραφή</Button></td>
   render(){
     let users = [];
-    if (this.props.users) {
+    if (this.props.users.length > 0) {
       users = this.props.users;
     }
 
@@ -64,7 +72,8 @@ props.getAllusers();
             <td>{users.username}</td>
             <td>{users.fullName}</td>
             <td>{users.password}</td>
-            <td>   <Button className=" mb-2 float-right" onClick={() => this.props.deleteUser(users.username)} variant="info">Διαγραφή</Button></td>
+            <td>   <Button className=" mb-2 float-right" onClick={() => {this._modal.handleShow()
+                this.setState({usernameForDelete:users.username})}} variant="info">Διαγραφή</Button></td>
           </tr>
 
         );
@@ -72,6 +81,7 @@ props.getAllusers();
           </tbody>
       </table>
       <Button className=" mb-2 float-right" variant="info">Διαγραφή</Button>
+      <DeleteModal ref={(modal) => { this._modal = modal;}} onOkey={() => this.deleteUser(this.state.usernameForDelete)} />
     </div>
   )
 }

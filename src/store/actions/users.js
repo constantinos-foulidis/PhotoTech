@@ -17,15 +17,14 @@ export const getUserSuccess = (users) => {
 export const createUserSuccess = (user) => {
   console.log(user);
   return {
-    type: actionTypes.CREATE_USER,
-    users: user
+    type: actionTypes.CREATE_USER
   };
 };
 export const deleteUserSuccess = (user) => {
   console.log(user);
   return {
-    type: actionTypes.DELETE_USER ,
-    users: user
+    id:user._id,
+    type: actionTypes.DELETE_USER
   };
 };
 
@@ -68,6 +67,7 @@ export const createUser = (formdata) => {
     let url = `http://localhost:4040/api/users`;
     axios.post(url,formdata).
     then(res => {
+      console.log("onCreateUser",res);
       if (res.data.error) {
         dispatch(callFail(res.data.error));
       } else {
@@ -86,10 +86,11 @@ export const deleteUser = (userName) => {
     let url = `http://localhost:4040/api/users/delete`;
     axios.delete(url,userName).
     then(res => {
+      console.log(res);
       if (res.data.error) {
         dispatch(callFail(res.data.error));
       } else {
-        dispatch(getUserSuccess(res.data));
+        dispatch(deleteUserSuccess(res.data));
       }
     }).catch(err => {
       dispatch(callFail(err));
