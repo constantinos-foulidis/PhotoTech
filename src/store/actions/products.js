@@ -1,8 +1,9 @@
 import Axios from "axios";
 import FormData from 'form-data';
 
-const baseUrl = 'http://localhost:4040/api/';
-const productsUri = 'product';
+const baseUrl = 'http://localhost:4040/';
+const productsUri = 'api/product';
+const deleteUri = '/delete';
 export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
@@ -16,7 +17,7 @@ export const getProducts = () => {
             let products = response.data.data.map((product) => {
                 let filename;
                 if(product.originalname){
-                    filename = product.originalname.substr(1, product.filename.length).replace("\\", "/");
+                    filename = baseUrl + product.originalname.substr(1, product.originalname.length).replace("\\", "/");
                 }
                 return {
                     productDetail: product.productDetail,
@@ -70,4 +71,22 @@ const addProductCreator = (product) => {
         type: ADD_PRODUCT,
         product: product
     };
+}
+
+export const deleteProduct = (productCode) => {
+    return (dispatch, getState) => {
+        Axios.delete(baseUrl + productsUri + deleteUri, { data: { productCode: productCode }}).then(response =>{
+            const product = {
+                ...response.data
+            }
+            dispatch(deleteProductAction(product.productCode))
+        });
+    }
+}
+
+const deleteProductAction = productCode => {
+    return {
+        type: DELETE_PRODUCT,
+        productCode: productCode,
+    }
 }
