@@ -9,7 +9,10 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const FILTER_PRODUCT = "FILTER_PRODUCT";
-export const CACHED_PRODUCTS = "CACHED_PRODUCTS"
+export const CACHED_PRODUCTS = "CACHED_PRODUCTS";
+export const LOADING = 'LOADING';
+export const ERROR = 'ERROR';
+
 
 export const getProducts = () => {
     console.log("inside get products");
@@ -48,6 +51,7 @@ const updateProducts = (products) => {
 
 export const addProduct = (product) => {
     return (dispatch, getState) => {
+        dispatch(loading());
         const data = new FormData();
         console.log("[ProductActions] addProduct - product: ", product);
         data.append("myimage", product.selectedFile, product.selectedFile.name);
@@ -59,6 +63,10 @@ export const addProduct = (product) => {
         data.append("productPosition", product.productPosition);
         data.append("productOrder", product.productOrder);
         Axios.post(baseUrl + productsUri, data).then(response => {
+            console.log(response.data);
+            if(response.data.errorproductCode){
+                dispatch(error(response.data.errorproductCode));
+            }
             if (getState().products.products === null) {
                 dispatch(getProducts());
             } else {
@@ -102,5 +110,18 @@ const deleteProductAction = productCode => {
     return {
         type: DELETE_PRODUCT,
         productCode: productCode,
+    }
+}
+
+const error = errorMessage => {
+    return {
+        type: ERROR,
+        message: errorMessage
+    };
+}
+
+const loading = () => {
+    return {
+        type: LOADING,
     }
 }

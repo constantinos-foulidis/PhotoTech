@@ -10,12 +10,12 @@ import * as actions from '../../../../store/actions/products';
 const productItems = (props) => {
   let products = [];
 
-  if (!props.products) {
-    console.log("Get products called");
-    props.getProducts();
-  }else {
-    products = props.products;
-  }
+  // if (!props.products) {
+  //   console.log("Get products called");
+  //   props.getProducts();
+  // }else {
+  //   products = props.products;
+  // }
 
   console.log("[ProductItems] props: ", props);
 

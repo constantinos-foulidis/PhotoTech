@@ -24,6 +24,7 @@ const ResourceProgramMenu = props => {
           )}
         />
         <Route path={props.match.url + "/simple_user"} component={Login} />
+        <Route path={props.match.url + "/admin_user"} component={Login} />
         <Route path={props.match.url + "/user_management"} component={UserManagement} />
         <Route path={props.match.url + "/products"} component={Products} />
         <Route component={(props) => <p>Page Not Found</p>} />

@@ -21,36 +21,45 @@ class NavigationDrawer extends Component {
     const { showNav } = this.props;
     let sideNavStyle = { width: showNav ? "250px" : "0" };
     let adminExtras=null;
-    if(this.props.isAdmin===true){
+    if(this.props.isAdmin==='true'){
     adminExtras = (
        <>
        <Dropdown className="mb-2 dropdownStylingnav">
         <Dropdown.Toggle className="btnwidthdrawer" variant="info" id="dropdown-basic">
           Χρήστες
         </Dropdown.Toggle>
+          <Dropdown.Menu className="dropDownColor spesificDropdown" >
+            <Link to="/recource/user_management">-Διαχείρηση</Link>
+            <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
+          </Dropdown.Menu>
       </Dropdown>
-      <Link to="/recource/user_management">-Διαχείρηση</Link>
-      <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
+
      </>
   );
 }
     return (
       <React.Fragment>
+        <div className="row">
         <div name="side-nav" className="side-nav" style={sideNavStyle}>
           <h2 className="mb-5 text-dark">Κατηγοριες</h2>
           <Link to="#" onClick={this.props.closeNav} className="close-nav">
             &times;
           </Link>
           <Dropdown className="mb-3 dropdownStylingnav">
-            <Dropdown.Toggle className="btnwidthdrawer" variant="info" id="dropdown-basic" onClick={() =>{ this.cachedProducts("Προιοντα Φωτογραφιας")}}>
+            <Dropdown.Toggle className="btnwidthdrawer" variant="info" id="dropdown-basic" >
               Προιοντα
             </Dropdown.Toggle>
-          </Dropdown>
+
+            <Dropdown.Menu className="dropDownColor spesificDropdown" >
           <Link to="/recource/products" onClick={() =>{ this.filterProducts("Προιοντα Φωτογραφιας")}}>-Προιοντα Φωτογραφιας</Link>
           <Link to="/recource/products" onClick={() =>{ this.filterProducts("Δώρα")}} >-Δωρα</Link>
           <Link to="/recource/products" onClick={() =>{ this.filterProducts("Υλικα εργαστηρίου")}}>-Υλικα εργαστηρίου</Link>
           <Link to="/recource/products/add" className="mb-3">-Προσθήκη νέου</Link>
-          {adminExtras}
+              </Dropdown.Menu>
+          </Dropdown>
+        {adminExtras}
+
+        </div>
         </div>
       </React.Fragment>
     );

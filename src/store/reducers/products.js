@@ -4,7 +4,10 @@ import { updateObject } from '../utility';
 
 const initialState = {
     products: null,
-    allProducts:null
+    allProducts:null,
+    loading: false,
+    error: null,
+    success: false,
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -15,7 +18,26 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.DELETE_PRODUCT: return deleteProduct(state, action.productCode);
         case actionTypes.FILTER_PRODUCT: return filterProduct(state,action.productCategory);
         case actionTypes.CACHED_PRODUCTS : return cachedProducts(state);
+        case actionTypes.LOADING: return loading(state);
+        case actionTypes.ERROR: return error(state, action.message);
         default: return state;
+    }
+}
+
+const loading = state => {
+    return {
+        ...state,
+        loading: true,
+        success: false,
+        error: null,
+    }
+}
+
+const error = (state, message) => {
+    return {
+        ...state,
+        loading: false,
+        error: message
     }
 }
 
@@ -27,7 +49,10 @@ const updateProducts = (state, newProducts) => ({
 const addProduct = (state, product) => {
     return {
         ...state,
-        products: [...state.products, product]
+        products: [...state.products, product],
+        success: true,
+        loading: false,
+        error: null,
     }
 };
 

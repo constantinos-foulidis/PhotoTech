@@ -2,7 +2,18 @@
   --navcover-z-index: 99;
   --sidenav-z-index: 100;
 }
-
+.categoryNavigation{
+  position: absolute;
+  left: 0px;
+  top: 35%;
+  font-size: 17px;
+  font-weight: bold;
+}
+.spesificDropdown{
+  position: relative !important;
+  transform: none !important;
+  will-change: unset !important;
+}
 .nav-cover {
   position: fixed;
   z-index: var(--navcover-z-index);

@@ -231,7 +231,10 @@ class NewItem extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    ...props
+    ...props,
+    loading: state.products.loading,
+    error: state.products.error,
+    success: state.products.success
   }
 }
 

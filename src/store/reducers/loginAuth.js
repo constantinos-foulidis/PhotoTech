@@ -15,6 +15,9 @@ const authStart = ( state, action ) => {
 
 const authSuccess = (state, action) => {
   console.log("username for sending",action.username);
+  console.log("username for sending",  action.isAdmin);
+
+
     return updateObject( state, {
         isAdmin: action.isAdmin,
         userName: action.userName,

@@ -28,7 +28,7 @@ class Login extends Component {
 
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.username+this.state.password);
-    //dad event.preventDefault();
+    //event.preventDefault();
     console.log(event.preventDefault());
     console.log(this.state.username);
     const formdata = {
@@ -57,12 +57,14 @@ class Login extends Component {
     if (this.props.error) {
       errorMessage = (<p>{this.props.error.message}</p>);
     }
-    if(this.props.isAdmin===true){
+    console.log(this.props.isAdmin);
+    if(this.props.isAdmin==='true'){
+      console.log(this.props.isAdmin);
       this.props.history.push({
         pathname: "/recource/products",
       });
     }
-    if(this.props.isAdmin===false){
+    if(this.props.isAdmin === 'false' ){
       this.props.history.push({
         pathname: "/recource/products",
       });
