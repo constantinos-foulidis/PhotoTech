@@ -3,10 +3,11 @@ import { updateObject } from '../utility';
 const initialState = {
     users:[],
     loading:false,
+    allUsers:[],
     error:null,
     deleted:false
 };
-
+let allusers=null;
 const callStart = ( state, action ) => {
     return updateObject( state, { error: null, loading: true } );
 };
@@ -42,14 +43,59 @@ const createUser = (state, action) => {
       loading: false
     });
 };
+const cachedUsers =(state,action) =>{
+  return updateObject(state,{
+     users:allusers,
+  });
+}
+
+const filterUserByname = (state,fullname) => {
+ if(allusers===null){
+   allusers=state.users;
+   let updateUsers = state.users.filter((users)=> users.fullName===fullname);
+   console.log(updateUsers);
+   return updateObject(state,{
+     allUsers:state.users,
+     users:updateUsers
+   });
+ }else{
+   let updateUsers = allusers.filter((users)=> users.fullName===fullname);
+   console.log(updateUsers);
+     return updateObject(state,{
+       users:updateUsers
+     });
+ }
+};
+
+const filterUser = (state,username) => {
+  console.log("username ",username);
+ if(allusers===null){
+   allusers=state.users;
+   let updateUsers = state.users.filter((users)=> users.username===username);
+   console.log(updateUsers);
+   return updateObject(state,{
+     allUsers:state.users,
+     users:updateUsers
+   });
+ }else{
+   let updateUsers = allusers.filter((users)=> users.username===username);
+   console.log(updateUsers);
+     return updateObject(state,{
+       users:updateUsers
+     });
+ }
+};
 
  const userReducer = (state = initialState, action) => {
      switch(action.type){
-       case actionTypes.CALL_START:return callStart(state,action);
-       case actionTypes.CALL_FAIL: return callFail(state, action);
-       case actionTypes.GET_USERS: return getUsers(state, action);
+      case actionTypes.CALL_START:return callStart(state,action);
+      case actionTypes.CALL_FAIL: return callFail(state, action);
+      case actionTypes.GET_USERS: return getUsers(state, action);
       case actionTypes.DELETE_USER: return deleteUser(state, action);
       case actionTypes.CREATE_USER: return createUser(state, action);
+      case actionTypes.FILTER_USERS: return filterUser(state, action);
+      case actionTypes.FILTER_FULLNAME: return filterUserByname(state, action);
+      case actionTypes.CACHED_USERS: return cachedUsers(state, action);
        default:
            return state;
      }

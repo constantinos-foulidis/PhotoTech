@@ -97,3 +97,22 @@ export const deleteUser = (userName) => {
     });
   }
 };
+export const filterUsers = (username) => {
+
+  return {
+      type: actionTypes.FILTER_USERS,
+      username: username,
+  }
+};
+export const filterUsersFullname = (fullname) => {
+
+  return {
+      type: actionTypes.FILTER_FULLNAME,
+      fullname: fullname,
+  }
+};
+export const getCachedUsers = () =>{
+  return {
+    type: actionTypes.CACHED_USERS,
+  }
+};
