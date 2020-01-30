@@ -57,7 +57,6 @@ class Login extends Component {
     if (this.props.error) {
       errorMessage = (<p>{this.props.error.message}</p>);
     }
-    console.log(this.props.isAdmin);
     if(this.props.isAdmin==='true'){
       console.log(this.props.isAdmin);
       this.props.history.push({

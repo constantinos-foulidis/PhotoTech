@@ -10,6 +10,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const FILTER_PRODUCT = "FILTER_PRODUCT";
 export const CACHED_PRODUCTS = "CACHED_PRODUCTS";
+export const PRODUCTSID = "PRODUCTSID";
 export const LOADING = 'LOADING';
 export const ERROR = 'ERROR';
 
@@ -88,6 +89,13 @@ export const filterProducts = (productCategory) => {
   return {
       type: FILTER_PRODUCT,
       productCategory: productCategory,
+  }
+}
+export const setProductsSpecks = (spesificProduct) =>{
+  console.log("lol");
+  return {
+      type: PRODUCTSID,
+      product:spesificProduct,
   }
 }
 export const cachedProducts = () =>{

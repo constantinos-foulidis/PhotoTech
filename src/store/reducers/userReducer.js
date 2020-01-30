@@ -59,7 +59,7 @@ const filterUserByname = (state,fullname) => {
      users:updateUsers
    });
  }else{
-   let updateUsers = allusers.filter((users)=> users.fullName===fullname);
+   let updateUsers = allusers.filter((users)=> console.log(users.fullName=="test User"));
    console.log(updateUsers);
      return updateObject(state,{
        users:updateUsers
@@ -69,16 +69,18 @@ const filterUserByname = (state,fullname) => {
 
 const filterUser = (state,username) => {
   console.log("username ",username);
+  console.log("username ",""+username+"");
  if(allusers===null){
    allusers=state.users;
-   let updateUsers = state.users.filter((users)=> users.username===username);
+   let updateUsers = state.users.filter((users)=> users.username.toLowerCase().indexOf(username) > -1);
    console.log(updateUsers);
    return updateObject(state,{
      allUsers:state.users,
      users:updateUsers
    });
  }else{
-   let updateUsers = allusers.filter((users)=> users.username===username);
+
+   let updateUsers = allusers.filter((users)=> users.username.toLowerCase().indexOf(username) > -1);
    console.log(updateUsers);
      return updateObject(state,{
        users:updateUsers

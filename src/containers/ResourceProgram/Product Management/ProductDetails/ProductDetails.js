@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
+import { connect } from 'react-redux';
+import * as actions from '../../../../store/actions/products';
 
 class ProductSpecs extends Component {
   constructor(props) {
@@ -56,90 +58,120 @@ class ProductSpecs extends Component {
     console.log("inside number changed");
   }
 
+
+
   render() {
+    let products;
+    let showEverything;
+    if (!this.props.productSpecks) {
+       console.log("Get products called");
+      
+     }else {
+       products = this.props.productSpecks;
+
+        showEverything = (
+         <React.Fragment>
+         <div className="Container">
+         <ProductHeader/>
+         <div className="row">
+           <div className="col-5 border">
+             <img alt="Product" className="imgflex" src={products.originalname} />
+           </div>
+           <div className="col mb-2 border ml-4 ">
+             <div className="row">
+               <div className="col border-bottom">
+                 <h4>Περιγραή Προιόντος</h4>
+                 <p >{products.productDetail}</p>
+               </div>
+             </div>
+             <div className="row">
+               <div className="col border-bottom mb-2">
+                 <div className="row">
+                   <h5>Κωδικος :</h5>
+                   <p contentEditable={true} suppressContentEditableWarning={true}>{products.productCode}</p>
+                 </div>
+                 <div className="row">
+                   <h5>Κaτηγορία :</h5>
+                   <p contentEditable={true} suppressContentEditableWarning={true}>{products.productCategory}</p>
+                 </div>
+                 <div className="row">
+                   <h5>Υποκατηγορία :</h5>
+                   <p contentEditable={true} suppressContentEditableWarning={true}>{products.productSubcategory}</p>
+                 </div>
+                 <div className="row">
+                   <h5 >Διαθεσιμότητα :</h5>
+                   <p>{products.productQuantity}</p>
+                 </div>
+                 <div className="row">
+                   <h5>θέση :</h5>
+                   <p>{products.productPosition}</p>
+                 </div>
+                 <div className="row">
+                   <h5>Τάξεις :</h5>
+                   <p>{products.productOrder}</p>
+                 </div>
+               </div>
+             </div>
+             <div className="row">
+               <div className="col">
+                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info">Αποθήκευση</Button>
+                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info">Διαγραφή Προιόντος</Button>
+                 <Button className="buttonWidth mb-2 mb-3 mt-2" variant="info" onClick={this.handleShow}>Επεξεργασία αποθέματος</Button>
+               </div>
+             </div>
+           </div>
+         </div>
+         <Modal aria-labelledby="contained-modal-title-vcenter" show={this.state.show} onHide={this.handleClose}>
+           <Modal.Header closeButton="closeButton">
+             <Modal.Title id="contained-modal-title-vcenter">
+               Επεξεργασια Αποθέματος
+               <h5>Συνολικό Απόθεμα {this.state.remain}</h5>
+             </Modal.Title>
+           </Modal.Header>
+           <Modal.Body>
+             <Container>
+               <Row className="show-grid mb-4">
+                 <Col xs={12} md={8}>
+                   <input type="number" placeholder="Αριθμος για αφαιρεση η προσθεση αποθεματος" onChange={(event) => this.numberChanged(event)} />
+                 </Col>
+               </Row>
+               <Row className="show-grid">
+                 <Col xs={6} md={4}>
+                   <Button className="mb-2 mr-1" variant="info" onClick={this.addNumber}>Πρόσθεση</Button>
+                 </Col>
+                 <Col xs={6} md={4}>
+                   <Button className=" mb-2 mr-1" variant="info" onClick={this.removeNumber}>Αφαίρεση</Button>
+                 </Col>
+               </Row>
+             </Container>
+           </Modal.Body>
+           <Modal.Footer>
+             <Button onClick={this.handleClose}>Close</Button>
+           </Modal.Footer>
+         </Modal>
+       </div>
+     </React.Fragment>
+       )
+     }
     return (
-      <React.Fragment>
-      <div className="Container">
-      <ProductHeader/>
-      <div className="row">
-        <div className="col-5 border">
-          <img alt="Product" className="imgflex" src="/PhotoSc.png" />
-        </div>
-        <div className="col mb-2 border ml-4 ">
-          <div className="row">
-            <div className="col border-bottom">
-              <h4>Περιγραή Προιόντος</h4>
-              <p >Φωτιστικό Τοιχου</p>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col border-bottom mb-2">
-              <div className="row">
-                <h5>Κωδικος :</h5>
-                <p contentEditable={true} suppressContentEditableWarning={true}>12345</p>
-              </div>
-              <div className="row">
-                <h5>Κaτηγορία :</h5>
-                <p contentEditable={true} suppressContentEditableWarning={true}>Τεστ</p>
-              </div>
-              <div className="row">
-                <h5>Υποκατηγορία :</h5>
-                <p contentEditable={true} suppressContentEditableWarning={true}>Κυρια</p>
-              </div>
-              <div className="row">
-                <h5 onClick={this.handleShow}>Διαθεσιμότητα :</h5>
-                <p>{this.state.remain}</p>
-              </div>
-              <div className="row">
-                <h5>θέση :</h5>
-                <p>A10</p>
-              </div>
-              <div className="row">
-                <h5>Τάξεις :</h5>
-                <p>A</p>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info">Αποθήκευση</Button>
-              <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info">Διαγραφή Προιόντος</Button>
-              <Button className="buttonWidth mb-2 mb-3 mt-2" variant="info">Επεξεργασία αποθέματος</Button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Modal aria-labelledby="contained-modal-title-vcenter" show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton="closeButton">
-          <Modal.Title id="contained-modal-title-vcenter">
-            Επεξεργασια Αποθέματος
-            <h5>Συνολικό Απόθεμα {this.state.remain}</h5>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Container>
-            <Row className="show-grid mb-4">
-              <Col xs={12} md={8}>
-                <input type="number" placeholder="Αριθμος για αφαιρεση η προσθεση αποθεματος" onChange={(event) => this.numberChanged(event)} />
-              </Col>
-            </Row>
-            <Row className="show-grid">
-              <Col xs={6} md={4}>
-                <Button className="mb-2 mr-1" variant="info" onClick={this.addNumber}>Πρόσθεση</Button>
-              </Col>
-              <Col xs={6} md={4}>
-                <Button className=" mb-2 mr-1" variant="info" onClick={this.removeNumber}>Αφαίρεση</Button>
-              </Col>
-            </Row>
-          </Container>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-  </React.Fragment>);
+
+      <>
+        {showEverything}
+      </>
+      );
+  }
+}
+const mapStateToProps = (state, props) => {
+  return {
+    ...props,
+    productSpecks: state.products.productSpecks
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks))
   }
 }
 
-export default ProductSpecs;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductSpecs);

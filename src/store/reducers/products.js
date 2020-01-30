@@ -8,6 +8,7 @@ const initialState = {
     loading: false,
     error: null,
     success: false,
+    productSpecks: null,
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -20,6 +21,7 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.CACHED_PRODUCTS : return cachedProducts(state);
         case actionTypes.LOADING: return loading(state);
         case actionTypes.ERROR: return error(state, action.message);
+          case actionTypes.PRODUCTSID: return setProductSpecks(state, action.product);
         default: return state;
     }
 }
@@ -98,6 +100,12 @@ const deleteProduct = (state, productId) => {
 const cachedProducts = (state) =>{
   return updateObject(state, {
     products: state.allProducts,
+  });
+}
+const setProductSpecks = (state,products) =>{
+  console.log("reduser",products);
+  return updateObject(state, {
+    productSpecks: products,
   });
 }
 

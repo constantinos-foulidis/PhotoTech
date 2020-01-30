@@ -5,20 +5,23 @@ import ExportExcel from '../../../../components/ExportTOExcel/ExportToExcel'
 import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
 import ProductItem from './ProductItem/ProductItem';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 import * as actions from '../../../../store/actions/products';
 
 const productItems = (props) => {
   let products = [];
 
-  // if (!props.products) {
-  //   console.log("Get products called");
-  //   props.getProducts();
-  // }else {
-  //   products = props.products;
-  // }
+  if (!props.products) {
+     console.log("Get products called");
+     props.getProducts();
+   }else {
+     products = props.products;
+   }
+   const handleSpecified = () =>
+     props.history.push({
+     pathname: "products/id",
 
-  console.log("[ProductItems] props: ", props);
-
+   });
   const basePath = props.match.url;
   return (
     <React.Fragment>
@@ -38,7 +41,8 @@ const productItems = (props) => {
           {products.map((product) => {
             return (
               <div key={product.productCode} className="col-4">
-                <ProductItem basePath={basePath} onDelete={() => props.delete(product.productCode)} product={product} />
+                <ProductItem basePath={basePath} onDelete={() => props.delete(product.productCode)} product={product} Specified={() => {props.setProductSpecks(product);
+                   handleSpecified()}} />
               </div>
             );
           })}
@@ -58,9 +62,10 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
-    getProducts: () => dispatch(actions.getProducts())
+    getProducts: () => dispatch(actions.getProducts()),
+    setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks))
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(productItems);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(productItems));

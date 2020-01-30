@@ -1,13 +1,9 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import './ProductItem.css';
-import { withRouter } from "react-router-dom";
+import * as actions from '../../../../../store/actions/products';
 
 const productItem = (props) => {
-    const handleSpecified = () =>
-      props.history.push({
-      pathname: props.basePath+"/id",
-    });
 
     let imagePath = "/PhotoSc.png";
     if(props.product.originalname){
@@ -22,10 +18,12 @@ const productItem = (props) => {
                 <p className="card-text">Διαθεσημοτητα : {props.product.productQuantity}</p>
                 <p className="card-text border-bottom">Κωδικός : {props.product.productCode}</p>
                 <Button className="productItembtn mb-2" variant="info" onClick={props.onDelete}>Διαγραφή Προιόντος</Button>
-                <Button className="productItembtn mb-2" variant="info" onClick={handleSpecified}>Επεξεργασία αποθέματος</Button>
+                <Button className="productItembtn mb-2" variant="info" onClick={props.Specified}>Επεξεργασία αποθέματος</Button>
               </div>
         </div>
     );
 }
 
-export default withRouter(productItem);
+
+
+export default productItem;
