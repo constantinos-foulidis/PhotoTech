@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {login} from '../../store/actions/loginAuth';
+import {login,logout} from '../../store/actions/loginAuth';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {connect} from 'react-redux';
 import './Appheader.css';
@@ -32,7 +32,7 @@ class AppHeader extends Component {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item href="#/action-1">{this.props.userName}</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>
+          <Dropdown.Item href="/recource/simple_user">Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
     }
@@ -41,7 +41,7 @@ class AppHeader extends Component {
       <div className="Container">
         <div className="row align-middle">
           <div className="col">
-            <a href="/recource/products"> 
+            <a href="/recource/products">
             <img alt="logo" className="headerpic" src="/PhotoSc.png" />
             </a>
           </div>
@@ -68,7 +68,9 @@ const mapStateToProps = (state, props) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (formdata) => dispatch(login(formdata))
+    onAuth: (formdata) => dispatch(login(formdata)),
+    logout: (formdata) => dispatch(logout())
+
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);
