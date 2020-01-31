@@ -18,10 +18,11 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.UPDATE_PRODUCT: return updateProduct(state, action.productCode, action.updatedProduct);
         case actionTypes.DELETE_PRODUCT: return deleteProduct(state, action.productCode);
         case actionTypes.FILTER_PRODUCT: return filterProduct(state,action.productCategory);
+        case actionTypes.FILTER_PRODUCT_SUBCATEGORY: return filterProductSubcategory(state,action.productSubcategory);
         case actionTypes.CACHED_PRODUCTS : return cachedProducts(state);
         case actionTypes.LOADING: return loading(state);
         case actionTypes.ERROR: return error(state, action.message);
-          case actionTypes.PRODUCTSID: return setProductSpecks(state, action.product);
+        case actionTypes.PRODUCTSID: return setProductSpecks(state, action.product);
         default: return state;
     }
 }
@@ -85,6 +86,21 @@ const filterProduct = (state, productCategory) => {
     });
   }else{
     let updateproducts=state.allProducts.filter(product => product.productCategory === productCategory );
+      return updateObject(state, {
+        products: updateproducts
+      });
+  }
+};
+const filterProductSubcategory = (state, productSubcategory) => {
+  console.log("insided filter",productSubcategory.toString());
+  if(state.allProducts===null){
+  let updateproducts=state.products.filter(product => product.productSubcategory === productSubcategory );
+    return updateObject(state, {
+      allProducts:state.products,
+      products: updateproducts
+    });
+  }else{
+    let updateproducts=state.allProducts.filter(product => product.productSubcategory === productSubcategory );
       return updateObject(state, {
         products: updateproducts
       });

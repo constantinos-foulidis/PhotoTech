@@ -9,6 +9,7 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const FILTER_PRODUCT = "FILTER_PRODUCT";
+export const FILTER_PRODUCT_SUBCATEGORY = "FILTER_PRODUCT_SUBCATEGORY";
 export const CACHED_PRODUCTS = "CACHED_PRODUCTS";
 export const PRODUCTSID = "PRODUCTSID";
 export const LOADING = 'LOADING';
@@ -89,6 +90,13 @@ export const filterProducts = (productCategory) => {
   return {
       type: FILTER_PRODUCT,
       productCategory: productCategory,
+  }
+}
+export const filterProductsSubcategory = (productSubcategory) => {
+  console.log("filterProduct",productSubcategory);
+  return {
+      type: FILTER_PRODUCT_SUBCATEGORY,
+      productSubcategory: productSubcategory,
   }
 }
 export const setProductsSpecks = (spesificProduct) =>{
