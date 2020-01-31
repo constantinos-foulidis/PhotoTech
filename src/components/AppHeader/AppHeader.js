@@ -16,6 +16,9 @@ class AppHeader extends Component {
   handleSearch(event) {
     this.setState({search: event.target.value});
   }
+  mainProducts() {
+
+  }
 
   render() {
     let user = null;
@@ -38,7 +41,9 @@ class AppHeader extends Component {
       <div className="Container">
         <div className="row align-middle">
           <div className="col">
-            <img alt="logo" className="headerpic" src="/PhotoSc.png"/>
+            <a href="/recource/products"> 
+            <img alt="logo" className="headerpic" src="/PhotoSc.png" />
+            </a>
           </div>
           <div className="col">
             {user}
