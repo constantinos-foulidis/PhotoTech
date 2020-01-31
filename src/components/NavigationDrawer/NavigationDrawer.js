@@ -51,9 +51,9 @@ class NavigationDrawer extends Component {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="dropDownColor spesificDropdown" >
-          <Link to="/recource/products" onClick={() =>{ this.filterProducts("Προιοντα Φωτογραφιας")}}>-Προιοντα Φωτογραφιας</Link>
+          <Link to="/recource/products" onClick={() =>{ this.filterProducts("Προιόντα φωτογραφίας")}}>-Προιοντα Φωτογραφιας</Link>
           <Link to="/recource/products" onClick={() =>{ this.filterProducts("Δώρα")}} >-Δωρα</Link>
-          <Link to="/recource/products" onClick={() =>{ this.filterProducts("Υλικα εργαστηρίου")}}>-Υλικα εργαστηρίου</Link>
+          <Link to="/recource/products" onClick={() =>{ this.filterProducts("Υλικα Εργαστηρίου")}}>-Υλικα εργαστηρίου</Link>
           <Link to="/recource/products/add" className="mb-3">-Προσθήκη νέου</Link>
               </Dropdown.Menu>
           </Dropdown>
