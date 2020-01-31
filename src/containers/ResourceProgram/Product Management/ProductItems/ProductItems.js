@@ -11,7 +11,7 @@ import * as actions from '../../../../store/actions/products';
 const productItems = (props) => {
   let products = [];
 
-  if (!props.products) {
+  if (props.products === null) {
      console.log("Get products called");
      props.getProducts();
    }else {
@@ -19,7 +19,7 @@ const productItems = (props) => {
    }
    const handleSpecified = () =>
      props.history.push({
-     pathname: "products/id",
+     pathname: "/recource/products/id",
 
    });
   const basePath = props.match.url;

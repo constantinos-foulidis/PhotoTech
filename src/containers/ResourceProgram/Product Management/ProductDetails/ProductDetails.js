@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container'
 import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/products';
+import DeleteModal from '../../../../components/DeleteModal/DeleteModal';
 
 class ProductSpecs extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class ProductSpecs extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
+      productForDelete:'',
       errorMessage: '',
       remain: 1000,
       number: 10,
@@ -57,6 +59,9 @@ class ProductSpecs extends Component {
     this.setState({ number: event.target.value });
     console.log("inside number changed");
   }
+  redirectToProducts= () => {
+    this.props.history.goBack();
+  }
 
 
 
@@ -65,7 +70,7 @@ class ProductSpecs extends Component {
     let showEverything;
     if (!this.props.productSpecks) {
        console.log("Get products called");
-      
+
      }else {
        products = this.props.productSpecks;
 
@@ -115,7 +120,8 @@ class ProductSpecs extends Component {
              <div className="row">
                <div className="col">
                  <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info">Αποθήκευση</Button>
-                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info">Διαγραφή Προιόντος</Button>
+                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info"  onClick={() => {this._modal.handleShow()
+                     this.setState({productForDelete:products.productCode})}}>Διαγραφή Προιόντος</Button>
                  <Button className="buttonWidth mb-2 mb-3 mt-2" variant="info" onClick={this.handleShow}>Επεξεργασία αποθέματος</Button>
                </div>
              </div>
@@ -150,6 +156,8 @@ class ProductSpecs extends Component {
            </Modal.Footer>
          </Modal>
        </div>
+         <DeleteModal ref={(modal) => { this._modal = modal;}} onOkey={() => {this.props.delete(this.state.productForDelete);
+           this.redirectToProducts()}} />
      </React.Fragment>
        )
      }
@@ -170,6 +178,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
     setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks))
   }
 }
