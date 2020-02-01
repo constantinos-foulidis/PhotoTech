@@ -19,10 +19,12 @@ class ProductSpecs extends Component {
     this.state = {
       productForDelete:'',
       errorMessage: '',
-      remain: 1000,
+      remain:"",
       number: 10,
-      show: false
+      show: false,
+      whatIs:"",
     };
+    let products;
   }
   handleClose() {
     this.setState({ show: false });
@@ -34,26 +36,32 @@ class ProductSpecs extends Component {
 
   addNumber = () => {
     console.log(this.state.number);
-    const firstRemain = Number(this.state.remain);
+    const firstRemain = Number(this.props.productSpecks.productQuantity);
     const addedValue = Number(this.state.number);
-    const sum = firstRemain + addedValue;
+    const sum =  firstRemain + addedValue;
     console.log(sum);
-    this.setState({ remain: sum });
+    this.setState({ remain: sum,
+    wantToadd:"add" });
   }
 
   removeNumber = () => {
-    const firstRemain = Number(this.state.remain);
+    const firstRemain = Number(this.props.productSpecks.productQuantity);
     if (!(Number(this.state.number) > firstRemain)) {
       const addedValue = Number(this.state.number);
       const sum = firstRemain - addedValue;
-      this.setState({ remain: sum });
+      this.setState({ remain: sum,
+      wantToadd:"remove" });
     } else {
       this.setState({ errorMessage: 'Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα' });
       alert('Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα');
     }
 
   }
-
+componentDidMount(){
+ if(this.props.productSpecks !== null){
+  this.setState({ remain:this.props.productSpecks.productQuantity });
+}
+}
   numberChanged = (event) => {
 
     this.setState({ number: event.target.value });
@@ -63,16 +71,36 @@ class ProductSpecs extends Component {
     this.props.history.goBack();
   }
 
+handleProduct = () =>{
+  let productDetail = document.getElementById("productDetail").innerHTML;
+  let productCategory = document.getElementById("productCategory").innerHTML;
+  let productCode = document.getElementById("productCode").innerHTML;
+  let productSubcategory = document.getElementById("productSubcategory").innerHTML;
+  let productPosition = document.getElementById("productPosition").innerHTML;
+  let productOrder = document.getElementById("productOrders").innerHTML;
+  console.log("product",productCategory);
+  const product = {};
+  product.productDetail = productDetail;
+  product.productCode = productCode;
+  product.productCategory = productCategory;
+  product.productSubcategory = productSubcategory;
+  product.productQuantity = this.state.number;
+  product.productPosition = productPosition;
+  product.productOrder = productOrder;
+  product.wantToadd=this.state.wantToadd;
 
+  this.props.updateProduct(product);
+}
 
   render() {
-    let products;
+
     let showEverything;
     if (!this.props.productSpecks) {
        console.log("Get products called");
 
      }else {
-       products = this.props.productSpecks;
+       this.products = this.props.productSpecks;
+
 
         showEverything = (
          <React.Fragment>
@@ -80,48 +108,48 @@ class ProductSpecs extends Component {
          <ProductHeader/>
          <div className="row">
            <div className="col-5 border">
-             <img alt="Product" className="imgflex" src={products.originalname} />
+             <img alt="Product" className="imgflex" src={this.products.originalname} />
            </div>
            <div className="col mb-2 border ml-4 ">
              <div className="row">
                <div className="col border-bottom">
-                 <h4>Περιγραή Προιόντος</h4>
-                 <p >{products.productDetail}</p>
+                 <h4>Περιγραφή Προιόντος</h4>
+                 <p id="productDetail" contentEditable={true} suppressContentEditableWarning={true} >{this.products.productDetail}</p>
                </div>
              </div>
              <div className="row">
                <div className="col border-bottom mb-2">
                  <div className="row">
                    <h5>Κωδικος :</h5>
-                   <p contentEditable={true} suppressContentEditableWarning={true}>{products.productCode}</p>
+                   <p id="productCode" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productCode}</p>
                  </div>
                  <div className="row">
                    <h5>Κaτηγορία :</h5>
-                   <p contentEditable={true} suppressContentEditableWarning={true}>{products.productCategory}</p>
+                   <p id="productCategory" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productCategory}</p>
                  </div>
                  <div className="row">
                    <h5>Υποκατηγορία :</h5>
-                   <p contentEditable={true} suppressContentEditableWarning={true}>{products.productSubcategory}</p>
+                   <p id="productSubcategory"contentEditable={true} suppressContentEditableWarning={true}>{this.products.productSubcategory}</p>
                  </div>
                  <div className="row">
                    <h5 >Διαθεσιμότητα :</h5>
-                   <p>{products.productQuantity}</p>
+                   <p>{this.state.remain}</p>
                  </div>
                  <div className="row">
                    <h5>θέση :</h5>
-                   <p>{products.productPosition}</p>
+                   <p id="productPosition" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productPosition}</p>
                  </div>
                  <div className="row">
                    <h5>Τάξεις :</h5>
-                   <p>{products.productOrder}</p>
+                   <p id="productOrders" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productOrder}</p>
                  </div>
                </div>
              </div>
              <div className="row">
                <div className="col">
-                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info">Αποθήκευση</Button>
+                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info" onClick={() => {this.handleProduct()}}>Αποθήκευση</Button>
                  <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info"  onClick={() => {this._modal.handleShow()
-                     this.setState({productForDelete:products.productCode})}}>Διαγραφή Προιόντος</Button>
+                     this.setState({productForDelete:this.products.productCode})}}>Διαγραφή Προιόντος</Button>
                  <Button className="buttonWidth mb-2 mb-3 mt-2" variant="info" onClick={this.handleShow}>Επεξεργασία αποθέματος</Button>
                </div>
              </div>
@@ -179,7 +207,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
-    setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks))
+   updateProduct: (form) => dispatch(actions.ProductUpdated(form))
   }
 }
 

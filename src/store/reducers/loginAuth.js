@@ -16,6 +16,7 @@ const authStart = ( state, action ) => {
 const authSuccess = (state, action) => {
   console.log("username for sending",action.username);
   console.log("username for sending",  action.isAdmin);
+  localStorage.setItem('isLogedIn', JSON.stringify(true));
 
 
     return updateObject( state, {
@@ -36,6 +37,7 @@ const authFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
+//  localStorage.clear();
     return updateObject(state, { isAdmin: null, isLogedIn: null,userName: null });
 };
 

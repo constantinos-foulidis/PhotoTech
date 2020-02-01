@@ -16,12 +16,14 @@ class NavigationDrawer extends Component {
   cachedProducts(){
       this.props.cachedProducts();
   }
+  //localStorage.getItem('userName');
 
   render() {
     const { showNav } = this.props;
     let sideNavStyle = { width: showNav ? "250px" : "0" };
     let adminExtras=null;
-    if(this.props.isAdmin==='true'){
+    console.log(localStorage.getItem('isadmin'));
+    if(JSON.parse(localStorage.getItem('isadmin'))==='true'){
     adminExtras = (
        <>
        <Dropdown className="mb-2 dropdownStylingnav">

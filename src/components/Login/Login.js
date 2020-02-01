@@ -63,7 +63,7 @@ class Login extends Component {
         pathname: "/recource/products",
       });
     }
-    if(this.props.isAdmin === 'false' ){
+    if(this.props.isAdmin === '0' ){
       this.props.history.push({
         pathname: "/recource/products",
       });

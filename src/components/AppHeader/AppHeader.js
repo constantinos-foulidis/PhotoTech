@@ -23,7 +23,8 @@ class AppHeader extends Component {
   render() {
     let user = null;
     let profile = null;
-    if (this.props.isLogedIn === true) {
+
+    if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
       user = (<input className="appHeaderInput mr-5" type="text" placeholder="Search" value={this.state.search} onChange={this.handleSearch}/>)
 
       profile = (<Dropdown className="center">
@@ -31,8 +32,8 @@ class AppHeader extends Component {
           <img className="appheaderProfile" variant="secondary" alt="logo" src="/profile.png"/>
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">{this.props.userName}</Dropdown.Item>
-          <Dropdown.Item href="/recource/simple_user">Logout</Dropdown.Item>
+          <Dropdown.Item href="#/action-1">{JSON.parse(localStorage.getItem('userName'))}</Dropdown.Item>
+          <Dropdown.Item href="/recource/simple_user" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
     }
@@ -69,7 +70,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (formdata) => dispatch(login(formdata)),
-    logout: (formdata) => dispatch(logout())
+    logout: () => dispatch(logout())
 
   }
 };

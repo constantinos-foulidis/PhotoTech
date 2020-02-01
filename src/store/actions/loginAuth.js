@@ -10,6 +10,10 @@ export const authStart = () => {
 export const authSuccess = (username, isAdmin) => {
     console.log("userName",username);
     console.log("isadmin",isAdmin);
+    localStorage.setItem('userName', JSON.stringify(username));
+    localStorage.setItem('isadmin', JSON.stringify(isAdmin));
+
+
     return {
         type: actionTypes.AUTH_SUCCESS,
         userName: username,
@@ -24,6 +28,8 @@ export const authFail = (error) => {
     };
 };
 export const logout = () => {
+  console.log("inside logout");
+  localStorage.clear();
     return {
         type: actionTypes.AUTH_LOGOUT
     };

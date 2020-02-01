@@ -4,6 +4,7 @@ import FormData from 'form-data';
 const baseUrl = 'http://localhost:4040/';
 const productsUri = 'api/product';
 const deleteUri = '/delete';
+const updateUri='/update';
 export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
@@ -50,6 +51,13 @@ const updateProducts = (products) => {
         products: products
     };
 }
+const updateProduct = (products) => {
+    console.log(products);
+    return {
+        type: UPDATE_PRODUCT,
+        products: products
+    };
+}
 
 export const addProduct = (product) => {
     return (dispatch, getState) => {
@@ -72,7 +80,35 @@ export const addProduct = (product) => {
             if (getState().products.products === null) {
                 dispatch(getProducts());
             } else {
-                dispatch(addProductCreator(response.data.data));
+              //TODO
+                //dispatch(addProductCreator(response.data.data));
+            }
+        })
+    }
+};
+export const ProductUpdated = (product) => {
+    return (dispatch, getState) => {
+        dispatch(loading());
+        const data = new FormData();
+        console.log("[ProductActions] MyProduct addProduct - product: ", product);
+        data.append("productDetail", product.productDetail);
+        data.append("productCode", product.productCode);
+        data.append("productCategory", product.productCategory);
+        data.append("productSubcategory", product.productSubcategory);
+        data.append("productQuantity", Number(product.productQuantity));
+        data.append("productPosition", product.productPosition);
+        data.append("productOrder", product.productOrder);
+        Axios.post(baseUrl + productsUri+updateUri, product).then(response => {
+            console.log(response.data);
+            if(response.data.errorproductCode){
+                dispatch(error(response.data.errorproductCode));
+            }
+            if (getState().products.products === null) {
+                dispatch(getProducts());
+            } else {
+              console.log("in if",response.data);
+               //TODO UPDATE ALL LIST
+                dispatch(updateProduct(response.data.data));
             }
         })
     }
