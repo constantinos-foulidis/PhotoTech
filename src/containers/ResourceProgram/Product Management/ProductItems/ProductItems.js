@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './ProductItems.css';
 import ExporPDF from '../../../../components/ExportTOPdf/ExportToPdf'
 import ExportExcel from '../../../../components/ExportTOExcel/ExportToExcel'
@@ -7,22 +7,42 @@ import ProductItem from './ProductItem/ProductItem';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import * as actions from '../../../../store/actions/products';
+import DeleteModal from '../../../../components/DeleteModal/DeleteModal';
 
-const productItems = (props) => {
+class productItems  extends Component {
+    constructor(props){
+      super(props);
+      this.handleShow = this.handleShow.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+
+      this.state = {
+        productForDelete:'',
+        show: false,
+      };
+
+    }
+    handleClose() {
+      this.setState({ show: false });
+    }
+
+    handleShow() {
+      this.setState({ show: true });
+    }
+render() {
   let products = [];
 
-  if (props.products === null) {
+  if (this.props.products === null) {
      console.log("Get products called");
-     props.getProducts();
+     this.props.getProducts();
    }else {
-     products = props.products;
+     products = this.props.products;
    }
    const handleSpecified = () =>
-     props.history.push({
+     this.props.history.push({
      pathname: "/recource/products/id",
 
    });
-  const basePath = props.match.url;
+  const basePath = this.props.match.url;
   return (
     <React.Fragment>
       <div className="Container">
@@ -34,22 +54,25 @@ const productItems = (props) => {
         <div className="row">
           <div className="col-9">
             <ExporPDF />
-            <ExportExcel product={props.products} />
+            <ExportExcel />
           </div>
         </div>
         <div className="row offset-2">
           {products.map((product) => {
             return (
               <div key={product.productCode} className="col-4">
-                <ProductItem basePath={basePath} onDelete={() => props.delete(product.productCode)} product={product} Specified={() => {props.setProductSpecks(product);
+                <ProductItem basePath={basePath} onDelete={() => {this._modal.handleShow()
+                    this.setState({productForDelete:product.productCode})}} product={product} Specified={() => {this.props.setProductSpecks(product);
                    handleSpecified()}} />
               </div>
             );
           })}
         </div>
       </div>
+      <DeleteModal ref={(modal) => { this._modal = modal;}} onOkey={() => {this.props.delete(this.state.productForDelete)}} />
     </React.Fragment>
   );
+}
 }
 
 const mapStateToProps = (state, props) => {
