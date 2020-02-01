@@ -52,14 +52,14 @@ const cachedUsers =(state,action) =>{
 const filterUserByname = (state,fullname) => {
  if(allusers===null){
    allusers=state.users;
-   let updateUsers = state.users.filter((users)=> users.fullName===fullname);
+   let updateUsers = state.users.filter((users)=> users.fullName.toLowerCase().indexOf(fullname.fullname) > -1);
    console.log(updateUsers);
    return updateObject(state,{
      allUsers:state.users,
      users:updateUsers
    });
  }else{
-   let updateUsers = allusers.filter((users)=> users.fullName==="test User");
+   let updateUsers = allusers.filter((users)=> users.fullName.toLowerCase().indexOf(fullname.fullname) > -1);
    console.log(updateUsers);
      return updateObject(state,{
        users:updateUsers
@@ -68,11 +68,9 @@ const filterUserByname = (state,fullname) => {
 };
 
 const filterUser = (state,username) => {
-  console.log("username ",username);
-  console.log("username ",""+username+"");
  if(allusers===null){
    allusers=state.users;
-   let updateUsers = state.users.filter((users)=> users.username.toLowerCase().indexOf(username) > -1);
+   let updateUsers = state.users.filter((users)=> users.username.toLowerCase().indexOf(username.username.toLowerCase()) > -1);
    console.log(updateUsers);
    return updateObject(state,{
      allUsers:state.users,
@@ -80,7 +78,7 @@ const filterUser = (state,username) => {
    });
  }else{
 
-   let updateUsers = allusers.filter((users)=> users.username.toLowerCase().indexOf(username) > -1);
+   let updateUsers = allusers.filter((users)=> users.username.toLowerCase().indexOf(username.username.toLowerCase()) > -1);
    console.log(updateUsers);
      return updateObject(state,{
        users:updateUsers
