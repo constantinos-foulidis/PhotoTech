@@ -53,7 +53,6 @@ render() {
         </div>
         <div className="row">
           <div className="col-9">
-            <ExporPDF />
             <ExportExcel />
           </div>
         </div>

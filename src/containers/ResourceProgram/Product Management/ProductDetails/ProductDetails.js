@@ -24,7 +24,7 @@ class ProductSpecs extends Component {
       show: false,
       whatIs:"",
     };
-  
+
   }
   handleClose() {
     this.setState({ show: false });
@@ -93,7 +93,18 @@ handleProduct = () =>{
 }
 
   render() {
+    let adminExtras;
+    if(JSON.parse(localStorage.getItem('isadmin'))==='true'){
+      adminExtras=(
+        <>
+        <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info" onClick={() => {this.handleProduct()}}>Αποθήκευση</Button>
+        <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info"  onClick={() => {this._modal.handleShow()
+            this.setState({productForDelete:this.products.productCode})}}>Διαγραφή Προιόντος</Button>
+        <Button className="buttonWidth mb-2 mb-3 mt-2" variant="info" onClick={this.handleShow}>Επεξεργασία αποθέματος</Button>
+         </>
+    )
 
+    }
     let showEverything;
     if (!this.props.productSpecks) {
        console.log("Get products called");
@@ -147,10 +158,7 @@ handleProduct = () =>{
              </div>
              <div className="row">
                <div className="col">
-                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info" onClick={() => {this.handleProduct()}}>Αποθήκευση</Button>
-                 <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2" variant="info"  onClick={() => {this._modal.handleShow()
-                     this.setState({productForDelete:this.products.productCode})}}>Διαγραφή Προιόντος</Button>
-                 <Button className="buttonWidth mb-2 mb-3 mt-2" variant="info" onClick={this.handleShow}>Επεξεργασία αποθέματος</Button>
+                    {adminExtras}
                </div>
              </div>
            </div>

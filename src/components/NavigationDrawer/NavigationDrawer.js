@@ -70,9 +70,13 @@ class NavigationDrawer extends Component {
 
 const toggleButton = (props) => {
   return (
+
+    <div className="row">
+      <h5>Κατηγορίες</h5>
     <span onClick={props.openNav} className="open-nav">
       &#9776;
     </span>
+    </div>
   );
 }
 

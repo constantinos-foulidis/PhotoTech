@@ -26,7 +26,6 @@ class ProductHeader  extends Component {
     </div>
 
         <Row sm={4}>
-          <div className="categoryNavigation">Κατηγορίες</div>
   <NavigationToggleButton/>
        </Row>
         <Col className="justify-content-start offset-3">

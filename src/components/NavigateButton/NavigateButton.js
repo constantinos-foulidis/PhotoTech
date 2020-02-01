@@ -11,7 +11,10 @@ class NavigateButton extends Component {
 
   render() {
     return (
+      <div>
+      
       <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleNewItem}>Προσθήκη νέου</Button>
+      </div>
     );
   }
 }

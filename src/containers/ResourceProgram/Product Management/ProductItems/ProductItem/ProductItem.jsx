@@ -9,17 +9,23 @@ const productItem = (props) => {
     if(props.product.originalname){
       imagePath = props.product.originalname;
     }
+    let adminExtras;
+    if(JSON.parse(localStorage.getItem('isadmin'))==='true'){
+      adminExtras=(
+          <Button className="productItembtn mb-2" variant="info" onClick={props.onDelete}>Διαγραφή Προιόντος</Button>
+      )
 
+    }
     return (
-        <div className="card cardWidth ml-5">
+        <div className="card cardWidth ml-5 mb-3">
               <img alt="logo" className="card-img-top imgWidth" src={imagePath} />
               <div className="card-body text-center">
                 <h5 className="card-title titleCardFontSize">{props.product.productDetail}</h5>
                 <p className="card-text">Διαθεσημοτητα : {props.product.productQuantity}</p>
                 <p className="card-text border-bottom">Κωδικός : {props.product.productCode}</p>
-                <Button className="productItembtn mb-2" variant="info" onClick={props.onDelete}>Διαγραφή Προιόντος</Button>
+                {adminExtras}
                 <Button className="productItembtn mb-2" variant="info" onClick={props.Specified}>Επεξεργασία αποθέματος</Button>
-              </div>
+            </div>
         </div>
     );
 }
