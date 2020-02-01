@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import './ProductItem.css';
-import * as actions from '../../../../../store/actions/products';
+
 
 const productItem = (props) => {
 

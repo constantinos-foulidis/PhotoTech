@@ -113,13 +113,13 @@ export const ProductUpdated = (product) => {
         })
     }
 };
-
-const addProductCreator = (product) => {
-    return {
-        type: ADD_PRODUCT,
-        product: product
-    };
-}
+//           TODO
+// const addProductCreator = (product) => {
+//     return {
+//         type: ADD_PRODUCT,
+//         product: product
+//     };
+// }
 
 export const filterProducts = (productCategory) => {
   console.log("filterProduct",productCategory);

@@ -59,7 +59,7 @@ const filterUserByname = (state,fullname) => {
      users:updateUsers
    });
  }else{
-   let updateUsers = allusers.filter((users)=> console.log(users.fullName=="test User"));
+   let updateUsers = allusers.filter((users)=> users.fullName==="test User");
    console.log(updateUsers);
      return updateObject(state,{
        users:updateUsers

@@ -4,10 +4,10 @@ import './Dropdown.css';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/products';
 class Dropdawn extends Component {
-  constructor(props){
-    super(props);
-
-  }
+  // constructor(props){
+  //   super(props);
+  //
+  // }
   render(){
   return (
     <Dropdown className="mr-2 marginBottomdropdawn">

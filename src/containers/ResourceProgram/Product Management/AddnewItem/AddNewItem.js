@@ -10,7 +10,7 @@ import classes from '../../../../Data/Classes';
 import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
 import { addProduct } from '../../../../store/actions/products';
 import { connect } from 'react-redux';
-import FormControl from 'react-bootstrap/FormControl';
+
 
 class NewItem extends Component {
   state = {

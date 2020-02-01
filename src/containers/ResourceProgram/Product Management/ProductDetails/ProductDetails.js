@@ -24,7 +24,7 @@ class ProductSpecs extends Component {
       show: false,
       whatIs:"",
     };
-    let products;
+  
   }
   handleClose() {
     this.setState({ show: false });
