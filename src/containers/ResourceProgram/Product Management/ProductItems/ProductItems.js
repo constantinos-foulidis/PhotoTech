@@ -34,7 +34,7 @@ const productItems = (props) => {
         <div className="row">
           <div className="col-9">
             <ExporPDF />
-            <ExportExcel />
+            <ExportExcel product={props.products} />
           </div>
         </div>
         <div className="row offset-2">
