@@ -77,7 +77,7 @@ class UserHandle extends Component {
             <th scope="col">όνομα Χρηστη</th>
             <th scope="col">Ονοματεπώνυμο</th>
             <th scope="col">Κωδικος</th>
-            <th></th>
+            <th scope="col">Διαγραφη</th>
           </tr>
         </thead>
 
@@ -85,7 +85,7 @@ class UserHandle extends Component {
           <tr>
             <td>  <input className="inputStyleWidth"type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/></td>
             <td><input className="inputStyleWidth"type="text" placeholder="Fullname" value={this.state.fullName} onChange={this.handleFullname}/></td>
-            <td>Αναζήτηση</td>
+            <td></td>
             <td></td>
           </tr>
         {users.map((users) => {
