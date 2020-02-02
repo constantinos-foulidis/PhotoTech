@@ -31,7 +31,7 @@ class DeleteModal extends Component {
     return (
       <Modal ref={(modal) => { this._modal = modal; }} show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Διαγραφή</Modal.Title>
           </Modal.Header>
           <Modal.Body>Είστε σίγουρος οτι θέλετε να προχωρησεται στην διαγραφη ?</Modal.Body>
           <Modal.Footer>
