@@ -77,7 +77,7 @@ class UserHandle extends Component {
             <th scope="col">όνομα Χρηστη</th>
             <th scope="col">Ονοματεπώνυμο</th>
             <th scope="col">Κωδικος</th>
-            <th scope="col">Διαγραφη</th>
+            <th></th>
           </tr>
         </thead>
 
