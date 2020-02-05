@@ -80,7 +80,6 @@ class UserHandle extends Component {
             <th scope="col">Διαγραφη</th>
           </tr>
         </thead>
-
         <tbody>
           <tr>
             <td>  <input className="inputStyleWidth"type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/></td>
@@ -97,7 +96,6 @@ class UserHandle extends Component {
             <td>   <Button className=" mb-2 float-right" onClick={() => {this._modal.handleShow()
                 this.setState({usernameForDelete:users.username})}} variant="info">Διαγραφή</Button></td>
           </tr>
-
         );
         })}
           </tbody>
