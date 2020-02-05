@@ -98,6 +98,7 @@ export const ProductUpdated = (product) => {
         data.append("productQuantity", Number(product.productQuantity));
         data.append("productPosition", product.productPosition);
         data.append("productOrder", product.productOrder);
+          data.append("productOrder", product.wantToadd);
         Axios.post(baseUrl + productsUri+updateUri, product).then(response => {
             console.log(response.data);
             if(response.data.errorproductCode){
