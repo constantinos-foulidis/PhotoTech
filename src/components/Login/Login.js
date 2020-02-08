@@ -57,17 +57,17 @@ class Login extends Component {
     if (this.props.error) {
       errorMessage = (<p>{this.props.error.message}</p>);
     }
-    if(this.props.isAdmin==='true'){
+    if(this.props.isAdmin!== null){
       console.log(this.props.isAdmin);
       this.props.history.push({
         pathname: "/recource/products",
       });
     }
-    if(this.props.isAdmin === '0' ){
-      this.props.history.push({
-        pathname: "/recource/products",
-      });
-    }
+  //  if(this.props.isAdmin === false ){
+  //    this.props.history.push({
+  //      pathname: "/recource/products",
+  //    });
+  //  }
 
     return (<form onSubmit={this.handleSubmit}>
       {spinner}

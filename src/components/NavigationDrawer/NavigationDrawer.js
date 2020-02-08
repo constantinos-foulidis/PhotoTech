@@ -23,7 +23,7 @@ class NavigationDrawer extends Component {
     let sideNavStyle = { width: showNav ? "250px" : "0" };
     let adminExtras=null;
     console.log(localStorage.getItem('isadmin'));
-    if(JSON.parse(localStorage.getItem('isadmin'))==='true'){
+    if(JSON.parse(localStorage.getItem('isadmin'))===true){
     adminExtras = (
        <>
        <Dropdown className="mb-2 dropdownStylingnav">
