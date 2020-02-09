@@ -94,7 +94,7 @@ handleProduct = () =>{
 
   render() {
     let adminExtras;
-    if(JSON.parse(localStorage.getItem('isadmin'))==='true'){
+    if(JSON.parse(localStorage.getItem('isadmin'))===true){
       adminExtras=(
         <>
         <Button className="buttonWidth mb-2 mr-1 mb-3 mt-2 " variant="info" onClick={() => {this.handleProduct()}}>Αποθήκευση</Button>

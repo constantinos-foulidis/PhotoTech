@@ -10,7 +10,7 @@ const productItem = (props) => {
       imagePath = props.product.originalname;
     }
     let adminExtras;
-    if(JSON.parse(localStorage.getItem('isadmin'))==='true'){
+    if(JSON.parse(localStorage.getItem('isadmin'))===true){
       adminExtras=(
           <Button className="productItembtn mb-2" variant="info" onClick={props.onDelete}>Διαγραφή Προιόντος</Button>
       )
