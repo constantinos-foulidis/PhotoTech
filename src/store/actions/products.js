@@ -1,7 +1,7 @@
 import Axios from "axios";
 import FormData from 'form-data';
 
-const baseUrl = 'http://167.71.52.215/api/';
+const baseUrl = 'http://167.172.109.106/';
 const productsUri = 'api/product';
 const deleteUri = '/delete';
 const updateUri='/update';
