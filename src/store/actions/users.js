@@ -64,7 +64,7 @@ export const createUser = (formdata) => {
   return dispatch => {
     dispatch(callStart());
     //todo async actions
-    let url = `http://167.172.109.106/api/users/`;
+    let url = `http://167.172.109.106/api/users`;
     axios.post(url,formdata).
     then(res => {
       console.log("onCreateUser",res);
