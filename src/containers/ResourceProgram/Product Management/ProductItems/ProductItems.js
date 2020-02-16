@@ -53,7 +53,7 @@ render() {
         </div>
         <div className="row">
           <div className="col-9">
-            <ExportExcel />
+            <ExportExcel  product={products} />
           </div>
         </div>
         <div className="row offset-2">

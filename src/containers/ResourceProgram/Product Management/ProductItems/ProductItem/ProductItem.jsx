@@ -18,9 +18,9 @@ const productItem = (props) => {
     }
     return (
         <div className="card cardWidth ml-5 mb-3">
-              <img alt="logo" className="card-img-top imgWidth" src={imagePath} />
+              <img alt="logo" className="card-img-top imgWidth" src={imagePath} onClick={props.Specified} />
               <div className="card-body text-center">
-                <h5 className="card-title titleCardFontSize">{props.product.productDetail}</h5>
+                <h5 className="card-title titleCardFontSize" onClick={props.Specified}>{props.product.productDetail}</h5>
                 <p className="card-text">Διαθεσημοτητα : {props.product.productQuantity}</p>
                 <p className="card-text border-bottom">Κωδικός : {props.product.productCode}</p>
                 {adminExtras}

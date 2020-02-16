@@ -32,7 +32,7 @@ class ProductSpecs extends Component {
     console.log(this.state.number);
     const firstRemain = Number(this.state.remain);
     const addedValue = Number(this.state.number);
-    const sum = firstRemain + addedValue;
+    const sum =sum + firstRemain + addedValue;
     console.log(sum);
     this.setState({ remain: sum });
   }
@@ -41,7 +41,7 @@ class ProductSpecs extends Component {
     const firstRemain = Number(this.state.remain);
     if (!(Number(this.state.number) > firstRemain)) {
       const addedValue = Number(this.state.number);
-      const sum = firstRemain - addedValue;
+      const sum =sum+firstRemain - addedValue;
       this.setState({ remain: sum });
     } else {
       this.setState({ errorMessage: 'Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα' });
@@ -53,7 +53,7 @@ class ProductSpecs extends Component {
   numberChanged = (event) => {
 
     this.setState({ number: event.target.value });
-    console.log("inside number changed");
+    console.log("inside number changed",event.target.value );
   }
 
   render() {

@@ -23,7 +23,10 @@ class ProductSpecs extends Component {
       number: 10,
       show: false,
       whatIs:"",
+      afterCalculations:0,
+      afterRemoveCalculations:0,
     };
+
 
   }
   handleClose() {
@@ -36,21 +39,29 @@ class ProductSpecs extends Component {
 
   addNumber = () => {
     console.log(this.state.number);
-    const firstRemain = Number(this.props.productSpecks.productQuantity);
+    let firstRemain = Number(this.state.remain);
+    let aftercalculation =this.state.afterCalculations;
+
     const addedValue = Number(this.state.number);
-    const sum =  firstRemain + addedValue;
-    console.log(sum);
-    this.setState({ remain: sum,
-    wantToadd:"add" });
+    aftercalculation=aftercalculation+addedValue;
+    firstRemain = firstRemain + addedValue;
+    console.log(firstRemain);
+    console.log(aftercalculation);
+    this.setState({ remain: firstRemain,
+    wantToadd:"add",
+   afterCalculations:aftercalculation });
   }
 
   removeNumber = () => {
-    const firstRemain = Number(this.props.productSpecks.productQuantity);
+    let firstRemain = Number(this.state.remain);
     if (!(Number(this.state.number) > firstRemain)) {
       const addedValue = Number(this.state.number);
-      const sum = firstRemain - addedValue;
-      this.setState({ remain: sum,
-      wantToadd:"remove" });
+    firstRemain = firstRemain - addedValue;
+    let aftercalculation=this.state.afterRemoveCalculations;
+    aftercalculation =aftercalculation+addedValue;
+      this.setState({ remain: firstRemain,
+      wantToadd:"remove",
+    afterRemoveCalculations:aftercalculation });
     } else {
       this.setState({ errorMessage: 'Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα' });
       alert('Δεν μπορεις να αφαιρεσεις τοσο μεγαλο αποθεμα');
@@ -65,13 +76,29 @@ componentDidMount(){
   numberChanged = (event) => {
 
     this.setState({ number: event.target.value });
-    console.log("inside number changed");
+    console.log("inside number changed",event.target.value);
   }
   redirectToProducts= () => {
     this.props.history.goBack();
   }
 
 handleProduct = () =>{
+  let wantToadd;
+  let quantity = this.state.afterCalculations-this.state.afterRemoveCalculations;
+  console.log("eimai to quantity",quantity);
+  if(quantity>0){
+   //  this.setState({
+   //  wantToadd:"add"
+   // });
+   wantToadd="add";
+ }else{
+  quantity =quantity * -1;
+  console.log("revert to positive",quantity);
+ //  this.setState({
+ //  wantToadd:"remove"
+ // });
+ wantToadd="remove";
+ }
   let productDetail = document.getElementById("productDetail").innerHTML;
   let productCategory = document.getElementById("productCategory").innerHTML;
   let productCode = document.getElementById("productCode").innerHTML;
@@ -84,10 +111,10 @@ handleProduct = () =>{
   product.productCode = productCode;
   product.productCategory = productCategory;
   product.productSubcategory = productSubcategory;
-  product.productQuantity = this.state.number;
+  product.productQuantity = quantity;
   product.productPosition = productPosition;
   product.productOrder = productOrder;
-  product.wantToadd=this.state.wantToadd;
+  product.wantToadd=wantToadd;
 
   this.props.updateProduct(product);
 }
@@ -132,7 +159,7 @@ handleProduct = () =>{
                <div className="col border-bottom mb-2">
                  <div className="row">
                    <h5>Κωδικος :</h5>
-                   <p id="productCode" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productCode}</p>
+                   <p className="w-75" id="productCode" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productCode}</p>
                  </div>
                  <div className="row">
                    <h5>Κaτηγορία :</h5>

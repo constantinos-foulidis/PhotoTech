@@ -46,7 +46,7 @@ export const getUsers = () => {
   return dispatch => {
     dispatch(callStart());
     //todo async actions
-    let url = `http://167.172.109.106/api/users`;
+    let url = `http://localhost:4040/api/users`;
     axios.get(url).
     then(res => {
       if (res.data.error) {
@@ -64,7 +64,7 @@ export const createUser = (formdata) => {
   return dispatch => {
     dispatch(callStart());
     //todo async actions
-    let url = `http://167.172.109.106/api/users`;
+    let url = `http://localhost:4040/api/users`;
     axios.post(url,formdata).
     then(res => {
       console.log("onCreateUser",res);
@@ -83,7 +83,7 @@ export const deleteUser = (userName) => {
   return dispatch => {
     dispatch(callStart());
     //todo async actions
-    let url = `http://167.172.109.106/api/users/delete`;
+    let url = `http://localhost:4040/api/users/delete`;
     axios.delete(url,userName).
     then(res => {
       console.log(res);
