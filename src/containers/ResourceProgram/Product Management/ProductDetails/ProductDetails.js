@@ -9,13 +9,18 @@ import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/products';
 import DeleteModal from '../../../../components/DeleteModal/DeleteModal';
+import categories from '../../../../Data/Category';
+import positions from '../../../../Data/Positions';
+import classes from '../../../../Data/Classes';
+import Form from 'react-bootstrap/Form';
 
 class ProductSpecs extends Component {
   constructor(props) {
     super(props);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-
+    console.log(props);
+    if(props.productSpecks != null){
     this.state = {
       productForDelete:'',
       errorMessage: '',
@@ -25,8 +30,16 @@ class ProductSpecs extends Component {
       whatIs:"",
       afterCalculations:0,
       afterRemoveCalculations:0,
+      selectedCategory:categories[0],
+      selectedSubcategory: categories[0].subcategories[0],
+      selectedPosition: positions[0],
+      selectedClass: classes[0],
+      FirstselectedCategory:this.props.productSpecks.productCategory,
+      FirstselectedSubcategory: this.props.productSpecks.productSubcategory,
+      FirstselectedPosition: this.props.productSpecks.productPosition,
+      FirstselectedClass: this.props.productSpecks.productOrder,
     };
-
+}
 
   }
   handleClose() {
@@ -35,6 +48,24 @@ class ProductSpecs extends Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+  subcategoryOnChangeHandler = event => {
+    event.persist();
+    console.log(event);
+    this.setState({ selectedSubcategory: event.target.value ,
+    FirstselectedSubcategory:event.target.value});
+  }
+
+  positionOnChangeHandler = event => {
+    event.persist();
+    this.setState({ selectedPosition: event.target.value,
+    FirstselectedPosition: event.target.value});
+  }
+
+  classOnChangeHandler = event => {
+    event.persist();
+    this.setState({ selectedClass: event.target.value,
+      FirstselectedClass:event.target.value });
   }
 
   addNumber = () => {
@@ -73,6 +104,11 @@ componentDidMount(){
   this.setState({ remain:this.props.productSpecks.productQuantity });
 }
 }
+categoryOnChangeHandler = event => {
+  event.persist();
+  this.setState((state) => { return { selectedCategory: categories.find(category => category.name === event.target.value),
+    FirstselectedCategory:event.target.value } })
+}
   numberChanged = (event) => {
 
     this.setState({ number: event.target.value });
@@ -83,40 +119,42 @@ componentDidMount(){
   }
 
 handleProduct = () =>{
-  let wantToadd;
-  let quantity = this.state.afterCalculations-this.state.afterRemoveCalculations;
+  let wantToadd="nothing";
+  let quantity=0;
+   quantity = this.state.afterCalculations-this.state.afterRemoveCalculations;
   console.log("eimai to quantity",quantity);
   if(quantity>0){
    //  this.setState({
    //  wantToadd:"add"
    // });
    wantToadd="add";
+ }else if (quantity===0) {
+console.log("eimai to quantity=0",quantity);
+  wantToadd="lolen";
  }else{
   quantity =quantity * -1;
   console.log("revert to positive",quantity);
  //  this.setState({
  //  wantToadd:"remove"
  // });
- wantToadd="remove";
+   wantToadd="remove";
  }
   let productDetail = document.getElementById("productDetail").innerHTML;
-  let productCategory = document.getElementById("productCategory").innerHTML;
   let productCode = document.getElementById("productCode").innerHTML;
-  let productSubcategory = document.getElementById("productSubcategory").innerHTML;
-  let productPosition = document.getElementById("productPosition").innerHTML;
-  let productOrder = document.getElementById("productOrders").innerHTML;
-  console.log("product",productCategory);
+
+
   const product = {};
   product.productDetail = productDetail;
   product.productCode = productCode;
-  product.productCategory = productCategory;
-  product.productSubcategory = productSubcategory;
+  product.productCategory = this.state.FirstselectedCategory;
+  product.productSubcategory = this.state.FirstselectedSubcategory;
   product.productQuantity = quantity;
-  product.productPosition = productPosition;
-  product.productOrder = productOrder;
+  product.productPosition = this.state.FirstselectedPosition;
+  product.productOrder = this.state.FirstselectedClass;
   product.wantToadd=wantToadd;
 
   this.props.updateProduct(product);
+  this.props.history.goBack();
 }
 
   render() {
@@ -163,11 +201,19 @@ handleProduct = () =>{
                  </div>
                  <div className="row">
                    <h5>Κaτηγορία :</h5>
-                   <p id="productCategory" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productCategory}</p>
+                     <Form.Control as="select" value={this.state.FirstselectedCategory} onChange={this.categoryOnChangeHandler} >
+                       {categories.map(category => (<option key={category.name} value={category.name}>{category.name}</option>))}
+                     </Form.Control>
                  </div>
                  <div className="row">
                    <h5>Υποκατηγορία :</h5>
-                   <p id="productSubcategory"contentEditable={true} suppressContentEditableWarning={true}>{this.products.productSubcategory}</p>
+                     <Form.Control as="select" value={this.state.FirstselectedSubcategory} onChange={this.subcategoryOnChangeHandler}  >
+                       {
+                         this.state.selectedCategory.subcategories.length === 0 ?
+                           null :
+                           this.state.selectedCategory.subcategories.map(subcategory => <option key={subcategory} value={subcategory}>{subcategory}</option>)
+                       }
+                     </Form.Control>
                  </div>
                  <div className="row">
                    <h5 >Διαθεσιμότητα :</h5>
@@ -175,11 +221,15 @@ handleProduct = () =>{
                  </div>
                  <div className="row">
                    <h5>θέση :</h5>
-                   <p id="productPosition" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productPosition}</p>
+                     <Form.Control as="select" value={this.state.FirstselectedPosition} onChange={this.positionOnChangeHandler} >
+                       {positions.map(position => <option value={position} key={position}>{position}</option>)}
+                     </Form.Control>
                  </div>
                  <div className="row">
                    <h5>Τάξεις :</h5>
-                   <p id="productOrders" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productOrder}</p>
+                     <Form.Control as="select" value={this.state.FirstselectedClass} onChange={this.classOnChangeHandler} >
+                       {classes.map(productClass => <option value={productClass} key={productClass}>{productClass}</option>)}
+                     </Form.Control>
                  </div>
                </div>
              </div>

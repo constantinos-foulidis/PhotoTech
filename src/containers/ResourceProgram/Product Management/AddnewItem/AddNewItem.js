@@ -119,6 +119,9 @@ class NewItem extends Component {
     if(!this.validate(product)) return;
 
     this.props.addProduct(product);
+    this.props.history.push({
+      pathname: "/recource/products",
+    });
   }
 
   categoryOnChangeHandler = event => {
