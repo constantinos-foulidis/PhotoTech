@@ -10,7 +10,7 @@ const initialState = {
     success: false,
     productSpecks: null,
 }
-
+let allProducts=null;
 const productsReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.UPDATE_PRODUCTS: return updateProducts(state, action.products);
@@ -23,6 +23,7 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.LOADING: return loading(state);
         case actionTypes.ERROR: return error(state, action.message);
         case actionTypes.PRODUCTSID: return setProductSpecks(state, action.product);
+        case actionTypes.FILTER_PRODUCT_BY_SEARCH_BAR: return filterProductBySearchbar(state, action.productCategory);
         default: return state;
     }
 }
@@ -124,6 +125,24 @@ const setProductSpecks = (state,products) =>{
     productSpecks: products,
   });
 }
-
+const filterProductBySearchbar = (state,categoryname) => {
+  console.log("new filter",categoryname);
+ if(allProducts===null){
+   allProducts=state.products;
+   let updateProducts = state.products.filter((product)=> product.productCategory.toLowerCase().indexOf(categoryname) > -1);
+   console.log(updateProducts);
+   return updateObject(state,{
+     allProducts:state.products,
+     products:updateProducts
+   });
+ }else{
+   console.log("new filter",categoryname);
+   let updateProducts = allProducts.filter((product)=> product.productCategory.toLowerCase().indexOf(categoryname) > -1);
+   console.log(updateProducts);
+     return updateObject(state,{
+       products:updateProducts
+     });
+ }
+};
 
 export default productsReducer;

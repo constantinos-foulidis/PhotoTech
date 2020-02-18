@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {login,logout} from '../../store/actions/loginAuth';
+import {filterProductsBySearchBar} from '../../store/actions/products';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {connect} from 'react-redux';
 import './Appheader.css';
@@ -15,6 +16,7 @@ class AppHeader extends Component {
 
   handleSearch(event) {
     this.setState({search: event.target.value});
+    this.props.filterProductsBySearchBar(event.target.value);
   }
   mainProducts() {
 
@@ -25,7 +27,7 @@ class AppHeader extends Component {
     let profile = null;
 
     if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
-      user = (<input className="appHeaderInput mr-5" type="text" placeholder="Search" value={this.state.search} onChange={this.handleSearch}/>)
+      user = (<input className="appHeaderInput mr-5 w-100" type="text" placeholder="Search" value={this.state.search} onChange={this.handleSearch}/>)
 
       profile = (<Dropdown className="center">
         <Dropdown.Toggle >
@@ -70,8 +72,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (formdata) => dispatch(login(formdata)),
-    logout: () => dispatch(logout())
-
+    logout: () => dispatch(logout()),
+   filterProductsBySearchBar: (productCategory) => dispatch(filterProductsBySearchBar(productCategory))
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);

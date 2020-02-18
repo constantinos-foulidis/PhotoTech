@@ -15,6 +15,7 @@ export const CACHED_PRODUCTS = "CACHED_PRODUCTS";
 export const PRODUCTSID = "PRODUCTSID";
 export const LOADING = 'LOADING';
 export const ERROR = 'ERROR';
+export const FILTER_PRODUCT_BY_SEARCH_BAR = 'FILTER_PRODUCT_BY_SEARCH_BAR';
 
 
 export const getProducts = () => {
@@ -177,4 +178,11 @@ const loading = () => {
     return {
         type: LOADING,
     }
+}
+export const filterProductsBySearchBar = (productCategory) => {
+  console.log("filterProduct by SearchBar",productCategory);
+  return {
+      type: FILTER_PRODUCT_BY_SEARCH_BAR,
+      productCategory: productCategory,
+  }
 }
