@@ -39,7 +39,11 @@ class ProductSpecs extends Component {
       FirstselectedPosition: this.props.productSpecks.productPosition,
       FirstselectedClass: this.props.productSpecks.productOrder,
     };
+
+
+
 }
+
 
   }
   handleClose() {
@@ -158,6 +162,13 @@ console.log("eimai to quantity=0",quantity);
 }
 
   render() {
+    let imagePath;
+    if(this.props.productSpecks){
+    if(this.props.productSpecks.originalname){
+      const port = ":4040";
+   imagePath = [this.props.productSpecks.originalname.slice(0, 22), port, this.props.productSpecks.originalname.slice(22)].join('');
+  }
+}
     let adminExtras;
     if(JSON.parse(localStorage.getItem('isadmin'))===true){
       adminExtras=(
@@ -184,7 +195,7 @@ console.log("eimai to quantity=0",quantity);
          <ProductHeader/>
          <div className="row">
            <div className="col-5 border">
-             <img alt="Product" className="imgflex" src={this.products.originalname} />
+             <img alt="Product" className="imgflex" src={imagePath} />
            </div>
            <div className="col mb-2 border ml-4 ">
              <div className="row">
