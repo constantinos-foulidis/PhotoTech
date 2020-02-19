@@ -7,7 +7,10 @@ const productItem = (props) => {
 
     let imagePath = "/PhotoSc.png";
     if(props.product.originalname){
-      imagePath = props.product.originalname;
+    //  imagePath = props.product.originalname;
+      var port = ":4040";
+    imagePath = [props.product.originalname.slice(0, 22), port, props.product.originalname.slice(22)].join('');
+    
     }
     let adminExtras;
     if(JSON.parse(localStorage.getItem('isadmin'))===true){
