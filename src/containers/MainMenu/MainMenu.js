@@ -23,7 +23,7 @@ class MainMenu extends Component {
             <Cards refe="/sellers" name="Πωλητές" />
           </div>
           <div className="col">
-            <Cards refe="/photo" name="Φωτογραφίες" />
+            <Cards refe="/photo" name="Φωτογράφοι" />
           </div>
           <div className="col">
             <Cards refe="/recource" name="Πρόγραμμα Αποθήκης" />
