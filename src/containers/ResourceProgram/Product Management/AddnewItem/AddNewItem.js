@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import './AddNewItem.css';
-import categories from '../../../../Data/Category';
-import positions from '../../../../Data/Positions';
-import classes from '../../../../Data/Classes';
-import ProductHeader from '../../../../components/ProductHeader/ProductHeader';
-import { addProduct } from '../../../../store/actions/products';
-import { connect } from 'react-redux';
-
+import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "./AddNewItem.css";
+import categories from "../../../../Data/Category";
+import positions from "../../../../Data/Positions";
+import classes from "../../../../Data/Classes";
+import ProductHeader from "../../../../components/ProductHeader/ProductHeader";
+import { addProduct } from "../../../../store/actions/products";
+import { connect } from "react-redux";
 
 class NewItem extends Component {
   state = {
@@ -29,42 +28,45 @@ class NewItem extends Component {
       productQuantity: false,
       productImage: false,
       productPosition: false,
-      selectedFile: false,
+      selectedFile: false
     }
-  }
+  };
 
   return = () => {
     this.props.history.goBack();
-  }
+  };
 
   fileSelectedHandler = event => {
     console.log(event.target.files[0]);
     this.setState({
       selectedFile: event.target.files[0]
-    })
-  }
+    });
+  };
 
   validate = product => {
     const inValidity = { ...this.state.inValidity };
-    if (product.productDetail == null || product.productDetail === '') {
+    if (product.productDetail == null || product.productDetail === "") {
       inValidity.productDetail = true;
     } else {
       inValidity.productDetail = false;
     }
 
-    if (product.productCode == null || product.productCode === '') {
+    if (product.productCode == null || product.productCode === "") {
       inValidity.productCode = true;
     } else {
       inValidity.productCode = false;
     }
 
-    if (product.productCategory == null || product.productCategory === '') {
+    if (product.productCategory == null || product.productCategory === "") {
       inValidity.productCategory = true;
     } else {
       inValidity.productCategory = false;
     }
 
-    if (product.productSubcategory == null || product.productSubcategory === '') {
+    if (
+      product.productSubcategory == null ||
+      product.productSubcategory === ""
+    ) {
       inValidity.productSubcategory = true;
     } else {
       inValidity.productSubcategory = false;
@@ -76,13 +78,13 @@ class NewItem extends Component {
       inValidity.productQuantity = false;
     }
 
-    if (product.productPosition == null || product.productPosition === '') {
+    if (product.productPosition == null || product.productPosition === "") {
       inValidity.productPosition = true;
     } else {
       inValidity.productPosition = false;
     }
 
-    if (product.productOrder == null || product.productOrder === '') {
+    if (product.productOrder == null || product.productOrder === "") {
       inValidity.productOrder = true;
     } else {
       inValidity.productOrder = false;
@@ -94,15 +96,17 @@ class NewItem extends Component {
       inValidity.selectedFile = false;
     }
 
-    const valid = Object.getOwnPropertyNames(inValidity).every(property => !inValidity[property])
+    const valid = Object.getOwnPropertyNames(inValidity).every(
+      property => !inValidity[property]
+    );
     console.log("[valid] ", valid);
-    if(!valid){
-      this.setState({inValidity: inValidity});
+    if (!valid) {
+      this.setState({ inValidity: inValidity });
     }
     return valid;
-  }
+  };
 
-  handleAddNew = (event) => {
+  handleAddNew = event => {
     event.persist();
     console.log(event);
     event.preventDefault();
@@ -116,40 +120,46 @@ class NewItem extends Component {
     product.productOrder = event.target["6"].value.trim();
     product.selectedFile = this.state.selectedFile;
 
-    if(!this.validate(product)) return;
+    if (!this.validate(product)) return;
 
     this.props.addProduct(product);
     this.props.history.push({
-      pathname: "/recource/products",
+      pathname: "/recource/products"
     });
-  }
+  };
 
   categoryOnChangeHandler = event => {
     event.persist();
-    this.setState((state) => { return { selectedCategory: categories.find(category => category.name === event.target.value) } })
-  }
+    this.setState(state => {
+      return {
+        selectedCategory: categories.find(
+          category => category.name === event.target.value
+        )
+      };
+    });
+  };
 
   subcategoryOnChangeHandler = event => {
     event.persist();
     this.setState({ selectedSubcategory: event.target.value });
-  }
+  };
 
   positionOnChangeHandler = event => {
     event.persist();
     this.setState({ selectedPosition: event.target.value });
-  }
+  };
 
   classOnChangeHandler = event => {
     event.persist();
     this.setState({ selectedClass: event.target.value });
-  }
+  };
 
   quantityOnChangeHandler = event => {
     event.persist();
     if (event.target.value >= 0) {
       this.setState({ quantity: event.target.value });
     }
-  }
+  };
 
   render() {
     console.log("[AddNewItem.render()] state: ", this.state);
@@ -157,68 +167,143 @@ class NewItem extends Component {
       <React.Fragment>
         <ProductHeader />
         <div className="Container offset-2">
-
           <div className="row justify-content-start">
             <div className="col">
-              <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Χειροκίνητα</Button>
+              <Button
+                className="widthbtn mb-2"
+                variant="secondary"
+                onClick={this.handleAddnew}
+              >
+                Χειροκίνητα
+              </Button>
             </div>
             <div className="col">
-              <Button className="widthbtn mb-2" variant="secondary" onClick={this.handleAddnew}>Ανέβασμα αρχείου</Button>
+              <Button
+                className="widthbtn mb-2"
+                variant="secondary"
+                onClick={this.handleAddnew}
+              >
+                Ανέβασμα αρχείου
+              </Button>
             </div>
           </div>
           <div className="row ">
             <div className="col ">
               <Form className="border p-4 form" onSubmit={this.handleAddNew}>
                 <Form.Group controlId="productDetail">
-                  <Form.Label>Περιγραφή προιόντος</Form.Label>
-                  <Form.Control as="textarea" isInvalid={this.state.inValidity.productDetail} rows="3" />
+                  <Form.Label>Περιγραφή προϊόντος</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    isInvalid={this.state.inValidity.productDetail}
+                    rows="3"
+                  />
                 </Form.Group>
                 <Form.Group controlId="productCode">
-                  <Form.Label>Κωδικός Προιόντος</Form.Label>
-                  <Form.Control as="input" isInvalid={this.state.inValidity.productCode} />
+                  <Form.Label>Κωδικός Προϊόντος</Form.Label>
+                  <Form.Control
+                    as="input"
+                    isInvalid={this.state.inValidity.productCode}
+                  />
                 </Form.Group>
                 <Form.Group controlId="productCategory">
                   <Form.Label>Κατηγορία</Form.Label>
-                  <Form.Control as="select" value={this.state.selectedCategory.name} onChange={this.categoryOnChangeHandler} isInvalid={this.state.inValidity.productCategory}>
-                    {categories.map(category => (<option key={category.name} value={category.name}>{category.name}</option>))}
+                  <Form.Control
+                    as="select"
+                    value={this.state.selectedCategory.name}
+                    onChange={this.categoryOnChangeHandler}
+                    isInvalid={this.state.inValidity.productCategory}
+                  >
+                    {categories.map(category => (
+                      <option key={category.name} value={category.name}>
+                        {category.name}
+                      </option>
+                    ))}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="productSubcategory">
                   <Form.Label>Υποκατηγορία</Form.Label>
-                  <Form.Control as="select" value={this.state.selectedSubcategory} onChange={this.subcategoryOnChangeHandler} isInvalid={this.state.inValidity.productSubcategory} >
-                    {
-                      this.state.selectedCategory.subcategories.length === 0 ?
-                        null :
-                        this.state.selectedCategory.subcategories.map(subcategory => <option key={subcategory} value={subcategory}>{subcategory}</option>)
-                    }
+                  <Form.Control
+                    as="select"
+                    value={this.state.selectedSubcategory}
+                    onChange={this.subcategoryOnChangeHandler}
+                    isInvalid={this.state.inValidity.productSubcategory}
+                  >
+                    {this.state.selectedCategory.subcategories.length === 0
+                      ? null
+                      : this.state.selectedCategory.subcategories.map(
+                          subcategory => (
+                            <option key={subcategory} value={subcategory}>
+                              {subcategory}
+                            </option>
+                          )
+                        )}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="productQuantity">
                   <Form.Label>Διαθεσιμότητα</Form.Label>
-                  <Form.Control as="input" type="number" value={this.state.quantity} onChange={this.quantityOnChangeHandler} isInvalid={this.state.inValidity.productQuantity} />
+                  <Form.Control
+                    as="input"
+                    type="number"
+                    value={this.state.quantity}
+                    onChange={this.quantityOnChangeHandler}
+                    isInvalid={this.state.inValidity.productQuantity}
+                  />
                 </Form.Group>
                 <Form.Group controlId="formPosition">
-                  <Form.Label>Θέση Προιόντος</Form.Label>
-                  <Form.Control as="select" value={this.state.selectedPosition} onChange={this.positionOnChangeHandler} isInvalid={this.state.inValidity.productQuantity} >
-                    {positions.map(position => <option value={position} key={position}>{position}</option>)}
+                  <Form.Label>Θέση Προϊόντος</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={this.state.selectedPosition}
+                    onChange={this.positionOnChangeHandler}
+                    isInvalid={this.state.inValidity.productQuantity}
+                  >
+                    {positions.map(position => (
+                      <option value={position} key={position}>
+                        {position}
+                      </option>
+                    ))}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="productOrder">
-                  <Form.Label>Ταξεις</Form.Label>
-                  <Form.Control as="select" value={this.state.selectedClass} onChange={this.classOnChangeHandler} isInvalid={this.state.inValidity.productOrder}>
-                    {classes.map(productClass => <option value={productClass} key={productClass}>{productClass}</option>)}
+                  <Form.Label>Τάξεις</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={this.state.selectedClass}
+                    onChange={this.classOnChangeHandler}
+                    isInvalid={this.state.inValidity.productOrder}
+                  >
+                    {classes.map(productClass => (
+                      <option value={productClass} key={productClass}>
+                        {productClass}
+                      </option>
+                    ))}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group as={Row} className="align-items-end">
                   <Col sm={2} md={2}>
                     <Form.Label>Φωτογραφία</Form.Label>
                   </Col>
-                  <Col  sm={6} md={6} >
-                    <Form.Control className="p-1" as="input" type="file" isInvalid={this.state.inValidity.selectedFile} onChange={this.fileSelectedHandler} />
+                  <Col sm={6} md={6}>
+                    <Form.Control
+                      className="p-1"
+                      as="input"
+                      type="file"
+                      isInvalid={this.state.inValidity.selectedFile}
+                      onChange={this.fileSelectedHandler}
+                    />
                   </Col>
-                  <Col sm={4} md={4} style={{textAlign: 'right'}}>
-                    <Button className="mr-2" type="button" variant="info" onClick={this.return} >Ακυρωση</Button>
-                    <Button type="submit" variant="info">Καταχωρηση</Button>
+                  <Col sm={4} md={4} style={{ textAlign: "right" }}>
+                    <Button
+                      className="mr-2"
+                      type="button"
+                      variant="info"
+                      onClick={this.return}
+                    >
+                      Ακύρωση
+                    </Button>
+                    <Button type="submit" variant="info">
+                      Καταχώρηση
+                    </Button>
                   </Col>
                 </Form.Group>
               </Form>
@@ -226,10 +311,8 @@ class NewItem extends Component {
           </div>
         </div>
       </React.Fragment>
-    )
+    );
   }
-
-
 }
 
 const mapStateToProps = (state, props) => {
@@ -238,12 +321,12 @@ const mapStateToProps = (state, props) => {
     loading: state.products.loading,
     error: state.products.error,
     success: state.products.success
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    addProduct: (product) => dispatch(addProduct(product))
-  }
-}
+    addProduct: product => dispatch(addProduct(product))
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(NewItem);

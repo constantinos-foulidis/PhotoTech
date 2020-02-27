@@ -16,17 +16,26 @@ const ResourceProgramMenu = props => {
             <div className="Container">
               <h2 className="mb-5 text-center">Επιλέξτε Κατηγορία</h2>
               <div className="row justify-content-center">
-                <Cards refe={props.match.url + "/admin_user"} name="Διαχηρηστής Αποθήκης" />
-                <Cards refe={props.match.url + "/simple_user"} name="Χρήστης Αποθήκης" />
+                <Cards
+                  refe={props.match.url + "/admin_user"}
+                  name="Διαχειριστής Αποθήκης"
+                />
+                <Cards
+                  refe={props.match.url + "/simple_user"}
+                  name="Χρήστης Αποθήκης"
+                />
               </div>
             </div>
           )}
         />
         <Route path={props.match.url + "/simple_user"} component={Login} />
         <Route path={props.match.url + "/admin_user"} component={Login} />
-        <Route path={props.match.url + "/user_management"} component={UserManagement} />
+        <Route
+          path={props.match.url + "/user_management"}
+          component={UserManagement}
+        />
         <Route path={props.match.url + "/products"} component={Products} />
-        <Route component={(props) => <p>Page Not Found</p>} />
+        <Route component={props => <p>Page Not Found</p>} />
       </Switch>
     </React.Fragment>
   );
