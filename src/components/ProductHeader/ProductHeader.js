@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from "react-router";
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import { navigationToggleButton as NavigationToggleButton } from '../NavigationDrawer/NavigationDrawer'
+import { navigationToggleButton as NavigationToggleButton } from '../NavigationDrawer/NavigationDrawer';
 class ProductHeader  extends Component {
 
   handleAddnew = () => {

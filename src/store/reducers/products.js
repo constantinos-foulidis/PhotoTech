@@ -129,7 +129,7 @@ const filterProductBySearchbar = (state,categoryname) => {
   console.log("new filter",categoryname);
  if(allProducts===null){
    allProducts=state.products;
-   let updateProducts = state.products.filter((product)=> product.productCategory.toLowerCase().indexOf(categoryname) > -1);
+   let updateProducts = state.products.filter((product)=> product.productDetail.toLowerCase().indexOf(categoryname) > -1);
    console.log(updateProducts);
    return updateObject(state,{
      allProducts:state.products,
@@ -137,7 +137,7 @@ const filterProductBySearchbar = (state,categoryname) => {
    });
  }else{
    console.log("new filter",categoryname);
-   let updateProducts = allProducts.filter((product)=> product.productCategory.toLowerCase().indexOf(categoryname) > -1);
+   let updateProducts = allProducts.filter((product)=> product.productDetail.toLowerCase().indexOf(categoryname) > -1);
    console.log(updateProducts);
      return updateObject(state,{
        products:updateProducts

@@ -60,7 +60,7 @@ class Login extends Component {
     if(this.props.isAdmin!== null){
       console.log(this.props.isAdmin);
       this.props.history.push({
-        pathname: "/recource/products",
+        pathname: "/recource/greetings",
         username:this.props.username
       });
     }
@@ -83,15 +83,7 @@ class Login extends Component {
             <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
           </div>
         </div>
-        <div className="row">
-          <div className="col ">
-            <Checkbox color="default" value="default" inputProps={{
-                'aria-label' : 'checkbox with default color'
-              }}/>
-            <label >
-              Να Παράμεινω Συνδεμενος
-            </label>
-          </div>
+        <div className="row offset-7">
           <div className="col-5">
             <input type="submit" value="Συνδεση"/>
           </div>

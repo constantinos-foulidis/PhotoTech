@@ -17,7 +17,7 @@ class NewItem extends Component {
     selectedCategory: categories[0],
     selectedSubcategory: categories[0].subcategories[0],
     selectedPosition: positions[0],
-    selectedClass: classes[0],
+    selectedClass: classes[9],
     quantity: 0,
     inValidity: {
       productDetail: false,

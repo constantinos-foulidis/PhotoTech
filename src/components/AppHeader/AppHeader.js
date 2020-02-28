@@ -13,7 +13,15 @@ class AppHeader extends Component {
     }
     this.handleSearch = this.handleSearch.bind(this);
   }
+  componentDidMount() {
+    setTimeout(()=> {
+     this.signOut();
+  }, 90000);
 
+   }
+     signOut() {
+       localStorage.clear();
+     }
   handleSearch(event) {
     this.setState({search: event.target.value});
     this.props.filterProductsBySearchBar(event.target.value);
