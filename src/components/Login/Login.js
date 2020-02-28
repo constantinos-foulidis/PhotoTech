@@ -61,6 +61,7 @@ class Login extends Component {
       console.log(this.props.isAdmin);
       this.props.history.push({
         pathname: "/recource/products",
+        username:this.props.username
       });
     }
   //  if(this.props.isAdmin === false ){
