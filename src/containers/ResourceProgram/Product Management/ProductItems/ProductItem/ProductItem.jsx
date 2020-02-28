@@ -49,7 +49,7 @@ const productItem = props => {
           variant="info"
           onClick={props.Specified}
         >
-          Επεξεργασία αποθέματος
+          Επεξεργασία
         </Button>
       </div>
     </div>
