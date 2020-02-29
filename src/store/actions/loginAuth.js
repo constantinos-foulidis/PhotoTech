@@ -47,7 +47,7 @@ export const login = (formdata) => {
  return dispatch => {
     dispatch(authStart());
    //todo async actions
-   let url = `http://localhost:4040/api/auth/login`;
+   let url = `http://167.172.109.106/api/auth/login`;
    //lo
   axios.post(url,formdata).
   then(res => {
