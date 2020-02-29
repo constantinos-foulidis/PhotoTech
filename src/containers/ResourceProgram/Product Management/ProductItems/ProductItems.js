@@ -59,7 +59,7 @@ render() {
         <div className="row offset-2">
           {products.map((product) => {
             return (
-              <div key={product.productCode} className="col">
+              <div key={product.productCode} className="col-auto">
                 <ProductItem basePath={basePath} onDelete={() => {this._modal.handleShow()
                     this.setState({productForDelete:product.productCode})}} product={product} Specified={() => {this.props.setProductSpecks(product);
                    handleSpecified()}} />

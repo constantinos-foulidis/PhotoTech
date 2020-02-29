@@ -29,6 +29,7 @@ export const getProducts = () => {
                     filename = baseUrl + product.originalname.substr(1, product.originalname.length).replace("\\", "/");
                 }
                 return {
+                    _id:product._id,
                     productDetail: product.productDetail,
                     productCode: product.productCode,
                     productCategory: product.productCategory,
@@ -138,7 +139,7 @@ export const filterProductsSubcategory = (productSubcategory) => {
   }
 }
 export const setProductsSpecks = (spesificProduct) =>{
-  console.log("lol");
+  console.log("setting products specks",spesificProduct);
   return {
       type: PRODUCTSID,
       product:spesificProduct,

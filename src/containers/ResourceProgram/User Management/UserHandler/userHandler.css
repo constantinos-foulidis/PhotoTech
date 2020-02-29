@@ -1,3 +1,6 @@
 .inputStyleWidth{
-  width: 100% !important
+  width: 100% !important;
+}
+.widthformInAddnewUser{
+  width: 60% !important;
 }
