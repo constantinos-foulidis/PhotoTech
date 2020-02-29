@@ -56,6 +56,8 @@ class AddNewUser extends Component {
         isAdmin: "0"
       };
       this.props.createUser(formdata);
+    }else{
+      window.alert("Οι κωδικοί δεν ταιριάζουν");
     }
   }
 
@@ -121,6 +123,7 @@ class AddNewUser extends Component {
                 />
               </Form.Group>
               <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Label>Επιβεβαίωση κωδικού</Form.Label>
                 <Form.Control
                   required
                   name="confirmpassword"

@@ -1,9 +1,15 @@
 .imgflex {
-  max-width: 21vw;
+
+  width: 100%;
+height: 80%;
 }
 
 .headerCenter{
   position: relative;
     /* text-align: center!important; */
     left: 35%;
+}
+.modalImage{
+  width: 100%;
+height: 100%;
 }

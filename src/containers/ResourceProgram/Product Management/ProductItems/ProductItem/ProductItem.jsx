@@ -29,11 +29,11 @@ const productItem = props => {
     <div className="card cardWidth ml-5 mb-3">
       <img
         alt="logo"
-        className="card-img-top imgWidth"
+        className="card-img-top imgWidth onHoverEfect"
         src={imagePath}
         onClick={props.Specified}
       />
-      <div className="card-body text-center">
+      <div className="card-body text-center onHoverEfect">
         <h5 className="card-title titleCardFontSize" onClick={props.Specified}>
           {props.product.productDetail}
         </h5>

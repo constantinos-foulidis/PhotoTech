@@ -13,3 +13,6 @@
 .titleCardFontSize{
   font-size: 1rem !important;
 }
+.onHoverEfect{
+    cursor: pointer;
+}
