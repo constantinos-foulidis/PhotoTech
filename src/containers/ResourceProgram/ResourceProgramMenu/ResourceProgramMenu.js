@@ -7,6 +7,7 @@ import Products from "../Product Management/ProductsRecources/ProductRecources";
 import Login from "../../../components/Login/Login";
 const ResourceProgramMenu = props => {
   console.log(props);
+  
   return (
     <React.Fragment>
       <Switch>

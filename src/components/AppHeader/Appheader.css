@@ -16,3 +16,14 @@
   margin-bottom: calc(((124px - 2 * 1rem) / 2) - (48px / 2));
   margin-top: calc(((124px - 2 * 1rem) / 2) - (48px / 2));
 }
+.greetingMessage{
+  font-size: 4rem;
+  text-align: left;
+  margin-left: 10%;
+    margin-top: 5%;
+    color: darkslategrey;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    word-spacing: 1000px
+
+}

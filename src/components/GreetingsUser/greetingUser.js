@@ -11,7 +11,7 @@ const greetingUser = (props) => {
       <NavigationToggleButton/>
       </div>
       <div className="col">
-      <h1>Καλωσόρισες  : {JSON.parse(localStorage.getItem('userName'))}</h1>
+      <div className="greetingMessage">Καλωσήρθες {JSON.parse(localStorage.getItem('userName'))}! </div>
       </div>
       </div>
   );

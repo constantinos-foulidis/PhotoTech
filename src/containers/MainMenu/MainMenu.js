@@ -3,7 +3,15 @@ import "./MainMenu.css";
 import Cards from "../../components/Card/Card";
 
 class MainMenu extends Component {
+
   render() {
+if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
+  localStorage.setItem('isLogedIn',false);
+  localStorage.clear();
+  window.location.reload()
+  console.log("lol");
+}
+console.log("kaloume");
     return (
       <div className="Container ">
         <h2 className="mb-5 text-center">Επιλέξτε Κατηγορία</h2>

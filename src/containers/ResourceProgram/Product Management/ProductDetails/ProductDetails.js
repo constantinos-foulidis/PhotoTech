@@ -157,6 +157,7 @@ console.log("eimai to quantity=0",quantity);
 
 
   const product = {};
+  product._id = this.props.productSpecks._id;
   product.productDetail = productDetail;
   product.productCode = productCode;
   product.productCategory = this.state.FirstselectedCategory;
@@ -165,7 +166,7 @@ console.log("eimai to quantity=0",quantity);
   product.productPosition = this.state.FirstselectedPosition;
   product.productOrder = this.state.FirstselectedClass;
   product.wantToadd=wantToadd;
-
+  console.log("id",  product._id);
   this.props.updateProduct(product);
   this.props.history.goBack();
 }
@@ -247,7 +248,7 @@ console.log("eimai to quantity=0",quantity);
                      </Form.Control>
                  </div>
                  <div className="row">
-                   <h5>Τάξεις :</h5>
+                   <h5>Τάξεις : </h5>
                      <Form.Control as="select" value={this.state.FirstselectedClass} onChange={this.classOnChangeHandler} >
                        {classes.map(productClass => <option value={productClass} key={productClass}>{productClass}</option>)}
                      </Form.Control>

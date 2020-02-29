@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { createUser } from "../../../../store/actions/users";
 import { connect } from "react-redux";
+import userType from '../../../../Data/users';
 
 class AddNewUser extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class AddNewUser extends Component {
       password: "",
       confirmpassword: "",
       fullName: "",
-      errors: {}
+      errors: {},
+      FirstselectedPosition:userType[0]
     };
     this.handleUsername = this.handleUsername.bind(this);
     this.handlefullName = this.handlefullName.bind(this);
@@ -44,18 +46,34 @@ class AddNewUser extends Component {
   handlePassword(event) {
     this.setState({ password: event.target.value });
   }
-
+  positionOnChangeHandler = event => {
+    event.persist();
+    this.setState({ FirstselectedPosition: event.target.value});
+    console.log(this.state.FirstselectedPosition);
+  }
   handleSubmit(event) {
     event.preventDefault();
     let formdata = null;
     if (this.state.password === this.state.confirmpassword) {
+      if(this.state.FirstselectedPosition==='Admin'){
+        formdata = {
+          username: this.state.userName,
+          fullName: this.state.fullName,
+          password: this.state.password,
+          isAdmin: "1"
+        };
+      }else{
       formdata = {
         username: this.state.userName,
         fullName: this.state.fullName,
         password: this.state.password,
         isAdmin: "0"
       };
+    }
       this.props.createUser(formdata);
+      setTimeout(  () =>  {
+         this.handleUser();
+      },1000);
     }else{
       window.alert("Οι κωδικοί δεν ταιριάζουν");
     }
@@ -112,6 +130,12 @@ class AddNewUser extends Component {
                   onChange={this.handlefullName}
                 />
               </Form.Group>
+              <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Label>Τύπος</Form.Label>
+                    <Form.Control className="widthformInAddnewUser" as="select" value={this.state.FirstselectedPosition} onChange={this.positionOnChangeHandler} >
+                      {userType.map(userType => <option value={userType} key={userType}>{userType}</option>)}
+                    </Form.Control>
+                </Form.Group>
               <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Κωδικός</Form.Label>
                 <Form.Control
