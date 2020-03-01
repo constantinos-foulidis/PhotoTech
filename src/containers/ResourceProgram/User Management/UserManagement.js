@@ -6,11 +6,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import NavigationDrawer from "../../../components/NavigationDrawer/NavigationDrawer";
 import { navigationToggleButton as NtogleButton } from "../../../components/NavigationDrawer/NavigationDrawer";
+import AppHeader from "../../../components/AppHeader/AppHeader";
 
 const userManagment = props => {
   console.log(props);
 
   return (
+    <>
+    <AppHeader/>
     <Container className="bg-white">
       <Row className="mb-4">
         <NavigationDrawer />
@@ -25,6 +28,7 @@ const userManagment = props => {
         </Switch>
       </Row>
     </Container>
+    </>
   );
 };
 export default userManagment;

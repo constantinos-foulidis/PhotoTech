@@ -8,6 +8,7 @@ import ProductItems from '../ProductItems/ProductItems';
 
 import ProductSpecs from '../ProductDetails/ProductDetails';
 import './ProductRecources.css';
+import AppHeader from "../../../../components/AppHeader/AppHeader";
 
 class Products extends Component {
 
@@ -22,6 +23,8 @@ class Products extends Component {
   render() {
 
     return (
+      <>
+      <AppHeader/>
       <Container className="bg-white">
       <Row className="mb-4">
           <NavigationDrawer/>
@@ -34,6 +37,7 @@ class Products extends Component {
       </Row>
 
     </Container>
+    </>
     );
   }
 }

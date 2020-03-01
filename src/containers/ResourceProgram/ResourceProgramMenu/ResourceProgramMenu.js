@@ -5,9 +5,10 @@ import greetingsUser from "../../../components/GreetingsUser/greetingUser";
 import UserManagement from "../User Management/UserManagement";
 import Products from "../Product Management/ProductsRecources/ProductRecources";
 import Login from "../../../components/Login/Login";
+import SimpleAppHeader from "../../../components/simpleAppheader/simpleAppheader";
 const ResourceProgramMenu = props => {
   console.log(props);
-  
+
   return (
     <React.Fragment>
       <Switch>
@@ -15,6 +16,8 @@ const ResourceProgramMenu = props => {
           path={props.match.url}
           exact
           render={() => (
+            <>
+            <SimpleAppHeader/>
             <div className="Container">
               <h2 className="mb-5 text-center">Επιλέξτε Κατηγορία</h2>
               <div className="row justify-content-center">
@@ -28,6 +31,7 @@ const ResourceProgramMenu = props => {
                 />
               </div>
             </div>
+            </>
           )}
         />
         <Route path={props.match.url + "/simple_user"} component={Login} />
