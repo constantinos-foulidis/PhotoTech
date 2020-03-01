@@ -14,6 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={MainMenu} />
           <Route path="/recource" component={ResourceProgramMenu} />
+            <Route path="/office" component={ResourceProgramMenu} />
           <Route path="/simple_user" component={Login} />
           <Route component={(props) => <p>Page Not Found</p>} />
         </Switch>
