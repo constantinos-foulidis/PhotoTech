@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./MainMenu.css";
 import Cards from "../../components/Card/Card";
+import SimpleAppHeader from "../../components/simpleAppheader/simpleAppheader";
 
 class MainMenu extends Component {
 
@@ -13,6 +14,8 @@ if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
 }
 console.log("kaloume");
     return (
+      <>
+      <SimpleAppHeader/>
       <div className="Container ">
         <h2 className="mb-5 text-center">Επιλέξτε Κατηγορία</h2>
         <div className="row justify-content-center">
@@ -23,7 +26,7 @@ console.log("kaloume");
             <Cards refe="/lab" name="Εργαστήριο Αιγινίου" />
           </div>
           <div className="col">
-            <Cards refe="/office" name="Γραφείο Θεσσαλονίκης" />
+            <Cards refe="/LoginOffice" name="Γραφείο Θεσσαλονίκης" />
           </div>
         </div>
         <div className="row justify-content-center">
@@ -38,6 +41,7 @@ console.log("kaloume");
           </div>
         </div>
       </div>
+      </>
     );
   }
 }
