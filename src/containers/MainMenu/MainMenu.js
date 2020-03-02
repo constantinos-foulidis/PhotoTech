@@ -26,7 +26,7 @@ console.log("kaloume");
             <Cards refe="/lab" name="Εργαστήριο Αιγινίου" />
           </div>
           <div className="col">
-            <Cards refe="/office" name="Γραφείο Θεσσαλονίκης" />
+            <Cards refe="/LoginOffice" name="Γραφείο Θεσσαλονίκης" />
           </div>
         </div>
         <div className="row justify-content-center">

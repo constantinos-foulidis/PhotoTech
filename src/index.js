@@ -12,12 +12,14 @@ import  loginGrafeiouAuthReducer  from './store/reducers/LoginGrafeioReducer/log
 import  userReducer from './store/reducers/userReducer';
 import productsReducer from './store/reducers/products';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import sellerReducer from './store/reducers/Grafeio/sallers';
 
 const rootReducer = combineReducers({
     navigator: navigatorReducer,
     login: loginAuthReducer,
     loginGrafeiou:loginGrafeiouAuthReducer,
     user:userReducer,
+    sellers:sellerReducer,
     products: productsReducer,
 });
 const store = createStore(rootReducer,applyMiddleware(thunk));

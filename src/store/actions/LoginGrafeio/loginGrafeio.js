@@ -10,6 +10,7 @@ export const authStart = () => {
 export const authSuccess = (username, sellerCode) => {
     console.log("userName",username);
     console.log("isadmin",sellerCode);
+    localStorage.setItem('officeLogedin', JSON.stringify(true));
     localStorage.setItem('userName', JSON.stringify(username));
     localStorage.setItem('sellerID', JSON.stringify(sellerCode));
 

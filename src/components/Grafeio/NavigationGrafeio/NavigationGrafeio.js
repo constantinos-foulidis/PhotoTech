@@ -6,13 +6,20 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { toggleNavigator } from "../../../store/actions/navigator";
 import * as actions from "../../../store/actions/products";
 class NavigationGrafeio extends Component {
+    constructor(props){
+      super(props);
+    }
+handleSellers (){
 
-
+     this.history.push({
+     pathname: " /office/sellers",
+   });
+}
   render() {
     const { showNav } = this.props;
     let sideNavStyle = { width: showNav ? "250px" : "0" };
     let adminExtras = null;
-  
+
 
     return (
       <React.Fragment>
@@ -27,16 +34,16 @@ class NavigationGrafeio extends Component {
                 className="btnwidthdrawer"
                 variant="info"
                 id="dropdown-basic"
+
               >
                 Πωλητές
+
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="dropDownColor spesificDropdown">
                 <Link
-                  to="/recource/products"
-                  onClick={() => {
-                    this.filterProducts("Προιόντα φωτογραφίας");
-                  }}
+                  to="/office/sellers"
+                
                 >
                   -Ραντεβού
                 </Link>

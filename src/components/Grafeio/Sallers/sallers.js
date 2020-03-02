@@ -2,19 +2,16 @@ import React from 'react';
 import { navigationToggleButton as NavigationToggleButton } from '../../Grafeio/NavigationGrafeio/NavigationGrafeio'
 import NavigationGrafeio from "../../Grafeio/NavigationGrafeio/NavigationGrafeio";
 import HeaderGrafeioApp from "../GrafeioHeader/HeaderGrafeioApp";
-const greetingGrafeio = (props) => {
+import SellersHeader from "../SellersHeader/sellersHeader";
+const Sallers = (props) => {
  console.log(props);
     return (
       <>
       <HeaderGrafeioApp/>
       <div className="row ml-5">
-          <NavigationGrafeio/>
-        <div className="col-2">
-      <NavigationToggleButton/>
-      </div>
-      <div className="col">
-      <div className="greetingMessage">Καλωσήρθες {JSON.parse(localStorage.getItem('userName'))}! </div>
-      </div>
+
+       <SellersHeader/>
+    
       </div>
       </>
   );
@@ -22,4 +19,4 @@ const greetingGrafeio = (props) => {
 
 
 
-export default greetingGrafeio;
+export default Sallers;
