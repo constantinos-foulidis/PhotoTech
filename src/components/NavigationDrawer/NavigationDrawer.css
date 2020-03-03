@@ -2,14 +2,14 @@
   --navcover-z-index: 99;
   --sidenav-z-index: 100;
 }
-.categoryNavigation{
+.categoryNavigation {
   position: absolute;
   left: 0px;
   top: 35%;
   font-size: 17px;
   font-weight: bold;
 }
-.spesificDropdown{
+.spesificDropdown {
   position: relative !important;
   transform: none !important;
   will-change: unset !important;
@@ -45,22 +45,20 @@
 }
 .side-nav a,
 h2 {
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  padding: 0rem 0.5rem 0.5rem 1rem;
   text-decoration: none;
-  font-size: 1.5rem;
   color: #818181;
   display: block;
   transition: 0.53s;
 }
-.dropdownStylingnav{
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+.dropdownStylingnav {
+  padding: 0rem 0.5rem 0.5rem 1rem;
   text-decoration: none;
-  font-size: 1.5rem;
   color: #818181;
   display: block;
   transition: 0.53s;
 }
-.btnwidthdrawer{
+.btnwidthdrawer {
   width: 200px;
 }
 .side-nav a:hover {
@@ -80,7 +78,6 @@ h2 {
 
 .open-nav {
   position: absolute;
-  left: 11%;
   font-size: 2rem;
   cursor: pointer;
 }
