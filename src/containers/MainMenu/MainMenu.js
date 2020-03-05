@@ -8,7 +8,7 @@ class MainMenu extends Component {
   render() {
 if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
   localStorage.setItem('isLogedIn',false);
-  localStorage.clear();
+  //localStorage.clear();
   window.location.reload()
   console.log("lol");
 }

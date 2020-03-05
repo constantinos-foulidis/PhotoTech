@@ -5,7 +5,7 @@ class SimpleAppHeader extends Component {
 
   constructor(props) {
     super(props);
-       localStorage.clear();
+    //   localStorage.clear();
   }
 
   render() {

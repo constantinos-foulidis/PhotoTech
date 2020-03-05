@@ -4,6 +4,7 @@ import {filterProductsBySearchBar} from '../../store/actions/products';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {connect} from 'react-redux';
 import './Appheader.css';
+import { withRouter } from "react-router-dom";
 class AppHeader extends Component {
 
   constructor(props) {
@@ -13,17 +14,24 @@ class AppHeader extends Component {
     }
     this.handleSearch = this.handleSearch.bind(this);
   }
-  componentDidMount() {
-    setTimeout(()=> {
-     this.signOut();
-  }, 90000);
-
-   }
-     signOut() {
-       localStorage.clear();
-     }
+  // componentDidMount() {
+  //   setTimeout(()=> {
+  //    this.signOut();
+  // }, 90000);
+  //
+  //  }
+  //    signOut() {
+  //      localStorage.clear();
+  //    }
   handleSearch(event) {
     this.setState({search: event.target.value});
+    console.log("inisde search",event);
+     if(this.props.location != "/recource/products"){
+       this.props.history.push({
+         pathname: "/recource/products",
+       });
+
+  }
     this.props.filterProductsBySearchBar(event.target.value);
   }
   mainProducts() {
@@ -43,7 +51,7 @@ class AppHeader extends Component {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item href="#/action-1">{JSON.parse(localStorage.getItem('userName'))}</Dropdown.Item>
-          <Dropdown.Item href="/recource/simple_user" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
+          <Dropdown.Item href="/" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
     }
@@ -84,4 +92,4 @@ const mapDispatchToProps = dispatch => {
    filterProductsBySearchBar: (productCategory) => dispatch(filterProductsBySearchBar(productCategory))
   }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppHeader));

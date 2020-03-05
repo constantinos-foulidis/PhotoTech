@@ -37,7 +37,7 @@ const authFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
-//  localStorage.clear();
+  localStorage.clear();
     return updateObject(state, { isAdmin: null, isLogedIn: null,userName: null });
 };
 
