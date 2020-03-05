@@ -1,7 +1,7 @@
 import Axios from "axios";
 import FormData from 'form-data';
 
-const baseUrl = 'http://localhost:4040/';
+const baseUrl = 'http://167.172.109.106/';
 const sellersUri = 'api/sellers';
 const uniqueSellers = '/under';
 const updateUri='/update';
@@ -25,7 +25,7 @@ export const getSeller = (sellerCode) => {
     return (dispatch, getState) => {
         dispatch(loading());
         console.log(sellerCode);
-      
+
         const data = {
           sellerCode:sellerCode
         }
