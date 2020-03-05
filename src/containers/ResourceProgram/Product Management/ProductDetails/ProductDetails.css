@@ -1,15 +1,12 @@
 .imgflex {
-
   width: 100%;
-height: 80%;
+  height: 80%;
 }
 
-.headerCenter{
-  position: relative;
-    /* text-align: center!important; */
-    left: 35%;
+.headerCenter {
+  text-align: center;
 }
-.modalImage{
+.modalImage {
   width: 100%;
-height: 100%;
+  height: 100%;
 }

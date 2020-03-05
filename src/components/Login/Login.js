@@ -10,10 +10,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       isLogin: true
-    }
+    };
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     //this.handleChange= this.handleChange.bind(this);
@@ -21,10 +21,10 @@ class Login extends Component {
   }
 
   handleUsername(event) {
-    this.setState({username: event.target.value});
+    this.setState({ username: event.target.value });
   }
   handlePassword(event) {
-    this.setState({password: event.target.value});
+    this.setState({ password: event.target.value });
   }
 
   handleSubmit(event) {
@@ -52,24 +52,24 @@ class Login extends Component {
     //const { handleSubmit } = this.props;
     let spinner = null;
     if (this.props.loading) {
-      spinner = (<Spinner animation="border"/>);
+      spinner = <Spinner animation="border" />;
     }
     let errorMessage = null;
     if (this.props.error) {
-      errorMessage = (<p>{this.props.error.message}</p>);
+      errorMessage = <p>{this.props.error.message}</p>;
     }
-    if(this.props.isAdmin!== null){
+    if (this.props.isAdmin !== null) {
       console.log(this.props.isAdmin);
       this.props.history.push({
         pathname: "/recource/greetings",
-        username:this.props.username
+        username: this.props.username
       });
     }
-  //  if(this.props.isAdmin === false ){
-  //    this.props.history.push({
-  //      pathname: "/recource/products",
-  //    });
-  //  }
+    //  if(this.props.isAdmin === false ){
+    //    this.props.history.push({
+    //      pathname: "/recource/products",
+    //    });
+    //  }
 
     return (
       <>
@@ -81,17 +81,22 @@ class Login extends Component {
           <div className="col ">
             <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/>
           </div>
-        </div>
-        <div className="row mb-5">
-          <div className="col">
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
+          <div className="row mb-5">
+            <div className="col">
+              <input
+                type="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handlePassword}
+              />
+            </div>
           </div>
-        </div>
-        <div className="row offset-7">
-          <div className="col-5">
-            <input type="submit" value="Συνδεση"/>
+          <div className="row offset-7">
+            <div className="col-5">
+              <input type="submit" value="Συνδεση" />
+            </div>
+            {errorMessage}
           </div>
-          {errorMessage}
         </div>
       </div>
     </form>
@@ -107,12 +112,12 @@ const mapStateToProps = (state, props) => {
     loading: state.login.loading,
     error: state.login.error,
     ...props
-  }
+  };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (formdata) => dispatch(login(formdata))
-  }
+    onAuth: formdata => dispatch(login(formdata))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
