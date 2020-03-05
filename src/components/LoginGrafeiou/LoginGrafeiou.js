@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import './Login.css';
-import {login} from '../../store/actions/loginAuth';
+import {login} from '../../store/actions/LoginGrafeio/loginGrafeio';
 import {connect} from 'react-redux';
 import {Checkbox} from '@material-ui/core';
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from 'react-bootstrap/Spinner'
 import SimpleAppHeader from "../simpleAppheader/simpleAppheader";
-
-class Login extends Component {
+class LoginGrafeiou extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,13 +56,13 @@ class Login extends Component {
     if (this.props.error) {
       errorMessage = (<p>{this.props.error.message}</p>);
     }
-    if(this.props.isAdmin!== null){
-      console.log(this.props.isAdmin);
-      this.props.history.push({
-        pathname: "/recource/greetings",
-        username:this.props.username
-      });
-    }
+     if(this.props.isLogedIn!== false){
+       console.log(this.props.isAdmin);
+       this.props.history.push({
+         pathname: "/office/greeting",
+         username:this.props.username
+       });
+   }
   //  if(this.props.isAdmin === false ){
   //    this.props.history.push({
   //      pathname: "/recource/products",
@@ -72,8 +70,8 @@ class Login extends Component {
   //  }
 
     return (
-      <>
-      <SimpleAppHeader/>
+       <>
+       <SimpleAppHeader/>
       <form onSubmit={this.handleSubmit}>
       {spinner}
       <div className="Container background_form">
@@ -95,14 +93,12 @@ class Login extends Component {
         </div>
       </div>
     </form>
-     </>
-  )
+  </>)
   };
 }
 const mapStateToProps = (state, props) => {
   return {
     username: state.login.userName,
-    isAdmin: state.login.isAdmin,
     isLogedIn: state.login.isLogedIn,
     loading: state.login.loading,
     error: state.login.error,
@@ -115,4 +111,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginGrafeiou);

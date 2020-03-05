@@ -1,9 +1,9 @@
 
-import * as actionTypes from '../actionTypes';
-import { updateObject } from '../utility';
+import * as actionTypes from '../../actionTypes';
+import { updateObject } from '../../utility';
 const initialState = {
-    isLogedIn: false,
-    isAdmin:null,
+    isLogedIn: null,
+    sellerCode:'',
     userName:"none",
     loading:false,
     error:null
@@ -15,13 +15,12 @@ const authStart = ( state, action ) => {
 
 const authSuccess = (state, action) => {
   console.log("username for sending",action.username);
-  console.log("username for sending",  action.isAdmin);
   localStorage.setItem('isLogedIn', JSON.stringify(true));
 
 
     return updateObject( state, {
-        isAdmin: action.isAdmin,
-        userName: action.userName,
+        userName: action.username,
+        sellerCode: action.sellerCode,
         isLogedIn:true,
         error: null,
         loading: false
@@ -32,13 +31,13 @@ const authFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: false,
-        isAdmin:null,
+        sellerCode:null,
     });
 };
 
 const authLogout = (state, action) => {
-  localStorage.clear();
-    return updateObject(state, { isAdmin: null, isLogedIn: null,userName: null });
+//  localStorage.clear();
+    return updateObject(state, { sellerCode: null, isLogedIn: null,userName: null });
 };
 
  const loginAuthReducer = (state = initialState, action) => {

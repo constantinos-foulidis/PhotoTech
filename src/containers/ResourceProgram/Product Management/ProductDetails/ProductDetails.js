@@ -31,6 +31,7 @@ class ProductSpecs extends Component {
       show: false,
       showImage:false,
       whatIs:"",
+      hide:false,
       afterCalculations:0,
       afterRemoveCalculations:0,
       selectedCategory:categories[0],
@@ -66,6 +67,7 @@ class ProductSpecs extends Component {
     event.persist();
     console.log(event);
     this.setState({ selectedSubcategory: event.target.value ,
+      hide:true,
     FirstselectedSubcategory:event.target.value});
   }
 
@@ -130,7 +132,9 @@ categoryOnChangeHandler = event => {
   redirectToProducts= () => {
     this.props.history.goBack();
   }
-
+showProperValues=()=>{
+    this.setState({ hide: true });
+}
 handleProduct = () =>{
   let wantToadd="nothing";
   let quantity=0;
@@ -222,17 +226,17 @@ console.log("eimai to quantity=0",quantity);
                    <p className="w-75" id="productCode" contentEditable={true} suppressContentEditableWarning={true}>{this.products.productCode}</p>
                  </div>
                  <div className="row">
-                   <h5>Κaτηγορία :</h5>
+                   <h5>Κατηγορία :</h5>
                      <Form.Control as="select" value={this.state.FirstselectedCategory} onChange={this.categoryOnChangeHandler} >
                        {categories.map(category => (<option key={category.name} value={category.name}>{category.name}</option>))}
                      </Form.Control>
                  </div>
                  <div className="row">
                    <h5>Υποκατηγορία :</h5>
-                     <Form.Control as="select" value={this.state.FirstselectedSubcategory} onChange={this.subcategoryOnChangeHandler}  >
+                     <Form.Control as="select" value={this.state.FirstselectedSubcategory} onChange={this.subcategoryOnChangeHandler} onClick={this.showProperValues} >
                        {
-                         this.state.selectedCategory.subcategories.length === 0 ?
-                           null :
+                         this.state.hide === false ?
+                           <option key={this.state.FirstselectedSubcategory} value={this.state.FirstselectedSubcategory}>{this.state.FirstselectedSubcategory}</option> :
                            this.state.selectedCategory.subcategories.map(subcategory => <option key={subcategory} value={subcategory}>{subcategory}</option>)
                        }
                      </Form.Control>

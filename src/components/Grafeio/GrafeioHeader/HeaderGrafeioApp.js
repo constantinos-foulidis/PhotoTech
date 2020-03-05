@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {login,logout} from '../../store/actions/loginAuth';
-import {filterProductsBySearchBar} from '../../store/actions/products';
+import {login,logout} from '../../../store/actions/LoginGrafeio/loginGrafeio';
+import {filterProductsBySearchBar} from '../../../store/actions/products';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {connect} from 'react-redux';
-import './Appheader.css';
-import { withRouter } from "react-router-dom";
-class AppHeader extends Component {
+
+class HeaderGrafeioApp extends Component {
 
   constructor(props) {
     super(props);
@@ -25,14 +24,7 @@ class AppHeader extends Component {
   //    }
   handleSearch(event) {
     this.setState({search: event.target.value});
-    console.log("inisde search",event);
-     if(this.props.location != "/recource/products"){
-       this.props.history.push({
-         pathname: "/recource/products",
-       });
-
-  }
-    this.props.filterProductsBySearchBar(event.target.value);
+    //this.props.filterProductsBySearchBar(event.target.value);
   }
   mainProducts() {
 
@@ -51,7 +43,7 @@ class AppHeader extends Component {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item href="#/action-1">{JSON.parse(localStorage.getItem('userName'))}</Dropdown.Item>
-          <Dropdown.Item href="/" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
+          <Dropdown.Item href="/office" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
     }
@@ -60,7 +52,7 @@ class AppHeader extends Component {
       <div className="Container">
         <div className="row align-middle">
           <div className="col">
-            <a href="/recource/products">
+            <a href="/office/greeting">
             <img alt="logo" className="headerpic" src="/PhotoSc.png" />
             </a>
           </div>
@@ -92,4 +84,4 @@ const mapDispatchToProps = dispatch => {
    filterProductsBySearchBar: (productCategory) => dispatch(filterProductsBySearchBar(productCategory))
   }
 };
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppHeader));
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderGrafeioApp);

@@ -16,3 +16,7 @@ export const FILTER_USERS = 'FILTER_USERS';
 export const FILTER_FULLNAME = 'FILTER_FULLNAME';
 export const CACHED_USERS = 'CACHED_USERS';
 export const FILTER_PRODUCT_BY_SEARCH_BAR = 'FILTER_PRODUCT_BY_SEARCH_BAR';
+//sellers
+export const GET_SELLERS = "GET_SELLERS";
+export const ERROR = "ERROR";
+export const LOADING = "LOADING";
