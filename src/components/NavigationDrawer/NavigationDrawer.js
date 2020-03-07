@@ -62,7 +62,7 @@ class NavigationDrawer extends Component {
                 <Link
                   to="/recource/products"
                   onClick={() => {
-                    this.filterProducts("Προιόντα φωτογραφίας");
+                    this.filterProducts("Προϊόντα φωτογραφίας");
                   }}
                 >
                   -Προϊόντα Φωτογραφίας
@@ -78,7 +78,7 @@ class NavigationDrawer extends Component {
                 <Link
                   to="/recource/products"
                   onClick={() => {
-                    this.filterProducts("Υλικα Εργαστηρίου");
+                    this.filterProducts("Υλικά Εργαστηρίου");
                   }}
                 >
                   -Υλικά εργαστηρίου
