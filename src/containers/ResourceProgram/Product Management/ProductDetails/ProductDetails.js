@@ -10,9 +10,10 @@ import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/products';
 import DeleteModal from '../../../../components/DeleteModal/DeleteModal';
 import categories from '../../../../Data/Category';
-import positions from '../../../../Data/Positions';
+import positions from '../../../../Data/PositionForUpdate';
 import classes from '../../../../Data/Classes';
 import Form from 'react-bootstrap/Form';
+import MultiSelect from "@khanacademy/react-multi-select";
 
 class ProductSpecs extends Component {
   constructor(props) {
@@ -37,11 +38,13 @@ class ProductSpecs extends Component {
       selectedCategory:categories[0],
       selectedSubcategory: categories[0].subcategories[0],
       selectedPosition: positions[0],
-      selectedClass: classes[0],
+      multiSelected:[],
+      ShowPositions:this.props.productSpecks.productPosition,
+      selectedClass: classes[9],
       FirstselectedCategory:this.props.productSpecks.productCategory,
       FirstselectedSubcategory: this.props.productSpecks.productSubcategory,
-      FirstselectedPosition: this.props.productSpecks.productPosition,
-      FirstselectedClass: this.props.productSpecks.productOrder,
+      FirstselectedPosition: [],
+      FirstselectedClass: classes[9],
     };
 
 
@@ -170,7 +173,7 @@ console.log("eimai to quantity=0",quantity);
   product.productPosition = this.state.FirstselectedPosition;
   product.productOrder = this.state.FirstselectedClass;
   product.wantToadd=wantToadd;
-  console.log("id",  product._id);
+  console.log("id",  product.productPosition);
   this.props.updateProduct(product);
   this.props.history.goBack();
 }
@@ -246,10 +249,9 @@ console.log("eimai to quantity=0",quantity);
                    <p>{this.state.remain}</p>
                  </div>
                  <div className="row">
-                   <h5>θέση :</h5>
-                     <Form.Control as="select" value={this.state.FirstselectedPosition} onChange={this.positionOnChangeHandler} >
-                       {positions.map(position => <option value={position} key={position}>{position}</option>)}
-                     </Form.Control>
+                   <h5>θέση :{this.state.ShowPositions}</h5>
+
+                     <MultiSelect className="w-100"options={positions} selected={this.state.FirstselectedPosition} onSelectedChanged={selectedPosition => this.setState({FirstselectedPosition:selectedPosition,ShowPositions:[]})} />
                  </div>
                  <div className="row">
                    <h5>Τάξεις : </h5>

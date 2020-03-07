@@ -9,7 +9,7 @@ import {
 class ExportExcel extends Component {
   _export;
   export = () => {
-    console.log(this.props.product);
+  
     this._export.save();
   };
   render() {

@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 import { navigationToggleButton as NavigationToggleButton } from "../NavigationDrawer/NavigationDrawer";
 class ProductHeader extends Component {
   handleAddnew = () => {
-    console.log(this.props);
+  
     this.props.history.push({
       pathname: "/recource/products/add"
       //state: {username: this.state.username}

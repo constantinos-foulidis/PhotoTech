@@ -3,7 +3,7 @@ import { navigationToggleButton as NavigationToggleButton } from '../../Grafeio/
 import NavigationGrafeio from "../../Grafeio/NavigationGrafeio/NavigationGrafeio";
 import HeaderGrafeioApp from "../GrafeioHeader/HeaderGrafeioApp";
 const greetingGrafeio = (props) => {
- console.log(props);
+ 
     return (
       <>
       <HeaderGrafeioApp/>

@@ -127,6 +127,7 @@ const setProductSpecks = (state,products) =>{
 }
 const filterProductBySearchbar = (state,categoryname) => {
   console.log("new filter",categoryname);
+
  if(allProducts===null){
    allProducts=state.products;
    let updateProducts = state.products.filter((product)=> product.productDetail.toLowerCase().indexOf(categoryname) > -1);
@@ -143,6 +144,8 @@ const filterProductBySearchbar = (state,categoryname) => {
        products:updateProducts
      });
  }
+
+
 };
 
 export default productsReducer;

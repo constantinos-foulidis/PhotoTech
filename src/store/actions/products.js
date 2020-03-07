@@ -65,7 +65,7 @@ export const addProduct = (product) => {
     return (dispatch, getState) => {
         dispatch(loading());
         const data = new FormData();
-        console.log("[ProductActions] addProduct - product: ", product);
+
         data.append("myimage", product.selectedFile, product.selectedFile.name);
         data.append("productDetail", product.productDetail);
         data.append("productCode", product.productCode);
@@ -109,7 +109,7 @@ export const ProductUpdated = (product) => {
             if (getState().products.products === null) {
                 dispatch(getProducts());
             } else {
-              console.log("in if",response.data);
+          
                //TODO UPDATE ALL LIST
                 dispatch(updateProduct(response.data.data));
             }

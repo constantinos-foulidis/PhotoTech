@@ -7,7 +7,7 @@ import { toggleNavigator } from "../../store/actions/navigator";
 import * as actions from "../../store/actions/products";
 class NavigationDrawer extends Component {
   filterProducts(categoryName) {
-    console.log("inside navigationDrawer", categoryName);
+
     if (this.props.products !== null) {
       this.props.filterProducts(categoryName);
     }
@@ -21,7 +21,7 @@ class NavigationDrawer extends Component {
     const { showNav } = this.props;
     let sideNavStyle = { width: showNav ? "250px" : "0" };
     let adminExtras = null;
-    console.log(localStorage.getItem("isadmin"));
+    
     if (JSON.parse(localStorage.getItem("isadmin")) === true) {
       adminExtras = (
         <>

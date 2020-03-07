@@ -28,7 +28,7 @@ const getUsers = (state, action) => {
     });
 };
 const deleteUser = (state, action) => {
-  console.log("insided delete reducer");
+
   let updateusers=state.users.filter(user => user._id !== action.id );
     return updateObject(state, {
       users: updateusers,
@@ -53,14 +53,14 @@ const filterUserByname = (state,fullname) => {
  if(allusers===null){
    allusers=state.users;
    let updateUsers = state.users.filter((users)=> users.fullName.toLowerCase().indexOf(fullname.fullname) > -1);
-   console.log(updateUsers);
+
    return updateObject(state,{
      allUsers:state.users,
      users:updateUsers
    });
  }else{
    let updateUsers = allusers.filter((users)=> users.fullName.toLowerCase().indexOf(fullname.fullname) > -1);
-   console.log(updateUsers);
+
      return updateObject(state,{
        users:updateUsers
      });
@@ -71,7 +71,7 @@ const filterUser = (state,username) => {
  if(allusers===null){
    allusers=state.users;
    let updateUsers = state.users.filter((users)=> users.username.toLowerCase().indexOf(username.username.toLowerCase()) > -1);
-   console.log(updateUsers);
+
    return updateObject(state,{
      allUsers:state.users,
      users:updateUsers
@@ -79,7 +79,7 @@ const filterUser = (state,username) => {
  }else{
 
    let updateUsers = allusers.filter((users)=> users.username.toLowerCase().indexOf(username.username.toLowerCase()) > -1);
-   console.log(updateUsers);
+  
      return updateObject(state,{
        users:updateUsers
      });

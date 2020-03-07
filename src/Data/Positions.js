@@ -10,4 +10,5 @@ const positions = [
   "A09",
   "A10"
 ];
+
 export default positions;
