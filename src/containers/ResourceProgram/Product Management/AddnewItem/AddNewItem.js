@@ -5,18 +5,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./AddNewItem.css";
 import categories from "../../../../Data/Category";
-import positions from "../../../../Data/Positions";
+import positions from "../../../../Data/PositionForUpdate";
 import classes from "../../../../Data/Classes";
 import ProductHeader from "../../../../components/ProductHeader/ProductHeader";
 import { addProduct } from "../../../../store/actions/products";
 import { connect } from "react-redux";
+import MultiSelect from "@khanacademy/react-multi-select";
 
 class NewItem extends Component {
   state = {
     selectedFile: null,
     selectedCategory: categories[0],
     selectedSubcategory: categories[0].subcategories[0],
-    selectedPosition: positions[0],
+    selectedPosition: [],
     selectedClass: classes[9],
     quantity: 0,
     inValidity: {
@@ -116,7 +117,7 @@ class NewItem extends Component {
     product.productCategory = event.target["2"].value.trim();
     product.productSubcategory = event.target["3"].value.trim();
     product.productQuantity = event.target["4"].value;
-    product.productPosition = event.target["5"].value.trim();
+    product.productPosition = this.state.selectedPosition;
     product.productOrder = event.target["6"].value.trim();
     product.selectedFile = this.state.selectedFile;
 
@@ -251,18 +252,7 @@ class NewItem extends Component {
                 </Form.Group>
                 <Form.Group controlId="formPosition">
                   <Form.Label>Θέση Προϊόντος</Form.Label>
-                  <Form.Control
-                    as="select"
-                    value={this.state.selectedPosition}
-                    onChange={this.positionOnChangeHandler}
-                    isInvalid={this.state.inValidity.productQuantity}
-                  >
-                    {positions.map(position => (
-                      <option value={position} key={position}>
-                        {position}
-                      </option>
-                    ))}
-                  </Form.Control>
+                   <MultiSelect className="w-100"options={positions} selected={this.state.selectedPosition} onSelectedChanged={selectedPosition => this.setState({selectedPosition:selectedPosition})} />
                 </Form.Group>
                 <Form.Group controlId="productOrder">
                   <Form.Label>Τάξεις</Form.Label>
