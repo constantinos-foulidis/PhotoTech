@@ -3,11 +3,23 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import './Dropdown.css';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/products';
+import { withRouter } from "react-router-dom";
 class Dropdawn extends Component {
-  // constructor(props){
-  //   super(props);
-  //
-  // }
+   constructor(props){
+     super(props);
+  this.handleProducts = this.handleProducts.bind(this);
+   }
+   handleProducts(event) {
+
+     console.log("inisde search",event);
+      if(this.props.location != "/recource/products"){
+        this.props.history.push({
+          pathname: "/recource/products",
+        });
+
+   }
+     this.props.filterProducts(event);
+   }
   render(){
   return (
     <Dropdown className="mr-2 marginBottomdropdawn">
@@ -17,7 +29,7 @@ class Dropdawn extends Component {
 
       <Dropdown.Menu className="dropDownColor" >
         {this.props.category.subcategories.map((name, index) => (
-          <Dropdown.Item key={name} value={name} onClick={() =>this.props.filterProducts(name)}>{name}</Dropdown.Item>
+          <Dropdown.Item key={name} value={name} onClick={() =>this.handleProducts(name)}>{name}</Dropdown.Item>
         ))}
       </Dropdown.Menu>
     </Dropdown>
@@ -30,4 +42,4 @@ const mapDispatchToProps = dispatch => {
   filterProducts: (subcategoryName) => dispatch(actions.filterProductsSubcategory(subcategoryName))
   }
 }
-export default connect(null,mapDispatchToProps)(Dropdawn);
+export default withRouter(connect(null,mapDispatchToProps)(Dropdawn));
