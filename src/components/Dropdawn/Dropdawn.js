@@ -11,7 +11,7 @@ class Dropdawn extends Component {
    }
    handleProducts(event) {
 
-     console.log("inisde search",event);
+    
       if(this.props.location != "/recource/products"){
         this.props.history.push({
           pathname: "/recource/products",

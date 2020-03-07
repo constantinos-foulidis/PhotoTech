@@ -10,9 +10,9 @@ if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
   localStorage.setItem('isLogedIn',false);
   //localStorage.clear();
   window.location.reload()
-  console.log("lol");
+
 }
-console.log("kaloume");
+
     return (
       <>
       <SimpleAppHeader/>

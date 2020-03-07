@@ -29,11 +29,11 @@ class ProductSpecs extends Component {
   }
 
   addNumber = () => {
-    console.log(this.state.number);
+
     const firstRemain = Number(this.state.remain);
     const addedValue = Number(this.state.number);
     const sum = sum + firstRemain + addedValue;
-    console.log(sum);
+
     this.setState({ remain: sum });
   };
 
@@ -53,7 +53,7 @@ class ProductSpecs extends Component {
 
   numberChanged = event => {
     this.setState({ number: event.target.value });
-    console.log("inside number changed", event.target.value);
+  
   };
 
   render() {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {login,logout} from '../../store/actions/loginAuth';
+import {getProducts} from '../../store/actions/products';
 import {filterProductsBySearchBar} from '../../store/actions/products';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {connect} from 'react-redux';
@@ -34,14 +35,17 @@ class AppHeader extends Component {
   }
     this.props.filterProductsBySearchBar(event.target.value);
   }
-  mainProducts() {
 
-  }
 
   render() {
     let user = null;
     let profile = null;
 
+  
+    if (this.props.products.products === null) {
+       console.log("Get products called");
+       this.props.getProducts();
+     }
     if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
       user = (<input className="appHeaderInput mr-5 w-100" type="text" placeholder="Search" value={this.state.search} onChange={this.handleSearch}/>)
 
@@ -79,6 +83,7 @@ const mapStateToProps = (state, props) => {
   return {
     userName: state.login.userName,
     isAdmin: state.login.isAdmin,
+    products:state.products,
     isLogedIn: state.login.isLogedIn,
     loading: state.login.loading,
     error: state.login.error,
@@ -89,6 +94,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuth: (formdata) => dispatch(login(formdata)),
     logout: () => dispatch(logout()),
+      getProducts: () => dispatch(getProducts()),
    filterProductsBySearchBar: (productCategory) => dispatch(filterProductsBySearchBar(productCategory))
   }
 };

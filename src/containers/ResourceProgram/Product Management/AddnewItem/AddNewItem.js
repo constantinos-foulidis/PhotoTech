@@ -38,7 +38,7 @@ class NewItem extends Component {
   };
 
   fileSelectedHandler = event => {
-    console.log(event.target.files[0]);
+
     this.setState({
       selectedFile: event.target.files[0]
     });
@@ -100,7 +100,7 @@ class NewItem extends Component {
     const valid = Object.getOwnPropertyNames(inValidity).every(
       property => !inValidity[property]
     );
-    console.log("[valid] ", valid);
+
     if (!valid) {
       this.setState({ inValidity: inValidity });
     }
@@ -109,7 +109,7 @@ class NewItem extends Component {
 
   handleAddNew = event => {
     event.persist();
-    console.log(event);
+
     event.preventDefault();
     const product = {};
     product.productDetail = event.target["0"].value.trim();
@@ -163,7 +163,7 @@ class NewItem extends Component {
   };
 
   render() {
-    console.log("[AddNewItem.render()] state: ", this.state);
+    
     return (
       <React.Fragment>
         <ProductHeader />
