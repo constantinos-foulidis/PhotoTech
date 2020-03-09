@@ -1,17 +1,16 @@
-import React, {Component} from 'react';
-import {login} from '../../store/actions/LoginGrafeio/loginGrafeio';
-import {connect} from 'react-redux';
-import {Checkbox} from '@material-ui/core';
-import Spinner from 'react-bootstrap/Spinner'
+import React, { Component } from "react";
+import { login } from "../../store/actions/LoginGrafeio/loginGrafeio";
+import { connect } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
 import SimpleAppHeader from "../simpleAppheader/simpleAppheader";
 class LoginGrafeiou extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       isLogin: true
-    }
+    };
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     //this.handleChange= this.handleChange.bind(this);
@@ -19,10 +18,10 @@ class LoginGrafeiou extends Component {
   }
 
   handleUsername(event) {
-    this.setState({username: event.target.value});
+    this.setState({ username: event.target.value });
   }
   handlePassword(event) {
-    this.setState({password: event.target.value});
+    this.setState({ password: event.target.value });
   }
 
   handleSubmit(event) {
@@ -50,51 +49,62 @@ class LoginGrafeiou extends Component {
     //const { handleSubmit } = this.props;
     let spinner = null;
     if (this.props.loading) {
-      spinner = (<Spinner animation="border"/>);
+      spinner = <Spinner animation="border" />;
     }
     let errorMessage = null;
     if (this.props.error) {
-      errorMessage = (<p>{this.props.error.message}</p>);
+      errorMessage = <p>{this.props.error.message}</p>;
     }
-     if(this.props.isLogedIn!== false){
-       console.log(this.props.isAdmin);
-       this.props.history.push({
-         pathname: "/office/greeting",
-         username:this.props.username
-       });
-   }
-  //  if(this.props.isAdmin === false ){
-  //    this.props.history.push({
-  //      pathname: "/recource/products",
-  //    });
-  //  }
+    if (this.props.isLogedIn !== false) {
+      console.log(this.props.isAdmin);
+      this.props.history.push({
+        pathname: "/office/greeting",
+        username: this.props.username
+      });
+    }
+    //  if(this.props.isAdmin === false ){
+    //    this.props.history.push({
+    //      pathname: "/recource/products",
+    //    });
+    //  }
 
     return (
-       <>
-       <SimpleAppHeader/>
-      <form onSubmit={this.handleSubmit}>
-      {spinner}
-      <div className="Container background_form">
-        <div className="row mb-5">
-          <div className="col ">
-            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsername}/>
+      <>
+        <SimpleAppHeader />
+        <form onSubmit={this.handleSubmit}>
+          {spinner}
+          <div className="Container background_form">
+            <div className="row mb-5">
+              <div className="col ">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChange={this.handleUsername}
+                />
+              </div>
+            </div>
+            <div className="row mb-5">
+              <div className="col">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.handlePassword}
+                />
+              </div>
+            </div>
+            <div className="row offset-7">
+              <div className="col-5">
+                <input type="submit" value="Συνδεση" />
+              </div>
+              {errorMessage}
+            </div>
           </div>
-        </div>
-        <div className="row mb-5">
-          <div className="col">
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
-          </div>
-        </div>
-        <div className="row offset-7">
-          <div className="col-5">
-            <input type="submit" value="Συνδεση"/>
-          </div>
-          {errorMessage}
-        </div>
-      </div>
-    </form>
-  </>)
-  };
+        </form>
+      </>
+    );
+  }
 }
 const mapStateToProps = (state, props) => {
   return {
@@ -103,12 +113,12 @@ const mapStateToProps = (state, props) => {
     loading: state.login.loading,
     error: state.login.error,
     ...props
-  }
+  };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (formdata) => dispatch(login(formdata))
-  }
+    onAuth: formdata => dispatch(login(formdata))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginGrafeiou);

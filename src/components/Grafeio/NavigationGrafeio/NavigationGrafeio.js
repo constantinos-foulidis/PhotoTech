@@ -4,22 +4,16 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Dropdown from "react-bootstrap/Dropdown";
 import { toggleNavigator } from "../../../store/actions/navigator";
-import * as actions from "../../../store/actions/products";
 class NavigationGrafeio extends Component {
-    constructor(props){
-      super(props);
-    }
-handleSellers (){
-
-     this.history.push({
-     pathname: " /office/sellers",
-   });
-}
+  handleSellers() {
+    this.history.push({
+      pathname: " /office/sellers"
+    });
+  }
   render() {
     const { showNav } = this.props;
     let sideNavStyle = { width: showNav ? "250px" : "0" };
-    let adminExtras = null;
-
+    // let adminExtras = null;
 
     return (
       <React.Fragment>
@@ -34,19 +28,12 @@ handleSellers (){
                 className="btnwidthdrawer"
                 variant="info"
                 id="dropdown-basic"
-
               >
                 Πωλητές
-
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="dropDownColor spesificDropdown">
-                <Link
-                  to="/office/sellers"
-                
-                >
-                  -Ραντεβού
-                </Link>
+                <Link to="/office/sellers">-Ραντεβού</Link>
                 <Link
                   to="/recource/products"
                   onClick={() => {
@@ -211,7 +198,6 @@ handleSellers (){
                 <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
               </Dropdown.Menu>
             </Dropdown>
-
           </div>
         </div>
       </React.Fragment>
