@@ -18,5 +18,6 @@ export const CACHED_USERS = 'CACHED_USERS';
 export const FILTER_PRODUCT_BY_SEARCH_BAR = 'FILTER_PRODUCT_BY_SEARCH_BAR';
 //sellers
 export const GET_SELLERS = "GET_SELLERS";
+export const FILTER_SELLER = "FILTER_SELLER";
 export const ERROR = "ERROR";
 export const LOADING = "LOADING";

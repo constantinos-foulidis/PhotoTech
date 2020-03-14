@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import {connect} from 'react-redux';
 import { navigationToggleButton as NavigationToggleButton } from '../NavigationGrafeio/NavigationGrafeio';
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
-import {getSeller} from '../../../store/actions/Grafeio/sallers';
+import {getSeller,filterSeller} from '../../../store/actions/Grafeio/sallers';
 class SellersHeader  extends Component {
 
   handleAddnew = () => {
@@ -32,12 +32,12 @@ class SellersHeader  extends Component {
      if( sellers!=null){
 console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
         showSellers = sellers.map((sellers, index) => (
-          <Dropdown className="center mr-5 " >
+          <Dropdown key={index} className="center mr-5 " >
             <Dropdown.Toggle variant="secondary">
              {sellers.sellername}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">-Ραντεβού</Dropdown.Item>
+              <Dropdown.Item onClick={() =>{ this.props.filterSeller(sellers.sellername)}}>-Ραντεβού</Dropdown.Item>
               <Dropdown.Item href="/office" onClick={() =>{ this.props.logout()}}  >-Πελάτες</Dropdown.Item>
               <Dropdown.Item href="#/action-1">Νέοι Πελάτες</Dropdown.Item>
               <Dropdown.Item href="/office" onClick={() =>{ this.props.logout()}}  >Πληρωμές Πωλητών</Dropdown.Item>
@@ -81,6 +81,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     getSellers: (formdata) => dispatch(getSeller(formdata)),
+    filterSeller:(sellername) => dispatch(filterSeller(sellername)),
   }
 };
 

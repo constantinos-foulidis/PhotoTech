@@ -59,7 +59,7 @@ class LoginGrafeiou extends Component {
      if(this.props.isLogedIn!== false){
        console.log(this.props.isAdmin);
        this.props.history.push({
-         pathname: "/office/greeting",
+         pathname: "/office/sellers/greeting",
          username:this.props.username
        });
    }

@@ -8,6 +8,8 @@ const updateUri='/update';
 export const GET_SELLERS = "GET_SELLERS";
 export const ERROR = "ERROR";
 export const LOADING = "LOADING";
+export const FILTER_SELLER = "FILTER_SELLER";
+
 
 
 
@@ -20,12 +22,18 @@ const getSellerSuccess = (sellers) => {
         sellers: sellers
     };
 }
-
+export const filterSeller = (sellerName) => {
+  console.log("Seller Name",sellerName);
+  return {
+      type: FILTER_SELLER,
+      sellerName: sellerName,
+  }
+}
 export const getSeller = (sellerCode) => {
     return (dispatch, getState) => {
         dispatch(loading());
         console.log(sellerCode);
-      
+
         const data = {
           sellerCode:sellerCode
         }

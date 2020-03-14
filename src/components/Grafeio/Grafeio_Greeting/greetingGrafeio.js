@@ -1,12 +1,12 @@
 import React from 'react';
 import { navigationToggleButton as NavigationToggleButton } from '../../Grafeio/NavigationGrafeio/NavigationGrafeio'
 import NavigationGrafeio from "../../Grafeio/NavigationGrafeio/NavigationGrafeio";
-import HeaderGrafeioApp from "../GrafeioHeader/HeaderGrafeioApp";
+
 const greetingGrafeio = (props) => {
- 
+
     return (
       <>
-      <HeaderGrafeioApp/>
+
       <div className="row ml-5">
           <NavigationGrafeio/>
         <div className="col-2">
