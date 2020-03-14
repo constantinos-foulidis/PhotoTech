@@ -27,7 +27,7 @@ class SellersHeader  extends Component {
     if(this.props.headertoShow ===undefined){
       header = (  <h1>Πωλητες:</h1>)
     }else{
-    
+
         header = (  <h1>{this.props.headertoShow}:</h1>)
     }
     if (this.props.sellers === null && JSON.parse(localStorage.getItem('sellerID')!=null)) {
@@ -49,7 +49,7 @@ console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
             <Dropdown.Menu className="row">
              <Link className="dropdowncss" to="/office/sellers" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Ραντεβού</Link>
               <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Πελάτες</Link>
-              <Link className="dropdowncss" to="#/action-1">-Νέοι Πελάτες</Link>
+              <Link className="dropdowncss" to="/office/sellers/NeoiPellates" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Νέοι Πελάτες</Link>
               <Link className="dropdowncss" to="/office" onClick={() =>{ this.props.logout()}}  >-Πληρωμές Πωλητών</Link>
             </Dropdown.Menu>
           </Dropdown>

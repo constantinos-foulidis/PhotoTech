@@ -12,7 +12,7 @@ import Calendar from 'react-calendar';
 import {getSeller} from '../../../store/actions/Grafeio/sallers';
 import SellersHeader from "../SellersHeader/sellersHeader";
 
-class Pellates extends Component {
+class NeoiPellates extends Component {
            constructor(props){
              super(props);
 
@@ -40,7 +40,7 @@ class Pellates extends Component {
    }))
  }
     return (<React.Fragment>
-      <SellersHeader headertoShow="Πελάτες"/>
+      <SellersHeader headertoShow="Νέοι Πελάτες"/>
       <div className="container mb-5 offset-3">
         <div className="row">
             <div className="col-auto">
@@ -79,6 +79,9 @@ class Pellates extends Component {
         <div className="col">
       <Button  variant="info">Αποθήκευση</Button>
       </div>
+      <div className="col">
+    <Button  variant="info">Ανάγνωση</Button>
+    </div>
         </div>
         </div>
         <div className="col-auto">
@@ -107,4 +110,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pellates);
+export default connect(mapStateToProps, mapDispatchToProps)(NeoiPellates);

@@ -6,6 +6,7 @@ import HeaderGrafeioApp from "../GrafeioHeader/HeaderGrafeioApp";
 import SellersHeader from "../SellersHeader/sellersHeader";
 import SallersContent from "../Sallers/SallersContent";
 import Pellates from "../Pellates/Pellates";
+import NeoiPellates from "../Pellates/NeoiPellates";
 import { Switch,Route } from "react-router-dom";
 import greetingGrafeio from "../Grafeio_Greeting/greetingGrafeio";
 const Sallers = (props) => {
@@ -17,7 +18,8 @@ const Sallers = (props) => {
         <Switch>
         <Route exact path="/office/sellers/greeting" component={greetingGrafeio} />
         <Route  exact path="/office/sellers" component={SallersContent}/>
-        <Route  path="/office/sellers/Pellates" component={Pellates}/>
+        <Route  exact path="/office/sellers/Pellates" component={Pellates}/>
+        <Route  exact path="/office/sellers/NeoiPellates" component={NeoiPellates}/>
         <Route  path="/office/sellers/add" component={SellersHeader}/>
         <Route  path="/office/sellers/id" component={SellersHeader}/>
         </Switch>
