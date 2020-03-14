@@ -38,7 +38,7 @@ class SellersContent extends Component {
     console.log(event);
       this.setState({ ShowDetailedCalendar:true,
                       Month:event.target.selectedIndex+1,
-                      date:new Date(2017,event.target.selectedIndex,1)
+                      date:new Date(2020,event.target.selectedIndex,1)
        });
   }
   render() {

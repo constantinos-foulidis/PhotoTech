@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import HeaderGrafeioApp from "../GrafeioHeader/HeaderGrafeioApp";
 import SellersHeader from "../SellersHeader/sellersHeader";
 import SallersContent from "../Sallers/SallersContent";
+import Pellates from "../Pellates/Pellates";
 import { Switch,Route } from "react-router-dom";
 import greetingGrafeio from "../Grafeio_Greeting/greetingGrafeio";
 const Sallers = (props) => {
@@ -15,7 +16,8 @@ const Sallers = (props) => {
       <Row>
         <Switch>
         <Route exact path="/office/sellers/greeting" component={greetingGrafeio} />
-        <Route  path="/office/sellers" component={SallersContent}/>
+        <Route  exact path="/office/sellers" component={SallersContent}/>
+        <Route  path="/office/sellers/Pellates" component={Pellates}/>
         <Route  path="/office/sellers/add" component={SellersHeader}/>
         <Route  path="/office/sellers/id" component={SellersHeader}/>
         </Switch>

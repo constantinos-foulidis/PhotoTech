@@ -7,8 +7,11 @@ import {connect} from 'react-redux';
 import { navigationToggleButton as NavigationToggleButton } from '../NavigationGrafeio/NavigationGrafeio';
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
 import {getSeller,filterSeller} from '../../../store/actions/Grafeio/sallers';
+import { Link } from "react-router-dom";
 class SellersHeader  extends Component {
-
+    constructor(props){
+      super(props);
+    }
   handleAddnew = () => {
     console.log(this.props);
     this.props.history.push({
@@ -20,6 +23,13 @@ class SellersHeader  extends Component {
   render(){
     let sellers = [];
     let showSellers = null;
+    let header=null;
+    if(this.props.headertoShow ===undefined){
+      header = (  <h1>Πωλητες:</h1>)
+    }else{
+    
+        header = (  <h1>{this.props.headertoShow}:</h1>)
+    }
     if (this.props.sellers === null && JSON.parse(localStorage.getItem('sellerID')!=null)) {
        console.log("Get sellers called",this.props.SellerCode);
         const sellerCode =JSON.parse(localStorage.getItem('sellerID'))
@@ -36,11 +46,11 @@ console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
             <Dropdown.Toggle variant="secondary">
              {sellers.sellername}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={() =>{ this.props.filterSeller(sellers.sellername)}}>-Ραντεβού</Dropdown.Item>
-              <Dropdown.Item href="/office" onClick={() =>{ this.props.logout()}}  >-Πελάτες</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">Νέοι Πελάτες</Dropdown.Item>
-              <Dropdown.Item href="/office" onClick={() =>{ this.props.logout()}}  >Πληρωμές Πωλητών</Dropdown.Item>
+            <Dropdown.Menu className="row">
+             <Link className="dropdowncss" to="/office/sellers" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Ραντεβού</Link>
+              <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Πελάτες</Link>
+              <Link className="dropdowncss" to="#/action-1">-Νέοι Πελάτες</Link>
+              <Link className="dropdowncss" to="/office" onClick={() =>{ this.props.logout()}}  >-Πληρωμές Πωλητών</Link>
             </Dropdown.Menu>
           </Dropdown>
 
@@ -52,7 +62,7 @@ console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
   <React.Fragment>
    <Container className="mb-5">
    <div className="headerCenter mb-4">
-    <h1>Πωλητές:</h1>
+  {header}
     </div>
 
         <Row sm={4}>
