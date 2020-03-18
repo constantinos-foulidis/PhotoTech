@@ -4,7 +4,9 @@ import { updateObject } from '../../utility';
 
 const initialState = {
     sellers: null,
+    appointments:null,
     filterSellers:null,
+    filterAppointments:null,
     loading: false,
     error: null,
     success: false,
@@ -17,7 +19,8 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.LOADING: return loading(state);
         case actionTypes.ERROR: return error(state, action.message);
         case actionTypes.FILTER_SELLER:return filterSeller(state,action.sellerName);
-
+        case actionTypes.FILTER_APPOINTMENTS:return filterAppointments(state,action.sellerCode);
+        case actionTypes.GET_APPOINTMENTS:return setAppointments(state,action);
         default: return state;
     }
 }
@@ -30,11 +33,27 @@ const filterSeller = (state, sellerName) => {
       filterSellers:updateproducts,
     });
 };
+const filterAppointments = (state, sellerCode) => {
+  state.filterAppointments=state.appointments;
+
+  let updateAppointments=state.filterAppointments.filter(appointments => appointments.sellerCode === sellerCode );
+    return updateObject(state, {
+      Appointments:updateAppointments,
+    });
+};
 
 const setSellers = (state, action) => {
   console.log("setSeller",action);
     return updateObject(state, {
       sellers:action.sellers.Sellers,
+      error: null,
+      loading: false
+    });
+};
+const setAppointments = (state, action) => {
+  console.log("setAppointments",action);
+    return updateObject(state, {
+      appointments:action.appointments,
       error: null,
       loading: false
     });

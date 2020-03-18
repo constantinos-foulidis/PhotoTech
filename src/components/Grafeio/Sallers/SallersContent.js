@@ -111,12 +111,17 @@ class SellersContent extends Component {
       </>
       )
     }else{
+      if(this.props.appointments!=null){
       SpesificView=(
-        <>
-        <p>3/2/18</p>
-        <p>2o Δημοτικο</p>
-        </>
+
+          this.props.appointments.map((appointments) => (
+            <div>
+          <p>{appointments.day}/{appointments.month}/{appointments.year}</p>
+          </div>
+          ))
+
       )
+    }
     }
     return (<React.Fragment>
       <SellersHeader/>
@@ -130,7 +135,7 @@ class SellersContent extends Component {
               </div>
             </div>
             <div className="row">
-              <Button className="mb-3" variant="info" onClick={this.NewAppointmentHandler}>+Νέο ραντεβού</Button>
+              <Button className="mb-3 mt-5" variant="info" onClick={this.NewAppointmentHandler}>+Νέο ραντεβού</Button>
             </div>
             <div className="row">
               <Form.Group controlId="exampleForm.SelectCustom">
@@ -169,6 +174,7 @@ class SellersContent extends Component {
 const mapStateToProps = (state, props) => {
   return {
     sellers: state.sellers.filterSellers,
+    appointments: state.sellers.filterAppointments,
     loading: state.sellers.loading,
     SellerCode: state.loginGrafeiou.SellerCode,
     error: state.sellers.error,

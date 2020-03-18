@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import {connect} from 'react-redux';
 import { navigationToggleButton as NavigationToggleButton } from '../NavigationGrafeio/NavigationGrafeio';
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
-import {getSeller,filterSeller} from '../../../store/actions/Grafeio/sallers';
+import {getSeller,filterSeller,filterAppointments,getSellersAppointments} from '../../../store/actions/Grafeio/sallers';
 import { Link } from "react-router-dom";
 class SellersHeader  extends Component {
     constructor(props){
@@ -22,6 +22,7 @@ class SellersHeader  extends Component {
   }
   render(){
     let sellers = [];
+    let appointments=[];
     let showSellers = null;
     let header=null;
     if(this.props.headertoShow ===undefined){
@@ -34,12 +35,15 @@ class SellersHeader  extends Component {
        console.log("Get sellers called",this.props.SellerCode);
         const sellerCode =JSON.parse(localStorage.getItem('sellerID'))
         console.log("Get sellers called",sellerCode);
+       this.props.getSellersAppointments();
        this.props.getSellers(sellerCode.toString());
+
      }else {
        sellers = this.props.sellers;
+       appointments = this.props.appointments;
      }
      console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
-     if( sellers!=null){
+     if( sellers!=null && appointments!=null){
 console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
         showSellers = sellers.map((sellers, index) => (
           <Dropdown key={index} className="center mr-5 " >
@@ -47,9 +51,9 @@ console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
              {sellers.sellername}
             </Dropdown.Toggle>
             <Dropdown.Menu className="row">
-             <Link className="dropdowncss" to="/office/sellers" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Ραντεβού</Link>
-              <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Πελάτες</Link>
-              <Link className="dropdowncss" to="/office/sellers/NeoiPellates" onClick={() =>{this.props.filterSeller(sellers.sellername)}}>-Νέοι Πελάτες</Link>
+             <Link className="dropdowncss" to="/office/sellers" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Ραντεβού</Link>
+              <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Πελάτες</Link>
+              <Link className="dropdowncss" to="/office/sellers/NeoiPellates" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Νέοι Πελάτες</Link>
               <Link className="dropdowncss" to="/office" onClick={() =>{ this.props.logout()}}  >-Πληρωμές Πωλητών</Link>
             </Dropdown.Menu>
           </Dropdown>
@@ -82,6 +86,7 @@ console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
 const mapStateToProps = (state, props) => {
   return {
     sellers: state.sellers.sellers,
+    appointments:state.sellers.appointments,
     loading: state.sellers.loading,
     SellerCode: state.loginGrafeiou.SellerCode,
     error: state.sellers.error,
@@ -90,8 +95,11 @@ const mapStateToProps = (state, props) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
+
     getSellers: (formdata) => dispatch(getSeller(formdata)),
+    getSellersAppointments:() => dispatch(getSellersAppointments()),
     filterSeller:(sellername) => dispatch(filterSeller(sellername)),
+    filterAppointments:(sellerCode) => dispatch(filterAppointments(sellerCode)),
   }
 };
 
