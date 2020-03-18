@@ -14,3 +14,12 @@
     background-color: transparent;
     border: 0;
 }
+
+.arrow{
+  top:45%;
+}
+.popoverWidth_Height{
+  width: 250px;
+  height: min-content;
+
+}

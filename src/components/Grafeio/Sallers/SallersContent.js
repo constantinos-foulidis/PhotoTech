@@ -13,13 +13,16 @@ import SellersHeader from "../SellersHeader/sellersHeader";
 import Button from "react-bootstrap/Button";
 import "./SallersContent.css";
 import 'react-calendar/dist/Calendar.css';
+import Overlay from 'react-bootstrap/Overlay';
+import { Popover } from 'react-bootstrap';
+import Table from 'react-bootstrap/Table'
 class SellersContent extends Component {
            constructor(props){
              super(props);
 
              this.state = {
                ShowDetailedCalendar: false,
-               date: new Date(),
+               date:[],
                Month:null
              }
 
@@ -33,14 +36,29 @@ class SellersContent extends Component {
     });
 
   }
+
+
+  NewAppointmentHandler = () => {
+
+      this.setState({ShowDetailedCalendar:true});
+  }
   MonthChangeHandler = event => {
     event.persist();
     console.log(event);
-      this.setState({ ShowDetailedCalendar:true,
+      this.setState({
                       Month:event.target.selectedIndex+1,
                       date:new Date(2020,event.target.selectedIndex,1)
        });
   }
+  onClickCalendar = event => {
+    event.persist();
+    console.log(event);
+      // this.setState({
+      //                 Month:event.target.selectedIndex+1,
+      //                 date:new Date(2020,event.target.selectedIndex,1)
+      //  });
+  }
+
   render() {
     let sellers = null;
     let showSellers = null;
@@ -57,14 +75,40 @@ class SellersContent extends Component {
       </div>))
     };
     if(this.state.ShowDetailedCalendar){
+      const popover = (
+      <Popover id="popover-basic arrow">
+        <Popover.Content className="popoverWidth_Height detailSailler">
+          <div className="smallText detailSailler" > Ημερομηνία : {this.state.date.toLocaleDateString()}</div>
+          <div className="smallText detailSailler" > Ωρα :</div>
+          <div className="smallText detailSailler" > Σxoleio : </div>
+          <div className="smallText detailSailler" > Topothesia : </div>
+          <div className="smallText detailSailler" > onoma ipefthinou : </div>
+          <div className="smallText detailSailler" > thl ipefthinou : </div>
+          <div className="smallText detailSailler" contentEditable="true" suppressContentEditableWarning={true}> email : </div>
+          <div>testSomething</div>
+        </Popover.Content>
+      </Popover>
+      );
+
+
       SpesificView=(
         <>
         <Calendar
+         className="mb-5"
          onChange={this.onChange}
          value={this.state.date}
+         onSelect={this.onClickCalendar}
        />
-        <p>3/2/18</p>
-        </>
+
+     <div className="row">
+       <div className="col ">
+     <h5 className="text-center" >{this.state.date.toLocaleDateString()}</h5>
+       </div>
+       <div className="col">
+          {popover}
+       </div>
+      </div>
+      </>
       )
     }else{
       SpesificView=(
@@ -86,7 +130,7 @@ class SellersContent extends Component {
               </div>
             </div>
             <div className="row">
-              <Button className="mb-3" variant="info">+Νέο ραντεβού</Button>
+              <Button className="mb-3" variant="info" onClick={this.NewAppointmentHandler}>+Νέο ραντεβού</Button>
             </div>
             <div className="row">
               <Form.Group controlId="exampleForm.SelectCustom">
@@ -113,7 +157,7 @@ class SellersContent extends Component {
           </div>
           <div className="row">
             <div className="col">
-              <Button className="mb-3" variant="info">Εξαγωγή pdf</Button>
+              <Button className="mb-3 mr-2" variant="info">Εξαγωγή pdf</Button>
               <Button className="mb-3" variant="info">Εκτύπωση</Button>
             </div>
           </div>
