@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import {connect} from 'react-redux';
 import { navigationToggleButton as NavigationToggleButton } from '../NavigationGrafeio/NavigationGrafeio';
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
-import {getSeller,filterSeller,filterAppointments,getSellersAppointments} from '../../../store/actions/Grafeio/sallers';
+import {getSeller,filterSeller,filterAppointments,getSellersAppointments,getCustomers,filterCustomers} from '../../../store/actions/Grafeio/sallers';
 import { Link } from "react-router-dom";
 class SellersHeader  extends Component {
     constructor(props){
@@ -24,6 +24,7 @@ class SellersHeader  extends Component {
     let sellers = [];
     let appointments=[];
     let showSellers = null;
+    let customers = [];
     let header=null;
     if(this.props.headertoShow ===undefined){
       header = (  <h1>Πωλητες:</h1>)
@@ -36,11 +37,13 @@ class SellersHeader  extends Component {
         const sellerCode =JSON.parse(localStorage.getItem('sellerID'))
         console.log("Get sellers called",sellerCode);
        this.props.getSellersAppointments();
+       this.props.getCustomers();
        this.props.getSellers(sellerCode.toString());
 
      }else {
        sellers = this.props.sellers;
        appointments = this.props.appointments;
+       //customers
      }
      console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
      if( sellers!=null && appointments!=null){
@@ -52,7 +55,7 @@ console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
             </Dropdown.Toggle>
             <Dropdown.Menu className="row">
              <Link className="dropdowncss" to="/office/sellers" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Ραντεβού</Link>
-              <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Πελάτες</Link>
+              <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterCustomers(sellers.sellerCode)}}>-Πελάτες</Link>
               <Link className="dropdowncss" to="/office/sellers/NeoiPellates" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Νέοι Πελάτες</Link>
               <Link className="dropdowncss" to="/office" onClick={() =>{ this.props.logout()}}  >-Πληρωμές Πωλητών</Link>
             </Dropdown.Menu>
@@ -97,8 +100,10 @@ const mapDispatchToProps = dispatch => {
   return {
 
     getSellers: (formdata) => dispatch(getSeller(formdata)),
+    getCustomers: () => dispatch(getCustomers()),
     getSellersAppointments:() => dispatch(getSellersAppointments()),
     filterSeller:(sellername) => dispatch(filterSeller(sellername)),
+    filterCustomers:(sellerCode) => dispatch(filterCustomers(sellerCode)),
     filterAppointments:(sellerCode) => dispatch(filterAppointments(sellerCode)),
   }
 };

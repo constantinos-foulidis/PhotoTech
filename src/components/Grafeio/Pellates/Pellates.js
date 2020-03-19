@@ -26,15 +26,24 @@ class Pellates extends Component {
 
   render() {
  let showPellates=null;
- if(this.props.sellers!=null){
-   showPellates=(this.props.sellers.map((sellers,index) => {
+ if(this.props.customers!=null){
+   showPellates=(this.props.customers.map((customer,index) => {
      return (
        <tr key={index}>
-         <td>{sellers.sellername}</td>
-         <td>{sellers.region}</td>
-         <td>{sellers.fullName}</td>
-         <td>{sellers.email}</td>
-         <td>{sellers.fullName}</td>
+         <td>{customer.nomos}</td>
+         <td>{customer.schoolName}</td>
+         <td>{customer.sellerName}</td>
+         <td>{customer.dinami}</td>
+         <td>{customer.packetCost}</td>
+         <td>{customer.tmhmata}</td>
+         <td>{customer.mobilePhone}</td>
+         <td>{customer.schoolPhone}</td>
+         <td>{customer.afm}</td>
+         <td>{customer.doy}</td>
+         <td>{customer.email}</td>
+         <td>{customer.fax}</td>
+         <td>{customer.ekprosopos_sillogou}</td>
+         <td>{customer.headTeacher}</td>
        </tr>
      );
    }))
@@ -62,6 +71,15 @@ class Pellates extends Component {
               <th scope="col">Πωλητές</th>
               <th scope="col">Δυναμη</th>
               <th scope="col">Τιμή Πακέτου</th>
+                <th scope="col">Τμηματα</th>
+                <th scope="col">κινητο τηλεφωνο </th>
+                <th scope="col">τηλ σχολειου</th>
+                <th scope="col">αφμ</th>
+                <th scope="col">δου</th>
+                <th scope="col">email</th>
+                  <th scope="col">fax</th>
+                    <th scope="col">εκπροσοπος συλλογου</th>
+                      <th scope="col">Διευθηντης</th>
             </tr>
           </thead>
           <tbody>
@@ -95,6 +113,7 @@ class Pellates extends Component {
 const mapStateToProps = (state, props) => {
   return {
     sellers: state.sellers.filterSellers,
+    customers: state.sellers.filterCustomers,
     loading: state.sellers.loading,
     SellerCode: state.loginGrafeiou.SellerCode,
     error: state.sellers.error,
