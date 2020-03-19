@@ -22,12 +22,19 @@ class SellersContent extends Component {
 
              this.state = {
                ShowDetailedCalendar: false,
-               date:[],
-               Month:null
+               date:new Date(2020,0,1),
+               Month:null,
+               filteredAppointmets:null
              }
 
            }
-  onChange = date => this.setState({ date })
+  onChange = (date) => {
+    let temp=this.props.appointments;
+
+  let test=  temp.filter(appointments => new Date(parseInt(appointments.year,10),parseInt(appointments.month,10)-1,parseInt(appointments.day,10)).toLocaleDateString() === date.toLocaleDateString() );
+    console.log(test);
+    this.setState({ date:date,filteredAppointmets:test });
+  }
   handleAddnew = () => {
     console.log(this.props);
     this.props.history.push({
@@ -63,7 +70,16 @@ class SellersContent extends Component {
     let sellers = null;
     let showSellers = null;
     let SpesificView = null;
+   let appointment=null;
+   
 
+   if(this.state.filteredAppointmets !==null){
+     console.log(this.state.filteredAppointmets);
+    appointment = (
+      this.state.filteredAppointmets.map((appointments,index) => (
+      <p className="smallText" key={index} >{appointments.time} δημοτικο σχολειο Αιγινιου</p>
+      )))
+   }
 
     if (this.props.sellers != null) {
       showSellers = this.props.sellers.map((sellers, index) => (<div key={index}>
@@ -101,10 +117,11 @@ class SellersContent extends Component {
        />
 
      <div className="row">
-       <div className="col ">
+       <div className="col-5">
      <h5 className="text-center" >{this.state.date.toLocaleDateString()}</h5>
+          {appointment}
        </div>
-       <div className="col">
+       <div className="col offset-5">
           {popover}
        </div>
       </div>
@@ -114,8 +131,8 @@ class SellersContent extends Component {
       if(this.props.appointments!=null){
       SpesificView=(
 
-          this.props.appointments.map((appointments) => (
-            <div>
+          this.props.appointments.map((appointments,index) => (
+            <div key={index}>
           <p>{appointments.day}/{appointments.month}/{appointments.year}</p>
           </div>
           ))

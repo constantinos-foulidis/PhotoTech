@@ -17,6 +17,8 @@
 
 .arrow{
   top:45%;
+  background-color: lightGrey;
+  color:lightGrey;
 }
 .popoverWidth_Height{
   width: 250px;
