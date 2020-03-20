@@ -21,7 +21,14 @@
   color:lightGrey;
 }
 .popoverWidth_Height{
-  width: 250px;
+  width: 300px;
   height: min-content;
 
 }
+.smallFormpop{
+width: max-content;
+}
+.pStyle = {
+  width: 60% !important;
+  height: 26px !important;
+};

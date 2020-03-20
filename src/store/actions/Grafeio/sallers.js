@@ -10,6 +10,7 @@ const customersUri='api/customers';
 export const GET_SELLERS = "GET_SELLERS";
 export const GET_APPOINTMENTS = "GET_APPOINTMENTS";
 export const GET_CUSTOMERS = "GET_CUSTOMERS";
+export const CREATE_APPOINTMENT = "CREATE_APPOINTMENT";
 export const ERROR = "ERROR";
 export const LOADING = "LOADING";
 export const FILTER_SELLER = "FILTER_SELLER";
@@ -23,6 +24,13 @@ const getAppointmentSuccess = (appointments) => {
     return {
         type: GET_APPOINTMENTS,
         appointments: appointments
+    };
+};
+const createAppointmentSuccess = (appointment) => {
+
+    return {
+        type: CREATE_APPOINTMENT,
+        createdAppointment: appointment
     };
 }
 const getCustomerSuccess = (customers) => {
@@ -89,6 +97,21 @@ export const getSellersAppointments = () => {
                 dispatch(error(response.data));
             }else{
                 dispatch(getAppointmentSuccess(response.data));
+            }
+
+        })
+    }
+};
+export const createSellersAppointment = (data) => {
+    console.log(data);
+    return (dispatch, getState) => {
+        dispatch(loading());
+        Axios.post(baseUrl + sellersAppointmentUri,data).then(response => {
+            console.log(response.data);
+            if(response.data.error){
+                dispatch(error(response.data));
+            }else{
+                dispatch(createAppointmentSuccess(response.data));
             }
 
         })

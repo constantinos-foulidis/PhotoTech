@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {navigationToggleButton as NavigationToggleButton} from '../NavigationGrafeio/NavigationGrafeio';
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
 import Calendar from 'react-calendar';
-import {getSeller} from '../../../store/actions/Grafeio/sallers';
+import {getSeller,createSellersAppointment} from '../../../store/actions/Grafeio/sallers';
 import SellersHeader from "../SellersHeader/sellersHeader";
 import Button from "react-bootstrap/Button";
 import "./SallersContent.css";
@@ -24,7 +24,16 @@ class SellersContent extends Component {
                ShowDetailedCalendar: false,
                date:new Date(2020,0,1),
                Month:null,
-               filteredAppointmets:null
+               year:null,
+               day:null,
+               filteredAppointmets:null,
+               name:null,
+               time:null,
+               schoolName:null,
+               email:null,
+               nameYpeuthinou:null,
+               PhoneYpeuthinou:null,
+               topothesia:null
              }
 
            }
@@ -32,8 +41,10 @@ class SellersContent extends Component {
     let temp=this.props.appointments;
 
   let test=  temp.filter(appointments => new Date(parseInt(appointments.year,10),parseInt(appointments.month,10)-1,parseInt(appointments.day,10)).toLocaleDateString() === date.toLocaleDateString() );
-    console.log(test);
-    this.setState({ date:date,filteredAppointmets:test });
+    const year=date.toLocaleDateString().substring(4,9).replace('/','');
+    const month=date.toLocaleDateString().substring(0,2).replace('/','');
+    const day=date.toLocaleDateString().substring(2,4).replace('/','');
+    this.setState({ date:date,filteredAppointmets:test,year:year,month:month,day:day});
   }
   handleAddnew = () => {
     console.log(this.props);
@@ -43,11 +54,60 @@ class SellersContent extends Component {
     });
 
   }
-
-
+  timeOnChangeHandler = event => {
+    event.persist();
+    console.log(event);
+    this.setState({ time: event.target.value});
+  }
+  SchoolnameOnChangeHandler = event => {
+    event.persist();
+    console.log(event);
+    this.setState({ schoolName: event.target.value});
+  }
+  TopothesiaOnChangeHandler = event => {
+    event.persist();
+    console.log(event);
+    this.setState({ topothesia: event.target.value});
+  }
+  nameYpeuthinouOnChangeHandler = event => {
+    event.persist();
+    console.log(event);
+    this.setState({ nameYpeuthinou: event.target.value});
+  }
+  PhoneYpeuthinouOnChangeHandler = event => {
+    event.persist();
+    console.log(event);
+    this.setState({ PhoneYpeuthinou: event.target.value});
+  }
+  emailOnChangeHandler = event => {
+    event.persist();
+    console.log(event);
+    this.setState({ email: event.target.value});
+  }
   NewAppointmentHandler = () => {
 
       this.setState({ShowDetailedCalendar:true});
+  }
+  NewAppointmentcall = () => {
+    if(this.state.schoolName != null && this.state.nameYpeuthinou != null && this.state.PhoneYpeuthinou != null && this.state.topothesia != null && this.state.email != null){
+      const appointment = {};
+      appointment.year = this.state.year;
+      appointment.month =this.state.month;
+      appointment.day = this.state.day;
+      appointment.time = this.state.time;
+      appointment.sellerid = this.props.sellers[0]._id;
+      appointment.school = this.state.schoolName;
+      appointment.NameResponse = this.state.nameYpeuthinou;
+      appointment.PhoneResponse=this.state.PhoneYpeuthinou;
+      appointment.email=this.state.email;
+      appointment.topothesh=this.state.topothesia;
+       console.log(appointment);
+
+      // this.props.updateProduct(product);
+      // this.props.history.goBack();
+      this.props.createSellersAppointment(appointment);
+   }
+
   }
   MonthChangeHandler = event => {
     event.persist();
@@ -70,15 +130,18 @@ class SellersContent extends Component {
     let sellers = null;
     let showSellers = null;
     let SpesificView = null;
-   let appointment=null;
-   
+    let appointment=null;
+
 
    if(this.state.filteredAppointmets !==null){
      console.log(this.state.filteredAppointmets);
     appointment = (
       this.state.filteredAppointmets.map((appointments,index) => (
-      <p className="smallText" key={index} >{appointments.time} δημοτικο σχολειο Αιγινιου</p>
-      )))
+        <div key={index}>
+      <p className="smallText" >{appointments.time}</p>
+      <p className="smallText" >{appointments.school}</p>
+      </div>
+    )))
    }
 
     if (this.props.sellers != null) {
@@ -95,13 +158,13 @@ class SellersContent extends Component {
       <Popover id="popover-basic arrow">
         <Popover.Content className="popoverWidth_Height detailSailler">
           <div className="smallText detailSailler" > Ημερομηνία : {this.state.date.toLocaleDateString()}</div>
-          <div className="smallText detailSailler" > Ωρα :</div>
-          <div className="smallText detailSailler" > Σxoleio : </div>
-          <div className="smallText detailSailler" > Topothesia : </div>
-          <div className="smallText detailSailler" > onoma ipefthinou : </div>
-          <div className="smallText detailSailler" > thl ipefthinou : </div>
-          <div className="smallText detailSailler" contentEditable="true" suppressContentEditableWarning={true}> email : </div>
-          <div>testSomething</div>
+          <div className="smallText detailSailler smallFormpop" > Ωρα :  <input type="time"style={{width: "70%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}} className="smallText detailSailler" name="name" onChange={this.timeOnChangeHandler} /> </div>
+          <div className="smallText detailSailler smallFormpop" > Σxoleio : <input type="text" style={{width: "70%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}}className="smallText detailSailler" name="name" onChange={this.SchoolnameOnChangeHandler}/>  </div>
+          <div className="smallText detailSailler smallFormpop" > Topothesia :   <input type="text"style={{width: "65%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}} className="smallText detailSailler " name="name" onChange={this.TopothesiaOnChangeHandler} /> </div>
+          <div className="smallText detailSailler smallFormpop" > onoma ipefthinou :  <input type="text" style={{width: "55%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}}className="smallText detailSailler " name="name" onChange={this.nameYpeuthinouOnChangeHandler}/>  </div>
+          <div className="smallText detailSailler smallFormpop" > thl ipefthinou :  <input type="number" className="smallText detailSailler pStyle" name="name"style={{width: "60%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}} onChange={this.PhoneYpeuthinouOnChangeHandler} /> </div>
+          <div className="smallText detailSailler smallFormpop" > email :  <input type="email" name="name" style={{width: "70%" ,height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden" }}className="smallText detailSailler" onChange={this.emailOnChangeHandler}/> </div>
+          <Button className="mb-3 mt-5" variant="info" onClick={this.NewAppointmentcall}>Νέο ραντεβού</Button>
         </Popover.Content>
       </Popover>
       );
@@ -188,6 +251,7 @@ class SellersContent extends Component {
     </React.Fragment>)
   };
 };
+
 const mapStateToProps = (state, props) => {
   return {
     sellers: state.sellers.filterSellers,
@@ -200,7 +264,8 @@ const mapStateToProps = (state, props) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    getSellers: (formdata) => dispatch(getSeller(formdata))
+    getSellers: (formdata) => dispatch(getSeller(formdata)),
+    createSellersAppointment:(data) => dispatch(createSellersAppointment(data))
   }
 };
 

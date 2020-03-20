@@ -28,7 +28,7 @@ class SellersHeader  extends Component {
               this.props.filterSeller(this.props.sellers[0].sellername);
          console.log("mpika");
             }
-          }, 200);
+          }, 1000);
   }
   render(){
     let sellers = [];

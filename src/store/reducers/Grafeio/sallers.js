@@ -26,6 +26,7 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.FILTER_CUSTOMERS:return filterCustomers(state,action.sellerCode);
         case actionTypes.GET_APPOINTMENTS:return setAppointments(state,action);
         case actionTypes.GET_CUSTOMERS:return setCustomers(state,action);
+          case actionTypes.CREATE_APPOINTMENT:return createdAppointment(state,action);
         default: return state;
     }
 }
@@ -79,6 +80,15 @@ const setSellers = (state, action) => {
       loading: false
     });
 };
+const createdAppointment = (state, action) => {
+  console.log("setCreatedAppointmet",action);
+    return updateObject(state, {
+      appointments:[...state.appointments,action.createdAppointment],
+      error: null,
+      loading: false
+    });
+};
+
 const setAppointments = (state, action) => {
   console.log("setAppointments",action);
     return updateObject(state, {
