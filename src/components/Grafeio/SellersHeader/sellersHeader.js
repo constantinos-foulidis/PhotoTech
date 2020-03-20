@@ -20,12 +20,21 @@ class SellersHeader  extends Component {
     });
 
   }
+  componentDidMount(){
+       setTimeout(() => {
+         if( this.props.customers !=null){
+              this.props.filterCustomers(this.props.sellers[0].sellername);
+         console.log("mpika");
+            }
+           }, 2000);
+  }
   render(){
     let sellers = [];
     let appointments=[];
     let showSellers = null;
     let customers = [];
     let header=null;
+    let noti=null;
     if(this.props.headertoShow ===undefined){
       header = (  <h1>Πωλητες:</h1>)
     }else{
@@ -40,23 +49,28 @@ class SellersHeader  extends Component {
        this.props.getCustomers();
        this.props.getSellers(sellerCode.toString());
 
+
      }else {
        sellers = this.props.sellers;
        appointments = this.props.appointments;
+       customers=this.props.newCustomers;
        //customers
      }
+
      console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
-     if( sellers!=null && appointments!=null){
+     if( sellers!=null && appointments!=null ){
 console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
+
         showSellers = sellers.map((sellers, index) => (
+
           <Dropdown key={index} className="center mr-5 " >
             <Dropdown.Toggle variant="secondary">
              {sellers.sellername}
             </Dropdown.Toggle>
             <Dropdown.Menu className="row">
              <Link className="dropdowncss" to="/office/sellers" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Ραντεβού</Link>
-              <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterCustomers(sellers.sellerCode)}}>-Πελάτες</Link>
-              <Link className="dropdowncss" to="/office/sellers/NeoiPellates" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Νέοι Πελάτες</Link>
+              <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterCustomers(sellers.sellername)}}>-Πελάτες</Link>
+              <Link className="dropdowncss" to="/office/sellers/NeoiPellates" onClick={() =>{this.props.filterCustomers(sellers.sellername)}}>-Νέοι Πελάτες {this.props.newCustomers!=null ? <div className="pl-2 pr-2 ml-2 bg-danger text-white d-inline rounded-circle">{this.props.newCustomers.length}</div>:"" }</Link>
               <Link className="dropdowncss" to="/office" onClick={() =>{ this.props.logout()}}  >-Πληρωμές Πωλητών</Link>
             </Dropdown.Menu>
           </Dropdown>
@@ -92,6 +106,8 @@ const mapStateToProps = (state, props) => {
     appointments:state.sellers.appointments,
     loading: state.sellers.loading,
     SellerCode: state.loginGrafeiou.SellerCode,
+    customers:state.sellers.customers,
+    newCustomers:state.sellers.newCustomers,
     error: state.sellers.error,
     ...props
   }

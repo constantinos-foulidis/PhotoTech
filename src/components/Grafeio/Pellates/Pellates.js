@@ -71,15 +71,15 @@ class Pellates extends Component {
               <th scope="col">Πωλητές</th>
               <th scope="col">Δυναμη</th>
               <th scope="col">Τιμή Πακέτου</th>
-                <th scope="col">Τμηματα</th>
-                <th scope="col">κινητο τηλεφωνο </th>
-                <th scope="col">τηλ σχολειου</th>
-                <th scope="col">αφμ</th>
-                <th scope="col">δου</th>
-                <th scope="col">email</th>
-                  <th scope="col">fax</th>
-                    <th scope="col">εκπροσοπος συλλογου</th>
-                      <th scope="col">Διευθηντης</th>
+              <th scope="col">Τμηματα</th>
+              <th scope="col">κινητο τηλεφωνο </th>
+              <th scope="col">τηλ σχολειου</th>
+              <th scope="col">αφμ</th>
+              <th scope="col">δου</th>
+              <th scope="col">email</th>
+              <th scope="col">fax</th>
+              <th scope="col">εκπροσοπος συλλογου</th>
+              <th scope="col">Διευθηντης</th>
             </tr>
           </thead>
           <tbody>

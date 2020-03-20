@@ -6,6 +6,7 @@ const initialState = {
     sellers: null,
     appointments:null,
     customers:null,
+    newCustomers:null,
     filterSellers:null,
     filterAppointments:null,
     filterCustomers:null,
@@ -22,7 +23,7 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.ERROR: return error(state, action.message);
         case actionTypes.FILTER_SELLER:return filterSeller(state,action.sellerName);
         case actionTypes.FILTER_APPOINTMENTS:return filterAppointments(state,action.sellerCode);
-          case actionTypes.FILTER_CUSTOMERS:return filterCustomers(state,action.sellerCode);
+        case actionTypes.FILTER_CUSTOMERS:return filterCustomers(state,action.sellerCode);
         case actionTypes.GET_APPOINTMENTS:return setAppointments(state,action);
         case actionTypes.GET_CUSTOMERS:return setCustomers(state,action);
         default: return state;
@@ -45,16 +46,30 @@ const filterAppointments = (state, sellerCode) => {
       Appointments:updateAppointments,
     });
 };
-const filterCustomers = (state, sellerCode) => {
-  console.log("inside reducer customers",sellerCode.toUpperCase());
+const filterCustomers = (state, sellerName) => {
+  console.log("inside reducer customers",sellerName.toUpperCase());
   state.filterCustomers=state.customers;
 console.log("inside reducer customers",state.customers);
-  let updateAppointments=state.filterCustomers.filter(customers => customers.sellerCode === sellerCode.toUpperCase() );
+  let updateAppointments=state.filterCustomers.filter(customers => customers.sellerName.toUpperCase() === sellerName.toUpperCase() );
   console.log("inside reducer customers",updateAppointments);
+  let temp = updateAppointments;
+  let newCustomers =  temp.filter((customers) => {
+      if(customers.createdAt != null){
+           return monthDiff(new Date(Date.now()),customers.createdAt) <= 2
+      }
+  } )
     return updateObject(state, {
       filterCustomers:updateAppointments,
+      newCustomers:newCustomers,
     });
 };
+
+function monthDiff(dateFrom, dateTo) {
+  let year = dateTo.substring(0,4);
+  let month= dateTo.substring(5,7);
+ return (parseInt(month)-1) - dateFrom.getMonth() +
+   (12 * (parseInt(year) - dateFrom.getFullYear()))
+}
 
 const setSellers = (state, action) => {
   console.log("setSeller",action);
@@ -74,6 +89,7 @@ const setAppointments = (state, action) => {
 };
 const setCustomers = (state, action) => {
   console.log("setCustomers",action);
+
     return updateObject(state, {
       customers:action.customers,
       error: null,
