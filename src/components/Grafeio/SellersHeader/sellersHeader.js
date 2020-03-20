@@ -24,9 +24,11 @@ class SellersHeader  extends Component {
        setTimeout(() => {
          if( this.props.customers !=null){
               this.props.filterCustomers(this.props.sellers[0].sellername);
+              this.props.filterAppointments(this.props.sellers[0].sellerCode);
+              this.props.filterSeller(this.props.sellers[0].sellername);
          console.log("mpika");
             }
-           }, 2000);
+          }, 200);
   }
   render(){
     let sellers = [];

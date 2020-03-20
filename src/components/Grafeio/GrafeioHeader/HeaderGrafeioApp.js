@@ -43,7 +43,7 @@ class HeaderGrafeioApp extends Component {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item href="#/action-1">{JSON.parse(localStorage.getItem('userName'))}</Dropdown.Item>
-          <Dropdown.Item href="/office" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
+          <Dropdown.Item href="/LoginOffice" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
     }
@@ -52,7 +52,7 @@ class HeaderGrafeioApp extends Component {
       <div className="Container">
         <div className="row align-middle">
           <div className="col">
-            <a href="/office/greeting">
+            <a href="/office/sellers/greeting">
             <img alt="logo" className="headerpic" src="/PhotoSc.png" />
             </a>
           </div>
