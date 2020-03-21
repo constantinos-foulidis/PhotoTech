@@ -11,6 +11,8 @@ import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
 import Calendar from 'react-calendar';
 import {getSeller} from '../../../store/actions/Grafeio/sallers';
 import SellersHeader from "../SellersHeader/sellersHeader";
+import ExportExcel from '../exportTOExcelPellates/exportTOExcelPellates';
+
 
 class Pellates extends Component {
            constructor(props){
@@ -100,9 +102,9 @@ class Pellates extends Component {
         </div>
         </div>
         <div className="col-auto">
-      <Button  variant="info">Εξαγωγη pdf</Button>
+    <ExportExcel  product={this.props.customers} />
       </div>
-      <div className="col">
+      <div className="col offset-2">
     <Button  variant="info">Εκτύπωση</Button>
     </div>
         </div>
