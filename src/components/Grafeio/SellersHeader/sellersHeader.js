@@ -73,7 +73,7 @@ console.log("insideSeelers",JSON.parse(localStorage.getItem('officeLogedin')));
              <Link className="dropdowncss" to="/office/sellers" onClick={() =>{this.props.filterSeller(sellers.sellername);this.props.filterAppointments(sellers.sellerCode)}}>-Ραντεβού</Link>
               <Link className="dropdowncss" to="/office/sellers/Pellates" onClick={() =>{this.props.filterCustomers(sellers.sellername)}}>-Πελάτες</Link>
               <Link className="dropdowncss" to="/office/sellers/NeoiPellates" onClick={() =>{this.props.filterCustomers(sellers.sellername)}}>-Νέοι Πελάτες {this.props.newCustomers!=null ? <div className="pl-2 pr-2 ml-2 bg-danger text-white d-inline rounded-circle">{this.props.newCustomers.length}</div>:"" }</Link>
-              <Link className="dropdowncss" to="/office" onClick={() =>{ this.props.logout()}}  >-Πληρωμές Πωλητών</Link>
+              <Link className="dropdowncss" to="/office/sellers/pliromesPoliton" onClick={() =>{this.props.filterCustomers(sellers.sellername)}}  >-Πληρωμές Πωλητών</Link>
             </Dropdown.Menu>
           </Dropdown>
 
