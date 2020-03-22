@@ -12,6 +12,7 @@ import Calendar from 'react-calendar';
 import {getSeller} from '../../../store/actions/Grafeio/sallers';
 import SellersHeader from "../SellersHeader/sellersHeader";
 import ExportExcel from '../exportTOExcelPellates/exportTOExcelPellates';
+import {getCustomers} from '../../../store/actions/Grafeio/sallers';
 
 
 class Pellatologio extends Component {
@@ -25,7 +26,16 @@ class Pellatologio extends Component {
              }
 
            }
-
+  componentDidMount(){
+    this.props.getCustomers();
+  }
+  handleAddNewScool=()=>{
+    console.log(this.props);
+    this.props.history.push({
+      pathname: "/office/addNewScool",
+      //state: {username: this.state.username}
+    });
+  }
   render() {
  let showPellates=null;
  if(this.props.customers!=null){
@@ -47,15 +57,18 @@ class Pellatologio extends Component {
    }))
  }
     return (<React.Fragment>
+
       <NavigationGrafeio/>
      <NavigationToggleButton/>
+
       <div className="container mt-5 offset-3">
+          <h1 className="offset-3 mb-5">Πελατολόγιο</h1>
         <div className="row mb-4">
             <div className="col-auto">
               <Button  variant="info">Λίστα σχολείων</Button>
             </div>
             <div className="col-auto">
-            <Button  variant="info">Προσθήκη Σχολείου</Button>
+            <Button  variant="info" onClick={this.handleAddNewScool}>Προσθήκη Σχολείου</Button>
             </div>
             <div className="col offset-3">
               <Button className="mb-1" variant="info">αλφαβητικά</Button>
@@ -123,7 +136,7 @@ class Pellatologio extends Component {
 const mapStateToProps = (state, props) => {
   return {
     sellers: state.sellers.filterSellers,
-    customers: state.sellers.filterCustomers,
+    customers: state.sellers.customers,
     loading: state.sellers.loading,
     SellerCode: state.loginGrafeiou.SellerCode,
     error: state.sellers.error,
@@ -132,7 +145,7 @@ const mapStateToProps = (state, props) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    getSellers: (formdata) => dispatch(getSeller(formdata))
+      getCustomers: () => dispatch(getCustomers())
   }
 };
 
