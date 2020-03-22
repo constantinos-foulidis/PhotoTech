@@ -6,6 +6,7 @@ import HeaderGrafeioApp from "../GrafeioHeader/HeaderGrafeioApp";
 import SellersHeader from "../SellersHeader/sellersHeader";
 import SallersContent from "../Sallers/SallersContent";
 import Pellates from "../Pellates/Pellates";
+import Pellatologio from "../Pellatologio/Pellatologio";
 import NeoiPellates from "../Pellates/NeoiPellates";
 import PliromesPoliton from "./PliromesPoliton";
 import { Switch,Route } from "react-router-dom";
@@ -24,6 +25,7 @@ const Sallers = (props) => {
         <Route  exact path="/office/sellers/pliromesPoliton" component={PliromesPoliton}/>
         <Route  path="/office/sellers/add" component={SellersHeader}/>
         <Route  path="/office/sellers/id" component={SellersHeader}/>
+        <Route  exact path="/office/pellatologio" component={Pellatologio}/>
         </Switch>
       </Row>
       </>

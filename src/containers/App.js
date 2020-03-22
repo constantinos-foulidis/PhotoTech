@@ -16,8 +16,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={MainMenu} />
           <Route path="/recource" component={ResourceProgramMenu} />
-          <Route exact path="/LoginOffice" component={LoginGrafeiou} />        
-          <Route path="/office/sellers" component={Sallers} />
+          <Route exact path="/LoginOffice" component={LoginGrafeiou} />
+          <Route path="/office" component={Sallers} />
           <Route path="/simple_user" component={Login} />
           <Route component={(props) => <p>Page Not Found</p>} />
         </Switch>

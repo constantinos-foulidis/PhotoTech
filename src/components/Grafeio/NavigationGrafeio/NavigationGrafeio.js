@@ -43,7 +43,7 @@ handleSellers (){
               <Dropdown.Menu className="dropDownColor spesificDropdown">
                 <Link
                   to="/office/sellers"
-                
+
                 >
                   -Ραντεβού
                 </Link>
@@ -90,7 +90,7 @@ handleSellers (){
                 Πελατολόγιο
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropDownColor spesificDropdown">
-                <Link to="/recource/user_management">-Διαχείριση</Link>
+                <Link to="/office/pellatologio">-Διαχείριση</Link>
                 <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
               </Dropdown.Menu>
             </Dropdown>
