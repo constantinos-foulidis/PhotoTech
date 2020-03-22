@@ -7,6 +7,7 @@ const initialState = {
     appointments:null,
     customers:null,
     newCustomers:null,
+    customersByYear:null,
     filterSellers:null,
     filterAppointments:null,
     filterCustomers:null,
@@ -26,7 +27,8 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.FILTER_CUSTOMERS:return filterCustomers(state,action.sellerCode);
         case actionTypes.GET_APPOINTMENTS:return setAppointments(state,action);
         case actionTypes.GET_CUSTOMERS:return setCustomers(state,action);
-          case actionTypes.CREATE_APPOINTMENT:return createdAppointment(state,action);
+        case actionTypes.CREATE_APPOINTMENT:return createdAppointment(state,action);
+        case actionTypes.FILTER_CUSTOMERS_BY_YEAR:return filterCustomersByYear(state,action);
         default: return state;
     }
 }
@@ -63,6 +65,22 @@ console.log("inside reducer customers",state.customers);
       filterCustomers:updateAppointments,
       newCustomers:newCustomers,
     });
+};
+const filterCustomersByYear = (state) => {
+  state.customersByYear=state.customers;
+  let updateAppointments=state.customersByYear.filter((customers) =>{
+    if(customers.createdAt != null){
+      console.log((new Date(Date.now())).getFullYear());
+      console.log(customers.createdAt.substring(0,4));
+      console.log((new Date(Date.now())).getFullYear() === parseInt((customers.createdAt.substring(0,4))));
+          return (new Date(Date.now())).getFullYear() === parseInt((customers.createdAt.substring(0,4)))
+     }
+  }
+  );
+  console.log("filter by year",updateAppointments);
+  return updateObject(state, {
+    customersByYear:updateAppointments,
+  });
 };
 
 function monthDiff(dateFrom, dateTo) {

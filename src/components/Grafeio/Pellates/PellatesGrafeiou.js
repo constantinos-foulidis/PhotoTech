@@ -9,13 +9,12 @@ import Button from "react-bootstrap/Button";
 import {navigationToggleButton as NavigationToggleButton} from '../NavigationGrafeio/NavigationGrafeio';
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
 import Calendar from 'react-calendar';
-import {getSeller,getCustomers} from '../../../store/actions/Grafeio/sallers';
+import {getSeller,getCustomers,filterCustomersByYear} from '../../../store/actions/Grafeio/sallers';
 import SellersHeader from "../SellersHeader/sellersHeader";
 import ExportExcel from '../exportTOExcelPellates/exportTOExcelPellates';
 
 
-
-class Pellatologio extends Component {
+class PellatesGrafeiou extends Component {
            constructor(props){
              super(props);
 
@@ -26,16 +25,14 @@ class Pellatologio extends Component {
              }
 
            }
-  componentDidMount(){
-    this.props.getCustomers();
-  }
-  handleAddNewScool=()=>{
-    console.log(this.props);
-    this.props.history.push({
-      pathname: "/office/addNewScool",
-      //state: {username: this.state.username}
-    });
-  }
+           componentDidMount(){
+             this.props.getCustomers();
+
+             setTimeout(() => {
+               this.props.filterCustomersByYear();
+                }, 1000);
+           }
+
   render() {
  let showPellates=null;
  if(this.props.customers!=null){
@@ -44,6 +41,10 @@ class Pellatologio extends Component {
        <tr key={index}>
          <td>{customer.nomos}</td>
          <td>{customer.schoolName}</td>
+         <td>{customer.sellerName}</td>
+         <td>{customer.dinami}</td>
+         <td>{customer.packetCost}</td>
+         <td>{customer.tmhmata}</td>
          <td>{customer.mobilePhone}</td>
          <td>{customer.schoolPhone}</td>
          <td>{customer.afm}</td>
@@ -57,53 +58,41 @@ class Pellatologio extends Component {
    }))
  }
     return (<React.Fragment>
-
       <NavigationGrafeio/>
      <NavigationToggleButton/>
-
-      <div className="container mt-5 offset-3">
-          <h1 className="offset-3 mb-5">Πελατολόγιο</h1>
-        <div className="row mb-4">
-            <div className="col-auto">
-              <Button  variant="info">Λίστα σχολείων</Button>
-            </div>
-            <div className="col-auto">
-            <Button  variant="info" onClick={this.handleAddNewScool}>Προσθήκη Σχολείου</Button>
-            </div>
-            <div className="col offset-3">
-              <Button className="mb-1" variant="info">αλφαβητικά</Button>
-            </div>
-        </div>
+      <div className="container mb-5 offset-3">
+          <h1 className="offset-3 mb-5">Πελάτες</h1>
         <div className="row">
-        <div className="col">
-          <Button  variant="info">Ολα</Button>
+            <div className="col-auto">
+              <Button  variant="info">Κανονικοι Πελάτες</Button>
+            </div>
+            <div className="col-auto">
+            <Button  variant="info">Ειδικοί Πελάτες</Button>
+            </div>
+            <div className="col-auto">
+              <Button className="mb-1" variant="info">Συμβολαια που απορριφθηκαν</Button>
+            </div>
         </div>
-        <div className="col">
-          <Button  variant="info">Blacklist</Button>
-        </div>
-        <div className="col">
-          <Button  variant="info">Εξαγωγή pdf</Button>
-        </div>
-        <div className="col">
-          <Button  variant="info">Εκτύπωση</Button>
-        </div>
-        <div className="col">
-          <Button  variant="info">Εξαγωγή σε excel</Button>
-        </div>
+        <div className="row offset-3">
+           <Button className="mb-1" variant="info">αλφαβητικά</Button>
         </div>
         <div className="row">
         <table className="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">Νομός</th>
+              <th scope="col">Τοποθεσία</th>
               <th scope="col">Σχολείο</th>
-              <th scope="col">Τηλ Σχολείου</th>
-              <th scope="col">Εκπρ Συλλογου</th>
-              <th scope="col">Τηλ Εκπρ</th>
+              <th scope="col">Πωλητές</th>
+              <th scope="col">Δυναμη</th>
+              <th scope="col">Τιμή Πακέτου</th>
+              <th scope="col">Τμηματα</th>
+              <th scope="col">κινητο τηλεφωνο </th>
+              <th scope="col">τηλ σχολειου</th>
               <th scope="col">αφμ</th>
               <th scope="col">δου</th>
               <th scope="col">email</th>
               <th scope="col">fax</th>
+              <th scope="col">εκπροσοπος συλλογου</th>
               <th scope="col">Διευθηντης</th>
             </tr>
           </thead>
@@ -112,31 +101,33 @@ class Pellatologio extends Component {
           </tbody>
         </table>
       </div>
-      <h5>Στοιχεία σχολείου</h5>
         <div className="row">
-          <div className="col-1">
-           <p>'Ονομα</p>
-          </div>
-          <div className="col-3">
-          <input  className="h-50" type="text" placeholder="Fullname" value={this.state.fullName} onChange={this.handleFullname}/>
-          </div>
-         </div>
-         <div className="row">
-             <div className="col-1">
-          <p>'Διεύθυνση</p>
-              </div>
-              <div className="col-3">
-         <input  className="h-50" type="text" placeholder="Fullname" value={this.state.fullName} onChange={this.handleFullname}/>
-              </div>
-         </div>
-       </div>
+          <div className="col-auto border text-center p-4 dropDownColor offset-2">
+          <h5 className="mb-5">Συμβόλαιο</h5>
+          <div className="row">
+          <div className="col">
+        <Button  variant="info">Απόριψη</Button>
+        </div>
+        <div className="col">
+      <Button  variant="info">Αποθήκευση</Button>
+      </div>
+        </div>
+        </div>
+        <div className="col-auto">
+    <ExportExcel  product={this.props.customers} />
+      </div>
+      <div className="col offset-2">
+    <Button  variant="info">Εκτύπωση</Button>
+    </div>
+        </div>
+      </div>
     </React.Fragment>)
   };
 };
 const mapStateToProps = (state, props) => {
   return {
     sellers: state.sellers.filterSellers,
-    customers: state.sellers.customers,
+    customers: state.sellers.customersByYear,
     loading: state.sellers.loading,
     SellerCode: state.loginGrafeiou.SellerCode,
     error: state.sellers.error,
@@ -145,8 +136,9 @@ const mapStateToProps = (state, props) => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-      getCustomers: () => dispatch(getCustomers())
+    getCustomers: () => dispatch(getCustomers()),
+    filterCustomersByYear:() => dispatch(filterCustomersByYear())
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pellatologio);
+export default connect(mapStateToProps, mapDispatchToProps)(PellatesGrafeiou);

@@ -5,10 +5,11 @@ import Row from 'react-bootstrap/Row';
 import HeaderGrafeioApp from "../GrafeioHeader/HeaderGrafeioApp";
 import SellersHeader from "../SellersHeader/sellersHeader";
 import SallersContent from "../Sallers/SallersContent";
-import Pellates from "../Pellates/Pellates";
+import Pellates from "../PellatesUnderSaller/Pellates";
 import AddNewPellath from "../Pellatologio/addNewPellath";
 import Pellatologio from "../Pellatologio/Pellatologio";
-import NeoiPellates from "../Pellates/NeoiPellates";
+import NeoiPellates from "../PellatesUnderSaller/NeoiPellates";
+import PellatesGrafeiou from "../Pellates/PellatesGrafeiou";
 import PliromesPoliton from "./PliromesPoliton";
 import { Switch,Route } from "react-router-dom";
 import greetingGrafeio from "../Grafeio_Greeting/greetingGrafeio";
@@ -27,7 +28,8 @@ const Sallers = (props) => {
         <Route  path="/office/sellers/add" component={SellersHeader}/>
         <Route  path="/office/sellers/id" component={SellersHeader}/>
         <Route  exact path="/office/pellatologio" component={Pellatologio}/>
-          <Route  exact path="/office/addNewScool" component={AddNewPellath}/>
+        <Route  exact path="/office/addNewScool" component={AddNewPellath}/>
+          <Route  exact path="/office/PellatesGrafeiou" component={PellatesGrafeiou}/>
 
         </Switch>
       </Row>

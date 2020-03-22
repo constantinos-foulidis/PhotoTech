@@ -21,14 +21,14 @@ class SellersHeader  extends Component {
 
   }
   componentDidMount(){
-       setTimeout(() => {
-         if( this.props.customers !=null){
-              this.props.filterCustomers(this.props.sellers[0].sellername);
-              this.props.filterAppointments(this.props.sellers[0].sellerCode);
-              this.props.filterSeller(this.props.sellers[0].sellername);
-         console.log("mpika");
-            }
-          }, 1000);
+       // setTimeout(() => {
+       //   if( this.props.customers !=null){
+       //        this.props.filterCustomers(this.props.sellers[0].sellername);
+       //        this.props.filterAppointments(this.props.sellers[0].sellerCode);
+       //        this.props.filterSeller(this.props.sellers[0].sellername);
+       //   console.log("mpika");
+       //      }
+       //    }, 1000);
   }
   render(){
     let sellers = [];
