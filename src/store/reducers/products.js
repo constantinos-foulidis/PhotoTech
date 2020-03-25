@@ -9,6 +9,7 @@ const initialState = {
     error: null,
     success: false,
     productSpecks: null,
+    cart:[],
 }
 let allProducts=null;
 const productsReducer = (state = initialState, action) => {
@@ -24,6 +25,8 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.ERROR: return error(state, action.message);
         case actionTypes.PRODUCTSID: return setProductSpecks(state, action.product);
         case actionTypes.FILTER_PRODUCT_BY_SEARCH_BAR: return filterProductBySearchbar(state, action.productCategory);
+        case actionTypes.ADD_TO_CART: return add2Cart(state, action.product);
+        case actionTypes.REMOVE_FROM_CART: return deleteFromCart(state, action.product);
         default: return state;
     }
 }
@@ -57,6 +60,23 @@ const addProduct = (state, product) => {
         success: true,
         loading: false,
         error: null,
+    }
+};
+const add2Cart = (state, product) => {
+  console.log("cart reducer",product);
+    return {
+        ...state,
+        cart: [...state.cart, product],
+        success: true,
+        loading: false,
+        error: null,
+    }
+};
+const deleteFromCart = (state, productId) => {
+    console.log("[products reducer] state.products: ", state.products);
+    return {
+        ...state,
+        cart: state.cart.filter((product) => product.productCode !== productId)
     }
 };
 

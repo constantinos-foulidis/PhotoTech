@@ -77,7 +77,7 @@ handleSellers (){
                 Προιόντα
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropDownColor spesificDropdown">
-                <Link to="/recource/user_management">-Διαχείριση</Link>
+                <Link to="/office/ProductsGrafeiou">-Διαχείριση</Link>
                 <Link to="/recource/user_management/add">-Προσθήκη νέου</Link>
               </Dropdown.Menu>
             </Dropdown>

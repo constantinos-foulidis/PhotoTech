@@ -14,9 +14,19 @@ class productsGrafeiou  extends Component {
 
       this.state = {
         productForDelete:'',
+        number:1
+
 
       };
 
+    }
+    quantityHandler = (event) =>{
+       this.setState({number:event.target.value});
+    }
+    add2Cart = (product) => {
+
+      this.props.addtoCart(product);
+     console.log(product);
     }
 render() {
   let imagePath = "/PhotoSc.png";
@@ -61,27 +71,32 @@ render() {
             ].join("");
             return (
               <div key={product.productCode} className="col-auto">
-              <div className="card cardWidth ml-5 mb-3">
+              <div className="card cardWidth ml-5">
                 <img
                   alt="logo"
                   className="card-img-top imgWidth onHoverEfect"
                   src={imagePath}
-                  onClick={this.props.Specified}
                 />
                 <div className="card-body text-center onHoverEfect">
                   <h5 className="card-title titleCardFontSize" onClick={this.props.Specified}>
                     {product.productDetail}
                   </h5>
-                  <p className="card-text">
+                  <p className="smallText ">
                     Διαθεσιμότητα : {product.productQuantity}
                   </p>
-                  <p className="card-text border-bottom">
+                  <p className="smallText">
                     Κωδικός : {product.productCode}
+                  </p>
+                  <p className="smallText ">
+                    Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
+                  </p>
+                  <p className="smallText border-bottom ">
+                    Τάξεις : {product.productOrder}
                   </p>
                   <Button
                     className="productItembtn mb-2"
                     variant="info"
-                    onClick={this.props.Specified}
+                    onClick={() => this.add2Cart(product)}
                   >
                     Προσθήκη στο πακέτο
                   </Button>
@@ -108,7 +123,8 @@ const mapDispatchToProps = dispatch => {
   return {
     delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
     getProducts: () => dispatch(actions.getProducts()),
-    setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks))
+    setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks)),
+    addtoCart: (product) => dispatch(actions.addtoCart(product))
   }
 }
 

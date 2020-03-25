@@ -16,6 +16,8 @@ export const PRODUCTSID = "PRODUCTSID";
 export const LOADING = 'LOADING';
 export const ERROR = 'ERROR';
 export const FILTER_PRODUCT_BY_SEARCH_BAR = 'FILTER_PRODUCT_BY_SEARCH_BAR';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 
 export const getProducts = () => {
@@ -109,7 +111,7 @@ export const ProductUpdated = (product) => {
             if (getState().products.products === null) {
                 dispatch(getProducts());
             } else {
-          
+
                //TODO UPDATE ALL LIST
                 dispatch(updateProduct(response.data.data));
             }
@@ -129,6 +131,20 @@ export const filterProducts = (productCategory) => {
   return {
       type: FILTER_PRODUCT,
       productCategory: productCategory,
+  }
+}
+export const addtoCart = (product) => {
+  console.log("add2Cart",product);
+  return {
+      type: ADD_TO_CART,
+      product: product,
+  }
+}
+export const removFromCart = (product) => {
+  console.log("add2Cart",product);
+  return {
+      type: REMOVE_FROM_CART,
+      product: product,
   }
 }
 export const filterProductsSubcategory = (productSubcategory) => {
