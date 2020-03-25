@@ -73,7 +73,7 @@ class PellatesGrafeiou extends Component {
               <Button className="mb-1" variant="info">Συμβολαια που απορριφθηκαν</Button>
             </div>
         </div>
-        <div className="row offset-3">
+        <div className="row offset-8">
            <Button className="mb-1" variant="info">αλφαβητικά</Button>
         </div>
         <div className="row">

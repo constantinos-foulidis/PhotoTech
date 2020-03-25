@@ -10,6 +10,7 @@ import AddNewPellath from "../Pellatologio/addNewPellath";
 import Pellatologio from "../Pellatologio/Pellatologio";
 import NeoiPellates from "../PellatesUnderSaller/NeoiPellates";
 import PellatesGrafeiou from "../Pellates/PellatesGrafeiou";
+import ProductsGrafeiou from "../Products/ProductsGrafeiou";
 import PliromesPoliton from "./PliromesPoliton";
 import { Switch,Route } from "react-router-dom";
 import greetingGrafeio from "../Grafeio_Greeting/greetingGrafeio";
@@ -25,6 +26,7 @@ const Sallers = (props) => {
         <Route  exact path="/office/sellers/Pellates" component={Pellates}/>
         <Route  exact path="/office/sellers/NeoiPellates" component={NeoiPellates}/>
         <Route  exact path="/office/sellers/pliromesPoliton" component={PliromesPoliton}/>
+        <Route  exact path="/office/ProductsGrafeiou" component={ProductsGrafeiou}/>
         <Route  path="/office/sellers/add" component={SellersHeader}/>
         <Route  path="/office/sellers/id" component={SellersHeader}/>
         <Route  exact path="/office/pellatologio" component={Pellatologio}/>
