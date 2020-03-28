@@ -2,6 +2,17 @@
   --navcover-z-index: 99;
   --sidenav-z-index: 100;
 }
+.linkItemForDrawer{
+      padding: 1%;
+      background-color: #117a8b;
+      padding: 1% !important;
+      text-align: center;
+      width: 80%;
+      color: white !important;
+      left: 10%;
+      position: relative;
+      border-radius: 7px;
+}
 .categoryNavigation{
   position: absolute;
   left: 0px;
