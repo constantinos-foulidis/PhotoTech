@@ -4,7 +4,7 @@ import MainMenu from "./MainMenu/MainMenu";
 import ResourceProgramMenu from "./ResourceProgram/ResourceProgramMenu/ResourceProgramMenu";
 import Login from "../components/Login/Login";
 import LoginGrafeiou from "../components/LoginGrafeiou/LoginGrafeiou";
-import greetingGrafeio from "../components/Grafeio/Grafeio_Greeting/greetingGrafeio";
+
 import Sallers from "../components/Grafeio/Sallers/sallers";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -16,8 +16,7 @@ function App() {
           <Route exact path="/" component={MainMenu} />
           <Route path="/recource" component={ResourceProgramMenu} />
           <Route exact path="/LoginOffice" component={LoginGrafeiou} />
-          <Route exact path="/office/greeting" component={greetingGrafeio} />
-          <Route path="/office/sellers" component={Sallers} />
+          <Route path="/office" component={Sallers} />
           <Route path="/simple_user" component={Login} />
           <Route component={props => <p>Page Not Found</p>} />
         </Switch>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {login,logout} from '../../../store/actions/LoginGrafeio/loginGrafeio';
 import {filterProductsBySearchBar} from '../../../store/actions/products';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
 
 class HeaderGrafeioApp extends Component {
@@ -26,33 +27,39 @@ class HeaderGrafeioApp extends Component {
     this.setState({search: event.target.value});
     //this.props.filterProductsBySearchBar(event.target.value);
   }
-  mainProducts() {
+  cartHandler= () => {
+    this.props.history.push({
+    pathname: "/office/ProductsGrafeiou/cart",
 
+  });
   }
 
   render() {
     let user = null;
     let profile = null;
+    let cart=null;
 
     if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
       user = (<input className="appHeaderInput mr-5 w-100" type="text" placeholder="Search" value={this.state.search} onChange={this.handleSearch}/>)
-
+      console.log(this.props);
       profile = (<Dropdown className="center">
         <Dropdown.Toggle >
           <img className="appheaderProfile" variant="secondary" alt="logo" src="/profile.png"/>
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item href="#/action-1">{JSON.parse(localStorage.getItem('userName'))}</Dropdown.Item>
-          <Dropdown.Item href="/office" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
+          <Dropdown.Item href="/LoginOffice" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
+       if(this.props.location.pathname === "/office/ProductsGrafeiou")
+      cart= (<img alt="logo" className="headerpic text-right" onClick={this.cartHandler} src="/shop.png" />)
     }
 
     return (<header className="App-header shadow p-3 mb-2 ">
       <div className="Container">
         <div className="row align-middle">
           <div className="col">
-            <a href="/office/greeting">
+            <a href="/office/sellers/greeting">
             <img alt="logo" className="headerpic" src="/PhotoSc.png" />
             </a>
           </div>
@@ -61,6 +68,9 @@ class HeaderGrafeioApp extends Component {
           </div>
           <div className="col">
             {profile}
+          </div>
+          <div className="col">
+            {cart}
           </div>
         </div>
       </div>
@@ -84,4 +94,4 @@ const mapDispatchToProps = dispatch => {
    filterProductsBySearchBar: (productCategory) => dispatch(filterProductsBySearchBar(productCategory))
   }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderGrafeioApp);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderGrafeioApp));

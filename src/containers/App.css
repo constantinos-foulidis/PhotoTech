@@ -12,3 +12,6 @@
   margin-bottom: calc(((110px - 2 * 1rem) / 2) - (48px / 2));
   margin-top: calc(((110px - 2 * 1rem) / 2) - (48px / 2));
 }
+.smallText{
+  font-size: small;
+}

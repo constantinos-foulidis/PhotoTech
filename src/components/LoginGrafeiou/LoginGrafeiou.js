@@ -62,11 +62,20 @@ class LoginGrafeiou extends Component {
         username: this.props.username
       });
     }
-    //  if(this.props.isAdmin === false ){
-    //    this.props.history.push({
-    //      pathname: "/recource/products",
-    //    });
-    //  }
+
+     if(this.props.isLogedIn!== false){
+       console.log(this.props.isAdmin);
+       this.props.history.push({
+         pathname: "/office/sellers/greeting",
+         username:this.props.username
+       });
+   }
+  //  if(this.props.isAdmin === false ){
+  //    this.props.history.push({
+  //      pathname: "/recource/products",
+  //    });
+  //  }
+
 
     return (
       <>
