@@ -38,7 +38,7 @@ render() {
    }else {
      products = this.props.products;
      cart = (
-         this.props.cart.map((product) => {
+         this.props.cart.map((product,index) => {
          //  imagePath = props.product.originalname;
          const port = ":4040";
          imagePath = [
@@ -47,7 +47,7 @@ render() {
            product.originalname.slice(22)
          ].join("");
          return (
-           <div key={product.productCode} >
+           <div key={index} >
             <h5>{product.productCategory}</h5>
                <div className="row">
                   <div className="col">
@@ -74,7 +74,7 @@ render() {
                       </p>
                       </div>
                       <div className="col">
-                        <img alt="logo" className="w-20 onHoverEfect" src="/delete.png"style={{width : "20%"}}/>
+                        <img alt="logo" className="w-20 onHoverEfect" src="/delete.png"style={{width : "20%"}} onClick={() => {this.props.deleteCart(product._id)}}/>
                       </div>
                       </div>
                       <div className="row">
@@ -131,7 +131,8 @@ const mapDispatchToProps = dispatch => {
     delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
     getProducts: () => dispatch(actions.getProducts()),
     setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks)),
-    addtoCart: (product) => dispatch(actions.addtoCart(product))
+    addtoCart: (product) => dispatch(actions.addtoCart(product)),
+    deleteCart: (product) => dispatch(actions.removFromCart(product))
   }
 }
 
