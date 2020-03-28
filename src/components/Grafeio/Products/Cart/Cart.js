@@ -47,50 +47,50 @@ render() {
            product.originalname.slice(22)
          ].join("");
          return (
-           <div key={product.productCode} className="border">
-           <div className="col">
-             <img
-               alt="logo"
-               className="w-20"
-               src={imagePath}
-             />
-             </div>
-             <div className="col">
-
-                <div className="col">
-                <h5 onClick={this.props.Specified}>
-                  {product.productDetail}
-                </h5>
-                <p className="smallText ">
-                  Διαθεσιμότητα : {product.productQuantity}
-                </p>
-                <p className="smallText">
-                  Κωδικός : {product.productCode}
-                </p>
-                <p className="smallText border-bottom ">
-                  Υποκατηγορία : {product.productSubcategory}
-                </p>
-                <div className="row">
-                <div className="col">
-                <p className="smallText ">
-                  Τάξεις : {product.productOrder}
-                </p>
-                </div>
-                <div className="col text-right">
-                <img
-                  alt="logo"
-                  className="w-20 onHoverEfect"
-                  src="/delete.png"
-                />
-                </div>
+           <div key={product.productCode} >
+            <h5>{product.productCategory}</h5>
+               <div className="row">
+                  <div className="col">
+                    <img
+                      alt="logo"
+                      style={{width : "80%"}}
+                      src={imagePath}
+                    />
+                  </div>
+                  <div className="col">
+                    <div className="row">
+                      <div className="col">
+                      <h5 onClick={this.props.Specified}>
+                        {product.productDetail}
+                      </h5>
+                      <p className="smallText ">
+                        Διαθεσιμότητα : {product.productQuantity}
+                      </p>
+                      <p className="smallText">
+                        Κωδικός : {product.productCode}
+                      </p>
+                      <p className="smallText border-bottom ">
+                        Υποκατηγορία : {product.productSubcategory}
+                      </p>
+                      </div>
+                      <div className="col">
+                        <img alt="logo" className="w-20 onHoverEfect" src="/delete.png"style={{width : "20%"}}/>
+                      </div>
+                      </div>
+                      <div className="row">
+                       <div className="col">
+                         <p className="smallText ">
+                           Τάξεις : {product.productOrder}
+                         </p>
+                       </div>
+                       <div className="col">
+                         <p className="smallText ">
+                           Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
+                         </p>
+                       </div>
+                       </div>
+                  </div>
                </div>
-               <div className="col">
-               <p className="smallText ">
-                 Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
-               </p>
-               </div>
-               </div>
-             </div>
            </div>
          );
        }));

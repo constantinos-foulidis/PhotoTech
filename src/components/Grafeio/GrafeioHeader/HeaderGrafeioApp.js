@@ -38,6 +38,7 @@ class HeaderGrafeioApp extends Component {
     let user = null;
     let profile = null;
     let cart=null;
+    let index=null;
 
     if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
       user = (<input className="appHeaderInput mr-5 w-100" type="text" placeholder="Search" value={this.state.search} onChange={this.handleSearch}/>)
@@ -51,8 +52,17 @@ class HeaderGrafeioApp extends Component {
           <Dropdown.Item href="/LoginOffice" onClick={() =>{ this.props.logout()}}  >Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>)
-       if(this.props.location.pathname === "/office/ProductsGrafeiou")
-      cart= (<img alt="logo" className="headerpic text-right" onClick={this.cartHandler} src="/shop.png" />)
+       if(this.props.location.pathname === "/office/ProductsGrafeiou"){
+         if(this.props.cart.length>0){
+            index=( <p className="pl-2 pr-2 ml-2 bg-danger text-white d-inline rounded-circle">{this.props.cart.length}</p>)
+         }
+       cart= (
+        <div>
+        <img alt="logo" style={{width:"20%",textAlign:"left",top:"55%"}} onClick={this.cartHandler} src="/shop.png" />
+        {index}
+         </div>
+    )
+  }
     }
 
     return (<header className="App-header shadow p-3 mb-2 ">
@@ -81,6 +91,7 @@ const mapStateToProps = (state, props) => {
   return {
     userName: state.login.userName,
     isAdmin: state.login.isAdmin,
+    cart: state.products.cart,
     isLogedIn: state.login.isLogedIn,
     loading: state.login.loading,
     error: state.login.error,
