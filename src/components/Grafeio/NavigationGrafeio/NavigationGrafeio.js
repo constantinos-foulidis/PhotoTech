@@ -33,7 +33,7 @@ handleSellers (){
             <Link className="linkItemForDrawer mb-3" to="/office/ProductsGrafeiou">Προιόντα</Link>
             <Link className="linkItemForDrawer mb-3" to="/office/pellatologio">Πελατολόγιο</Link>
             <Link className="linkItemForDrawer mb-3" to="/office/pellatologio">Παραστατικά</Link>
-            <Link className="linkItemForDrawer mb-3" to="/office/pellatologio">Φωτογράφοι</Link>
+            <Link className="linkItemForDrawer mb-3" to="/office/Photografers">Φωτογράφοι</Link>
             <Link className="linkItemForDrawer mb-3" to="/office/pellatologio">Αναφορά παραγγελιών</Link>
             <Link className="linkItemForDrawer mb-3" to="/office/pellatologio">Εισπραξεις</Link>
             <Link className="linkItemForDrawer mb-3" to="/office/PellatesGrafeiou">Πελάτες</Link>

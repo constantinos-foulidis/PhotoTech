@@ -29,3 +29,6 @@ export const FILTER_CUSTOMERS = "FILTER_CUSTOMERS";
 export const FILTER_CUSTOMERS_BY_YEAR = "FILTER_CUSTOMERS_BY_YEAR";
 export const ERROR = "ERROR";
 export const LOADING = "LOADING";
+//Photografers
+export const GET_PHOTOGRAFERS = "GET_PHOTOGRAFERS";
+export const FILTER_PHOTO = "FILTER_PHOTO";
