@@ -12,7 +12,7 @@ import NavigationGrafeio from '../../NavigationGrafeio/NavigationGrafeio';
 class ProductHeaderGrafeiou  extends Component {
 
   handleAddnew = () => {
-    //
+
     // this.props.history.push({
     //   pathname: "/recource/products/add",
     //   //state: {username: this.state.username}
@@ -21,6 +21,7 @@ class ProductHeaderGrafeiou  extends Component {
   }
   render(){
     return   (
+
   <React.Fragment>
    <Container className="mb-5 offset-2">
    <div className="headerCenter mb-4">
@@ -28,6 +29,7 @@ class ProductHeaderGrafeiou  extends Component {
     </div>
 
         <Row md={2}>
+
   <NavigationToggleButton/>
        </Row>
         <Col className="offset-2 position-static">
@@ -37,7 +39,7 @@ class ProductHeaderGrafeiou  extends Component {
         </Row>
       </Col>
       </Container>
-      </React.Fragment>
+    </React.Fragment>
  )
 }
 };

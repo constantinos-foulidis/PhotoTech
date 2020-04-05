@@ -38,7 +38,7 @@ render() {
    }else {
      products = this.props.products;
      cart = (
-         this.props.cart.map((product) => {
+         this.props.cart.map((product,index) => {
          //  imagePath = props.product.originalname;
          const port = ":4040";
          imagePath = [
@@ -47,50 +47,50 @@ render() {
            product.originalname.slice(22)
          ].join("");
          return (
-           <div key={product.productCode} className="border">
-           <div className="col">
-             <img
-               alt="logo"
-               className="w-20"
-               src={imagePath}
-             />
-             </div>
-             <div className="col">
-
-                <div className="col">
-                <h5 onClick={this.props.Specified}>
-                  {product.productDetail}
-                </h5>
-                <p className="smallText ">
-                  Διαθεσιμότητα : {product.productQuantity}
-                </p>
-                <p className="smallText">
-                  Κωδικός : {product.productCode}
-                </p>
-                <p className="smallText border-bottom ">
-                  Υποκατηγορία : {product.productSubcategory}
-                </p>
-                <div className="row">
-                <div className="col">
-                <p className="smallText ">
-                  Τάξεις : {product.productOrder}
-                </p>
-                </div>
-                <div className="col text-right">
-                <img
-                  alt="logo"
-                  className="w-20 onHoverEfect"
-                  src="/delete.png"
-                />
-                </div>
+           <div key={index} >
+            <h5>{product.productCategory}</h5>
+               <div className="row">
+                  <div className="col">
+                    <img
+                      alt="logo"
+                      style={{width : "80%"}}
+                      src={imagePath}
+                    />
+                  </div>
+                  <div className="col">
+                    <div className="row">
+                      <div className="col">
+                      <h5 onClick={this.props.Specified}>
+                        {product.productDetail}
+                      </h5>
+                      <p className="smallText ">
+                        Διαθεσιμότητα : {product.productQuantity}
+                      </p>
+                      <p className="smallText">
+                        Κωδικός : {product.productCode}
+                      </p>
+                      <p className="smallText border-bottom ">
+                        Υποκατηγορία : {product.productSubcategory}
+                      </p>
+                      </div>
+                      <div className="col">
+                        <img alt="logo" className="w-20 onHoverEfect" src="/delete.png"style={{width : "20%"}} onClick={() => {this.props.deleteCart(product._id)}}/>
+                      </div>
+                      </div>
+                      <div className="row">
+                       <div className="col">
+                         <p className="smallText ">
+                           Τάξεις : {product.productOrder}
+                         </p>
+                       </div>
+                       <div className="col">
+                         <p className="smallText ">
+                           Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
+                         </p>
+                       </div>
+                       </div>
+                  </div>
                </div>
-               <div className="col">
-               <p className="smallText ">
-                 Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
-               </p>
-               </div>
-               </div>
-             </div>
            </div>
          );
        }));
@@ -131,7 +131,8 @@ const mapDispatchToProps = dispatch => {
     delete: (productCode) => dispatch(actions.deleteProduct(productCode)),
     getProducts: () => dispatch(actions.getProducts()),
     setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks)),
-    addtoCart: (product) => dispatch(actions.addtoCart(product))
+    addtoCart: (product) => dispatch(actions.addtoCart(product)),
+    deleteCart: (product) => dispatch(actions.removFromCart(product))
   }
 }
 

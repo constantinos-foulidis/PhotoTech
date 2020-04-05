@@ -7,12 +7,14 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (username, sellerCode) => {
-  console.log("userName", username);
-  console.log("isadmin", sellerCode);
-  localStorage.setItem("officeLogedin", JSON.stringify(true));
-  localStorage.setItem("userName", JSON.stringify(username));
-  localStorage.setItem("sellerID", JSON.stringify(sellerCode));
+export const authSuccess = (username, sellerCode,photograferCode) => {
+    console.log("userName",username);
+    console.log("isadmin",sellerCode);
+    console.log("isadmin",photograferCode);
+    localStorage.setItem('officeLogedin', JSON.stringify(true));
+    localStorage.setItem('userName', JSON.stringify(username));
+    localStorage.setItem('sellerID', JSON.stringify(sellerCode));
+    localStorage.setItem('photograferID', JSON.stringify(photograferCode));
 
   return {
     type: actionTypes.AUTH_SUCCESS,
@@ -46,6 +48,7 @@ export const login = formdata => {
   console.log("here data", formdata);
   return dispatch => {
     dispatch(authStart());
+
     //todo async actions
     let url = `http://167.172.109.106/api/auth/Grafeio/login`;
     //lo
@@ -64,4 +67,5 @@ export const login = formdata => {
         dispatch(authFail(err));
       });
   };
+
 };

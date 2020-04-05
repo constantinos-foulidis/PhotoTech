@@ -29,6 +29,7 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.GET_CUSTOMERS:return setCustomers(state,action);
         case actionTypes.CREATE_APPOINTMENT:return createdAppointment(state,action);
         case actionTypes.FILTER_CUSTOMERS_BY_YEAR:return filterCustomersByYear(state,action);
+        case actionTypes.FILTER_CUSTOMERS_BY_NAME:return filterCustomersByName(state,action.cName);
         default: return state;
     }
 }
@@ -50,11 +51,9 @@ const filterAppointments = (state, sellerCode) => {
     });
 };
 const filterCustomers = (state, sellerName) => {
-  console.log("inside reducer customers",sellerName.toUpperCase());
+
   state.filterCustomers=state.customers;
-console.log("inside reducer customers",state.customers);
   let updateAppointments=state.filterCustomers.filter(customers => customers.sellerName.toUpperCase() === sellerName.toUpperCase() );
-  console.log("inside reducer customers",updateAppointments);
   let temp = updateAppointments;
   let newCustomers =  temp.filter((customers) => {
       if(customers.createdAt != null){
@@ -66,19 +65,25 @@ console.log("inside reducer customers",state.customers);
       newCustomers:newCustomers,
     });
 };
+const filterCustomersByName = (state, cName) => {
+  console.log("customerByname",cName.toUpperCase());
+  state.filterCustomers=state.customers;
+  let filtercustomer = state.filterCustomers.filter(customers => customers.schoolName.toUpperCase().indexOf(cName.toUpperCase()) > -1 );
+  console.log("inside reducer customers",filtercustomer);
+
+    return updateObject(state, {
+      filterCustomers:filtercustomer,
+    });
+};
 const filterCustomersByYear = (state) => {
   if(state.customers===null)return state.customers=[]
   state.customersByYear=state.customers;
   let updateAppointments=state.customersByYear.filter((customers) =>{
     if(customers.createdAt != null){
-      console.log((new Date(Date.now())).getFullYear());
-      console.log(customers.createdAt.substring(0,4));
-      console.log((new Date(Date.now())).getFullYear() === parseInt((customers.createdAt.substring(0,4))));
           return (new Date(Date.now())).getFullYear() === parseInt((customers.createdAt.substring(0,4)))
      }
   }
   );
-  console.log("filter by year",updateAppointments);
   return updateObject(state, {
     customersByYear:updateAppointments,
   });
@@ -92,7 +97,7 @@ function monthDiff(dateFrom, dateTo) {
 }
 
 const setSellers = (state, action) => {
-  console.log("setSeller",action);
+
     return updateObject(state, {
       sellers:action.sellers.Sellers,
       error: null,
@@ -100,7 +105,7 @@ const setSellers = (state, action) => {
     });
 };
 const createdAppointment = (state, action) => {
-  console.log("setCreatedAppointmet",action);
+
     return updateObject(state, {
       appointments:[...state.appointments,action.createdAppointment],
       error: null,
@@ -109,7 +114,7 @@ const createdAppointment = (state, action) => {
 };
 
 const setAppointments = (state, action) => {
-  console.log("setAppointments",action);
+
     return updateObject(state, {
       appointments:action.appointments,
       error: null,
@@ -117,7 +122,7 @@ const setAppointments = (state, action) => {
     });
 };
 const setCustomers = (state, action) => {
-  console.log("setCustomers",action);
+
 
     return updateObject(state, {
       customers:action.customers,

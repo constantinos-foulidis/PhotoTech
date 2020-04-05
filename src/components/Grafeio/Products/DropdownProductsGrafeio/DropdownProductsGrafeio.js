@@ -13,6 +13,7 @@ class DropdownProductsGrafeio extends Component {
    }
   render(){
   return (
+    
     <Dropdown className="mr-2 marginBottomdropdawn">
       <Dropdown.Toggle variant="secondary" id="dropdown-basic">
         {this.props.category.name}
@@ -20,7 +21,7 @@ class DropdownProductsGrafeio extends Component {
 
       <Dropdown.Menu className="dropDownColor" >
         {this.props.category.subcategories.map((name, index) => (
-          <Dropdown.Item key={name} value={name} onClick={() =>this.handleProducts(name)}>{name}</Dropdown.Item>
+          <Dropdown.Item key={name} value={name} onClick={() =>this.props.filterProducts(name)}>{name}</Dropdown.Item>
         ))}
       </Dropdown.Menu>
     </Dropdown>

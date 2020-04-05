@@ -9,6 +9,7 @@ import Pellatologio from "../Pellatologio/Pellatologio";
 import NeoiPellates from "../PellatesUnderSaller/NeoiPellates";
 import PellatesGrafeiou from "../Pellates/PellatesGrafeiou";
 import ProductsGrafeiou from "../Products/ProductsGrafeiou";
+import PhotografersContent from "../Photografers/Photografers";
 import Cart from "../Products/Cart/Cart";
 import PliromesPoliton from "./PliromesPoliton";
 import { Switch,Route } from "react-router-dom";
@@ -26,12 +27,13 @@ const Sallers = (props) => {
         <Route  exact path="/office/sellers/NeoiPellates" component={NeoiPellates}/>
         <Route  exact path="/office/sellers/pliromesPoliton" component={PliromesPoliton}/>
         <Route  exact path="/office/ProductsGrafeiou" component={ProductsGrafeiou}/>
-          <Route  exact path="/office/ProductsGrafeiou/cart" component={Cart}/>
+        <Route  exact path="/office/ProductsGrafeiou/cart" component={Cart}/>
         <Route  path="/office/sellers/add" component={SellersHeader}/>
         <Route  path="/office/sellers/id" component={SellersHeader}/>
         <Route  exact path="/office/pellatologio" component={Pellatologio}/>
         <Route  exact path="/office/addNewScool" component={AddNewPellath}/>
         <Route  exact path="/office/PellatesGrafeiou" component={PellatesGrafeiou}/>
+        <Route  exact path="/office/Photografers" component={PhotografersContent}/>
         </Switch>
       </Row>
     </>

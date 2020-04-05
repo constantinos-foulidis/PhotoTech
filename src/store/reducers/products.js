@@ -63,6 +63,7 @@ const addProduct = (state, product) => {
     }
 };
 const add2Cart = (state, product) => {
+  //TODO DONT LET ADD TO CART IF ALREADY EXIST
   console.log("cart reducer",product);
     return {
         ...state,
@@ -76,7 +77,7 @@ const deleteFromCart = (state, productId) => {
     console.log("[products reducer] state.products: ", state.products);
     return {
         ...state,
-        cart: state.cart.filter((product) => product.productCode !== productId)
+        cart: state.cart.filter((product) => product._id !== productId)
     }
 };
 
