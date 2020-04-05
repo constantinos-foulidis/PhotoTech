@@ -68,7 +68,7 @@ const filterCustomers = (state, sellerName) => {
 const filterCustomersByName = (state, cName) => {
   console.log("customerByname",cName.toUpperCase());
   state.filterCustomers=state.customers;
-  let filtercustomer = state.filterCustomers.filter(customers => customers.schoolName.toUpperCase() === cName.toUpperCase() );
+  let filtercustomer = state.filterCustomers.filter(customers => customers.schoolName.toUpperCase().indexOf(cName.toUpperCase()) > -1 );
   console.log("inside reducer customers",filtercustomer);
 
     return updateObject(state, {
