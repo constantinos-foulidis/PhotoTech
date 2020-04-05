@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import * as actions from '../../../store/actions/products';
 import {filterCustomerByname,getCustomers} from  '../../../store/actions/Grafeio/sallers';
-
+import Dropdown from 'react-bootstrap/Dropdown'
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
 import { Popover } from 'react-bootstrap';
 
@@ -32,6 +32,11 @@ class productsGrafeiou  extends Component {
     handleSearch = (event) =>{
        //this.setState({number:event.target.value});
        this.props.filterCustomerByname(event.target.value);
+    }
+    handlePellates = (event) =>{
+      console.log(event.target.value);
+       //this.setState({number:event.target.value});
+       //this.props.filterCustomerByname(event.target.value);
     }
     quantityHandler = (event,index) =>{
       console.log(event.target.value);
@@ -94,12 +99,24 @@ if(  this.props.customers!= null){
           <NavigationGrafeio/>
       <div className="Container ">
         <div className="row">
-          <div className="col-auto">
+          <div className="col-12">
             <ProductHeaderGrafeiou />
           </div>
         </div>
         <div className="row">
-          <div className="col-auto">
+          <div className="row offset-3">
+            <Dropdown className="mr-2">
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              ειδικός ή κανονικός
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className="dropDownColor" >
+                  <Dropdown.Item  value="ειδικός" onClick={(e) =>this.handlePellates(e)}>ειδικός</Dropdown.Item>
+                  <Dropdown.Item  value="κανονικός" onClick={(e) =>this.handlePellates(e)}>κανονικός</Dropdown.Item>
+            </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <div className="row-auto">
              <OverlayTrigger  trigger="click" placement="right" overlay={popover}>
             <input
               style={{width : "200px",left:"200px",position:"relative",height:"30px",borderRadius:"10px",marginBottom:"20px"}}
