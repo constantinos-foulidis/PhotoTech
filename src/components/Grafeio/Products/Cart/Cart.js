@@ -15,7 +15,7 @@ class Cart  extends Component {
 
       this.state = {
         productForDelete:'',
-        number:1
+        number:this.props.quantitytoCart
 
 
       };
@@ -85,7 +85,7 @@ render() {
                        </div>
                        <div className="col">
                          <p className="smallText ">
-                           Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
+                           Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={product.quantityTocart} onChange={this.quantityHandler} ></input>
                          </p>
                        </div>
                        </div>

@@ -19,7 +19,7 @@ class productsGrafeiou  extends Component {
 
       this.state = {
         productForDelete:'',
-        number:1,
+        number:0,
         search:"test",
         focused:false
 
@@ -33,12 +33,17 @@ class productsGrafeiou  extends Component {
        //this.setState({number:event.target.value});
        this.props.filterCustomerByname(event.target.value);
     }
-    quantityHandler = (event) =>{
-       this.setState({number:event.target.value});
+    quantityHandler = (event,index) =>{
+      console.log(event.target.value);
+      console.log(index);
+      var number = [];
+           number[index] = [...event.target.value];
+       this.setState(number);
+       console.log(this.state);
     }
-    add2Cart = (product) => {
-
-      this.props.addtoCart(product);
+    add2Cart = (product,quantity) => {
+   console.log(quantity);
+      this.props.addtoCart(product,quantity[0]);
      console.log(product);
     }
     componentDidMount(){
@@ -107,7 +112,7 @@ if(  this.props.customers!= null){
           </div>
         </div>
         <div className="row offset-2">
-          {products.map((product) => {
+          {products.map((product,index) => {
             //  imagePath = props.product.originalname;
             const port = ":4040";
             imagePath = [
@@ -134,7 +139,7 @@ if(  this.props.customers!= null){
                     Κωδικός : {product.productCode}
                   </p>
                   <p className="smallText ">
-                    Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
+                    Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} name="number"  value={this.state.number[index]} onChange={(event) => this.quantityHandler(event,index)} ></input>
                   </p>
                   <p className="smallText border-bottom ">
                     Τάξεις : {product.productOrder}
@@ -142,7 +147,7 @@ if(  this.props.customers!= null){
                   <Button
                     className="productItembtn mb-2"
                     variant="info"
-                    onClick={() => this.add2Cart(product)}
+                    onClick={() => this.add2Cart(product,this.state[index])}
                   >
                     Προσθήκη στο πακέτο
                   </Button>
@@ -173,7 +178,7 @@ const mapDispatchToProps = dispatch => {
     getCustomers:() => dispatch(getCustomers()),
     setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks)),
     filterCustomerByname: (CustName) => dispatch(filterCustomerByname(CustName)),
-    addtoCart: (product) => dispatch(actions.addtoCart(product))
+    addtoCart: (product,number) => dispatch(actions.addtoCart(product,number))
   }
 }
 

@@ -133,11 +133,12 @@ export const filterProducts = (productCategory) => {
       productCategory: productCategory,
   }
 }
-export const addtoCart = (product) => {
+export const addtoCart = (product,quantity) => {
   console.log("add2Cart",product);
   return {
       type: ADD_TO_CART,
       product: product,
+      quantity:quantity,
   }
 }
 export const removFromCart = (product) => {
