@@ -17,6 +17,7 @@ export const FILTER_SELLER = "FILTER_SELLER";
 export const FILTER_APPOINTMENTS = "FILTER_APPOINTMENTS";
 export const FILTER_CUSTOMERS = "FILTER_CUSTOMERS";
 export const FILTER_CUSTOMERS_BY_YEAR = "FILTER_CUSTOMERS_BY_YEAR";
+export const FILTER_CUSTOMERS_BY_NAME = "FILTER_CUSTOMERS_BY_NAME";
 
 
 
@@ -75,6 +76,13 @@ export const filterCustomersByYear = () => {
 
   return {
       type: FILTER_CUSTOMERS_BY_YEAR,
+  }
+}
+export const filterCustomerByname = (custname) => {
+
+  return {
+      type: FILTER_CUSTOMERS_BY_NAME,
+      cName:custname,
   }
 }
 export const getSeller = (sellerCode) => {

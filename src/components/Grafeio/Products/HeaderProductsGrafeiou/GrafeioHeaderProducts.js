@@ -13,20 +13,19 @@ class ProductHeaderGrafeiou  extends Component {
 
   handleAddnew = () => {
 
-    this.props.history.push({
-      pathname: "/recource/products/add",
-      //state: {username: this.state.username}
-    });
+    // this.props.history.push({
+    //   pathname: "/recource/products/add",
+    //   //state: {username: this.state.username}
+    // });
 
   }
   render(){
     return   (
-  <React.Fragment>
+
    <Container className="mb-5">
    <div className="headerCenter mb-4">
     <h1>Προιόντα:</h1>
     </div>
-
         <Row sm={4}>
   <NavigationToggleButton/>
        </Row>
@@ -37,7 +36,7 @@ class ProductHeaderGrafeiou  extends Component {
         </Row>
       </Col>
       </Container>
-      </React.Fragment>
+
  )
 }
 };
