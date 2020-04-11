@@ -9,6 +9,7 @@ const initialState = {
     error: null,
     success: false,
     productSpecks: null,
+    quantitytoCart:1,
     cart:[],
 }
 let allProducts=null;
@@ -25,7 +26,7 @@ const productsReducer = (state = initialState, action) => {
         case actionTypes.ERROR: return error(state, action.message);
         case actionTypes.PRODUCTSID: return setProductSpecks(state, action.product);
         case actionTypes.FILTER_PRODUCT_BY_SEARCH_BAR: return filterProductBySearchbar(state, action.productCategory);
-        case actionTypes.ADD_TO_CART: return add2Cart(state, action.product);
+        case actionTypes.ADD_TO_CART: return add2Cart(state, action.product,action.quantity);
         case actionTypes.REMOVE_FROM_CART: return deleteFromCart(state, action.product);
         default: return state;
     }
@@ -62,14 +63,16 @@ const addProduct = (state, product) => {
         error: null,
     }
 };
-const add2Cart = (state, product) => {
+const add2Cart = (state, product,quantity) => {
   //TODO DONT LET ADD TO CART IF ALREADY EXIST
+  product.quantityTocart = quantity;
   console.log("cart reducer",product);
     return {
         ...state,
         cart: [...state.cart, product],
         success: true,
         loading: false,
+        quantitytoCart:quantity,
         error: null,
     }
 };
