@@ -48,8 +48,12 @@ class productsGrafeiou  extends Component {
     }
     add2Cart = (product,quantity) => {
    console.log(quantity);
+      if(quantity != undefined){
       this.props.addtoCart(product,quantity[0]);
      console.log(product);
+   }else{
+     window.alert("Επιλεξτε ποσοτητα για να προσθεθει στο καλάθι");
+   }
     }
     componentDidMount(){
       this.props.getCustomers();
