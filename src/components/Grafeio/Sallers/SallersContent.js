@@ -95,8 +95,23 @@ class SellersContent extends Component {
     console.log(event);
     this.setState({ email: event.target.value});
   }
-  NewAppointmentHandler = () => {
-      this.setState({ShowDetailedCalendar:true});
+  //new appointment 2 ussages from button or from SpesificView
+  NewAppointmentHandler = (month=null,year=null,day=null) => {
+    console.log(month);
+    if(month!=null){
+      let temp=this.props.appointments;
+      let test=  temp.filter(appointments => new Date(parseInt(appointments.year,10),parseInt(appointments.month,10)-1,parseInt(appointments.day,10)).toLocaleDateString() ===  new Date(parseInt(year,10),parseInt(month,10)-1,parseInt(day,10)).toLocaleDateString() );
+      this.setState({ShowDetailedCalendar:true,
+        Month:month,
+        year:year,
+        day:day,
+        date:new Date(year,month-1,day),
+        filteredAppointmets:test,
+      });
+    }else{
+      this.setState({ShowDetailedCalendar:true,
+      });
+    }
   }
   appointmetShowHandler = () => {
       this.setState({ShowDetailedCalendar:false});
@@ -148,7 +163,8 @@ class SellersContent extends Component {
     let appointment=null;
     let detailAppointments=null;
     let buttonsRantevou=null;
-
+    let selects=null;
+    let buttons =null;
 
    if(this.state.filteredAppointmets !==null){
      console.log(this.state.filteredAppointmets);
@@ -174,13 +190,41 @@ class SellersContent extends Component {
    }
 
     if (this.props.sellers != null) {
-      showSellers = this.props.sellers.map((sellers, index) => (<div key={index}>
+      showSellers = (
+        <>
+         <h5>Στοιχεία πωλητη:</h5>
+        {this.props.sellers.map((sellers, index) => (<div key={index}>
         <p className="smallText">Ονομα:{sellers.sellername}</p>
         <p className="smallText">email: {sellers.email}</p>
         <p className="smallText">Τηλ: 6978492740</p>
         <p className="smallText">Περιοχες: {sellers.region}</p>
         <p className="smallText">username: {sellers.fullName}</p>
-      </div>))
+      </div>))}
+      </>
+    )
+      selects= (<Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Label>Ανα/μήνα</Form.Label>
+            <Form.Control as="select" custom="custom" onChange={this.MonthChangeHandler}>
+              <option>Ιανουάριος</option>
+              <option>Φεβρουάριος</option>
+              <option>Μαρτιος</option>
+              <option>Απρίλιος</option>
+              <option>Μαιος</option>
+              <option>Ιουνος</option>
+              <option>Ιουλιος</option>
+              <option>Αυγουστος</option>
+              <option>Σεμπτεμβριος</option>
+              <option>Οκτωμβριος</option>
+              <option>Νοεμβριος</option>
+              <option>Δεκεμβριος</option>
+            </Form.Control>
+          </Form.Group>)
+          buttons=(
+            <>
+          <Button className="mb-3 mr-2" variant="info">Εξαγωγή pdf</Button>
+          <Button className="mb-3" variant="info">Εκτύπωση</Button>
+           </>
+        )
     };
     if(this.state.ShowDetailedCalendar){
 
@@ -223,13 +267,14 @@ class SellersContent extends Component {
     }else{
       if(this.props.appointments!=null){
       SpesificView=(
-
-          this.props.appointments.map((appointments,index) => (
+           <div className="col-4 border">
+          {this.props.appointments.map((appointments,index) => (
             <div key={index}>
-          <p>{appointments.day}/{appointments.month}/{appointments.year}</p>
+          <p onClick={() => this.NewAppointmentHandler(appointments.month,appointments.year,appointments.day)}>{appointments.day}/{appointments.month}/{appointments.year}</p>
           </div>
-          ))
 
+        ))}
+       </div>
       )
 
       buttonsRantevou=(<Button className="mb-3 mt-5" variant="info" onClick={this.NewAppointmentHandler}>+Νέο ραντεβού</Button>);
@@ -241,8 +286,7 @@ class SellersContent extends Component {
         <div className="row">
           <div className="col-4 mr-5">
             <div className="row">
-              <div className="col border detailSailler">
-                <h5>Στοιχεία πωλητη:</h5>
+              <div className="col  detailSailler">
                 {showSellers}
               </div>
             </div>
@@ -250,32 +294,14 @@ class SellersContent extends Component {
               {buttonsRantevou}
             </div>
             <div className="row">
-              <Form.Group controlId="exampleForm.SelectCustom">
-                <Form.Label>Ανα/μήνα</Form.Label>
-                <Form.Control as="select" custom="custom" onChange={this.MonthChangeHandler}>
-                  <option>Ιανουάριος</option>
-                  <option>Φεβρουάριος</option>
-                  <option>Μαρτιος</option>
-                  <option>Απρίλιος</option>
-                  <option>Μαιος</option>
-                  <option>Ιουνος</option>
-                  <option>Ιουλιος</option>
-                  <option>Αυγουστος</option>
-                  <option>Σεμπτεμβριος</option>
-                  <option>Οκτωμβριος</option>
-                  <option>Νοεμβριος</option>
-                  <option>Δεκεμβριος</option>
-                </Form.Control>
-              </Form.Group>
+            {selects}
             </div>
           </div>
-          <div className="col-4 border">
               {SpesificView}
-          </div>
+
           <div className="row">
             <div className="col">
-              <Button className="mb-3 mr-2" variant="info">Εξαγωγή pdf</Button>
-              <Button className="mb-3" variant="info">Εκτύπωση</Button>
+            {buttons}
             </div>
           </div>
         </div>
