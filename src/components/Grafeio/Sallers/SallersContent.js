@@ -165,6 +165,7 @@ class SellersContent extends Component {
     let buttonsRantevou=null;
     let selects=null;
     let buttons =null;
+    let centerApointments=null;
 
    if(this.state.filteredAppointmets !==null){
      console.log(this.state.filteredAppointmets);
@@ -245,24 +246,25 @@ class SellersContent extends Component {
 
      buttonsRantevou=(<Button className="mb-3 mt-5" variant="info" onClick={this.appointmetShowHandler}>Ραντεβού</Button>)
       SpesificView=(
-        <>
+
         <Calendar
          className="mb-5"
          onChange={this.onChange}
          value={this.state.date}
          onSelect={this.onClickCalendar}
        />
-
+   )
+   centerApointments=(
      <div className="row">
-       <div className="col-5">
-     <h5 className="text-center" >{this.state.date.toLocaleDateString()}</h5>
+       <div className="col-auto offset-5">
+     <h5>{this.state.date.toLocaleDateString()}</h5>
           {appointment}
        </div>
-       <div className="col offset-5">
+       <div className="col-auto">
           {popover}
        </div>
       </div>
-      </>
+
       )
     }else{
       if(this.props.appointments!=null){
@@ -305,6 +307,7 @@ class SellersContent extends Component {
             </div>
           </div>
         </div>
+          {centerApointments}
         <Modal show={this.state.showmodalDetail} onHide={this.handleCloseDetailAppointments}>
          <Modal.Header closeButton>
            <Modal.Title>Ραντεβού</Modal.Title>
