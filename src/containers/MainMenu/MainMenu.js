@@ -34,7 +34,7 @@ if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
             <Cards refe="/sellers" name="Πωλητές" />
           </div>
           <div className="col">
-            <Cards refe="/photo" name="Φωτογράφοι" />
+            <Cards refe="/LoginPhotografers" name="Φωτογράφοι" />
           </div>
           <div className="col">
             <Cards refe="/recource" name="Πρόγραμμα Αποθήκης" />

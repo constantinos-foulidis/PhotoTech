@@ -51,7 +51,7 @@ export const login = (formdata) => {
  return dispatch => {
     dispatch(authStart());
    //todo async actions
-   let url = `localhost:4040/api/auth/Photografoi/login`;
+   let url = `http://localhost:4040/api/auth/Photografoi/login`;
    //lo
   axios.post(url,formdata).
   then(res => {

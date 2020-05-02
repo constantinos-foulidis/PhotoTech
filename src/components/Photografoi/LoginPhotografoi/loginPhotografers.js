@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {login} from '../../store/actions/LoginPhotografers/loginPhotografers';
+import {login} from '../../../store/actions/LoginPhotografers/loginPhotografers';
 import {connect} from 'react-redux';
 import {Checkbox} from '@material-ui/core';
 import Spinner from 'react-bootstrap/Spinner'
-import SimpleAppHeader from "../simpleAppheader/simpleAppheader";
+import SimpleAppHeader from "../../simpleAppheader/simpleAppheader";
 class LoginPhotografers extends Component {
   constructor(props) {
     super(props);
