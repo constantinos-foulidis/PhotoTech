@@ -7,12 +7,12 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (username, sellerCode,photograferCode) => {
-    console.log("userName",username);
-    console.log("isadmin",sellerCode);
-    console.log("isadmin",photograferCode);
+export const authSuccess = (username, data) => {
+    console.log("ΔατΑ",data);
+    console.log("username",username);
+
   //  localStorage.setItem('officeLogedin', JSON.stringify(true));
-  //  localStorage.setItem('userName', JSON.stringify(username));
+    localStorage.setItem('userName', JSON.stringify(username));
   //  localStorage.setItem('sellerID', JSON.stringify(sellerCode));
   //  localStorage.setItem('photograferID', JSON.stringify(photograferCode));
 
@@ -20,7 +20,7 @@ export const authSuccess = (username, sellerCode,photograferCode) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         userName: username,
-        sellerCode: sellerCode
+        data: data.user
     };
 };
 
@@ -58,7 +58,7 @@ export const login = (formdata) => {
     if(res.data.error){
         dispatch(authFail(res.data.error));
     }else{
-    dispatch(authSuccess(res.data.username,res.data.sellerCode,res.data.photograferCode));
+    dispatch(authSuccess(res.data.user.photografername,res.data));
   }
     // dispatch(authSuccess(res));
   //  dispatch(saveResult(res));

@@ -59,7 +59,7 @@ class LoginPhotografers extends Component {
      if(this.props.isLogedIn!== false){
        console.log(this.props.isAdmin);
        this.props.history.push({
-         pathname: "/office/sellers/greeting",
+         pathname: "/photografer/greetings",
          username:this.props.username
        });
    }
