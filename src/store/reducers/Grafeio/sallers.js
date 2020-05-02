@@ -106,7 +106,6 @@ const setSellers = (state, action) => {
 const createdAppointment = (state, action) => {
 
     return updateObject(state, {
-      appointments:[...state.appointments,action.createdAppointment],
       error: null,
       loading: false
     });

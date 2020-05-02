@@ -11,6 +11,7 @@ const initialState = {
     filterphotografers:null,
     filterAppointments:null,
     filterCustomers:null,
+    filterApointmetsByid:null,
     loading: false,
     error: null,
     success: false,
@@ -43,10 +44,12 @@ const sellerReducer = (state = initialState, action) => {
 // };
 const filterAppointments = (state, id) => {
    state.filterAppointments=state.photografers;
-
+   var local=state.Allappointments;
    let updateAppointments=state.filterAppointments.filter(appointments => appointments._id === id );
+   let updateAppointmentsByID=local.filter(appointments => appointments.sellerid === id );
      return updateObject(state, {
        appointments:updateAppointments,
+       filterApointmetsByid:updateAppointmentsByID,
      });
  };
 // const filterCustomers = (state, sellerName) => {
@@ -110,7 +113,7 @@ const createdAppointment = (state, action) => {
 const setAppointments = (state, action) => {
   console.log("setAppointments",action);
     return updateObject(state, {
-      appointments:action.appointments,
+      Allappointments:action.appointments,
       error: null,
       loading: false
     });

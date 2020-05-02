@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import {connect} from 'react-redux';
 import { navigationToggleButton as NavigationToggleButton } from '../NavigationGrafeio/NavigationGrafeio';
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
-import {getPhotografers,filterPhotografers} from '../../../store/actions/Grafeio/photografers';
+import {getPhotografers,filterPhotografers,getPhotografersAppointments} from '../../../store/actions/Grafeio/photografers';
 import { Link } from "react-router-dom";
 class PhotografersHeader  extends Component {
     constructor(props){
@@ -29,6 +29,7 @@ class PhotografersHeader  extends Component {
        //   console.log("mpika");
        //      }
        //    }, 1000);
+       this.props.getApointments();
   }
   render(){
     let photografers = [];
@@ -118,6 +119,7 @@ const mapDispatchToProps = dispatch => {
 
     getPhotografers: (formdata) => dispatch(getPhotografers(formdata)),
     filterPhotografers: (id) => dispatch(filterPhotografers(id)),
+    getApointments: () => dispatch(getPhotografersAppointments()),
 
   }
 };

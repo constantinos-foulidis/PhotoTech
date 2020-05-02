@@ -108,21 +108,21 @@ class PhotografersContent extends Component {
       appointment.month =this.state.month;
       appointment.day = this.state.day;
       appointment.time = this.state.time;
-      appointment.sellerid = this.props.sellers[0]._id;
+      appointment.sellerid = this.props.appointments[0]._id;
       appointment.school = this.state.schoolName;
       appointment.NameResponse = this.state.nameYpeuthinou;
       appointment.PhoneResponse=this.state.PhoneYpeuthinou;
       appointment.email=this.state.email;
       appointment.topothesh=this.state.topothesia;
-       console.log(appointment);
+
 
       // this.props.updateProduct(product);
       // this.props.history.goBack();
       this.props.createSellersAppointment(appointment);
         this.setState({ ShowDetailedCalendar: false});
-   }
-   window.alert("Πρεπει να συμπληρώσεις ολες τις τιμές");
-
+   }else{
+  window.alert("Πρεπει να συμπληρώσεις ολες τις τιμές");
+}
   }
   MonthChangeHandler = event => {
     event.persist();
@@ -222,9 +222,9 @@ class PhotografersContent extends Component {
       </>
       )
     }else{
-      if(this.props.appointments!=null){
+      if(this.props.filterApointmetsByid !=null){
       SpesificView=(
-          this.props.appointments.map((appointments,index) => (
+          this.props.filterApointmetsByid.map((appointments,index) => (
             <div key={index}>
           <p>{appointments.day}/{appointments.month}/{appointments.year}</p>
           </div>
@@ -295,6 +295,7 @@ class PhotografersContent extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    filterApointmetsByid:state.photografers.filterApointmetsByid,
   //  photografer: state.photografers.filterSellers,
     appointments: state.photografers.appointments,
   //  loading: state.photografers.loading,
