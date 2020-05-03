@@ -75,12 +75,14 @@ class Rantevou extends Component {
       <div className="container mb-5">
       <h5 className="text-center">Ραντεβού</h5>
         <div className="row">
+         <div className="col offset-3">
           <Calendar
-           className="mb-5 ml-5"
+           className="mb-5 ml-5 "
            onChange={this.onChange}
            value={this.state.date}
            onSelect={this.onClickCalendar}
          />
+         </div>
         </div>
       </div>
 
