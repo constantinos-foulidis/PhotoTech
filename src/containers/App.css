@@ -1,4 +1,5 @@
 .App {
+  position: relative;
 }
 .App-header {
   background-color: #f2f2f2;

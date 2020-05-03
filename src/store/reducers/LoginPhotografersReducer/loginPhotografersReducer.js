@@ -5,6 +5,7 @@ const initialState = {
     isLogedIn: null,
     photograferData:null,
     userName:"none",
+    photograferID:null,
     loading:false,
     error:null
 };
@@ -15,11 +16,11 @@ const authStart = ( state, action ) => {
 
 const authSuccess = (state, action) => {
   console.log("Photografers login",action);
-//  localStorage.setItem('isLogedIn', JSON.stringify(true));
+ localStorage.setItem('uniquePhotograferID', JSON.stringify(action.data._id));
 
 
     return updateObject( state, {
-        PhotograferName: action.username,
+        PhotograferName: action.userName,
         photograferData: action.data,
         isLogedIn:true,
         error: null,

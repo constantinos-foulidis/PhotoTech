@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {logout} from '../../../store/actions/LoginPhotografers/loginPhotografers';
+import {getPhotografersAppointmentsByID} from '../../../store/actions/Grafeio/photografers'
 import Dropdown from 'react-bootstrap/Dropdown';
 import {connect} from 'react-redux';
 
@@ -13,15 +14,19 @@ class PhotograferAppHeader extends Component {
     }
     this.handleSearch = this.handleSearch.bind(this);
   }
-  // componentDidMount() {
-  //   setTimeout(()=> {
-  //    this.signOut();
-  // }, 90000);
-  //
-  //  }
-  //    signOut() {
-  //      localStorage.clear();
-  //    }
+   componentDidMount() {
+       //Φωτογραφος Γ
+       if(JSON.parse(localStorage.getItem('uniquePhotograferID'))!= null){
+         const data = JSON.parse(localStorage.getItem('uniquePhotograferID'))
+          console.log(JSON.parse(localStorage.getItem('uniquePhotograferID')));
+
+           this.props.getApointmentsById(JSON.parse(localStorage.getItem('uniquePhotograferID')));
+       }
+
+
+
+    }
+
   handleSearch(event) {
   //   this.setState({search: event.target.value});
   //   console.log("inisde search",event);
@@ -92,6 +97,7 @@ const mapDispatchToProps = dispatch => {
   return {
 
     logout: () => dispatch(logout()),
+    getApointmentsById:(id) => dispatch(getPhotografersAppointmentsByID(id)),
 
   }
 };

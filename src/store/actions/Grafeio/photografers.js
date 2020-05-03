@@ -7,8 +7,10 @@ const uniquePhotografer = '/under';
 const updateUri='/update';
 const sellersAppointmentUri='api/appointments';
 const customersUri='api/customers';
+const uniqueID='/id';
 export const GET_PHOTOGRAFERS = "GET_PHOTOGRAFERS";
 export const GET_APPOINTMENTS = "GET_APPOINTMENTS";
+export const GET_APPOINTMENTSBYID = "GET_APPOINTMENTSBYID";
 export const GET_CUSTOMERS = "GET_CUSTOMERS";
 export const CREATE_APPOINTMENT = "CREATE_APPOINTMENT";
 export const ERROR = "ERROR";
@@ -25,6 +27,13 @@ const getAppointmentSuccess = (appointments) => {
 
     return {
         type: GET_APPOINTMENTS,
+        appointments: appointments
+    };
+};
+const getAppointmentByIDSuccess = (appointments) => {
+
+    return {
+        type: GET_APPOINTMENTSBYID,
         appointments: appointments
     };
 };
@@ -105,6 +114,25 @@ export const getPhotografersAppointments = () => {
                 dispatch(error(response.data));
             }else{
                 dispatch(getAppointmentSuccess(response.data));
+            }
+
+        })
+    }
+};
+export const getPhotografersAppointmentsByID = (id) => {
+  console.log(id);
+  const data = {
+    sellerid:id
+  }
+  console.log(data);
+    return (dispatch, getState) => {
+        dispatch(loading());
+        Axios.post(baseUrl + sellersAppointmentUri+uniqueID,data).then(response => {
+            console.log(response.data);
+            if(response.data.error){
+                dispatch(error(response.data));
+            }else{
+                dispatch(getAppointmentByIDSuccess(response.data));
             }
 
         })

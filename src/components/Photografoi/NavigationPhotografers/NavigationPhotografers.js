@@ -24,7 +24,7 @@ class NavigationPhotografers extends Component {
             <Link to="#" onClick={this.props.closeNav} className="close-nav">
               &times;
             </Link>
-            <Link className="linkItemForDrawer mb-3"  to="/office/sellers">Ραντεβού</Link>
+            <Link className="linkItemForDrawer mb-3"  to="/photografer/rantevou">Ραντεβού</Link>
             <Link className="linkItemForDrawer mb-3" to="/office/ProductsGrafeiou">Φωτογραφίσεις</Link>
           </div>
         </div>

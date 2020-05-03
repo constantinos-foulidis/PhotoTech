@@ -5,6 +5,7 @@ import { updateObject } from '../../utility';
 const initialState = {
     photografers: null,
     appointments:null,
+    appointmentsById:null,
     customers:null,
     newCustomers:null,
     customersByYear:null,
@@ -29,6 +30,7 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.GET_APPOINTMENTS:return setAppointments(state,action);
         case actionTypes.GET_CUSTOMERS:return setCustomers(state,action);
         case actionTypes.CREATE_APPOINTMENT:return createdAppointment(state,action);
+        case actionTypes.GET_APPOINTMENTSBYID:return getAppointmentsByID(state,action);
       //  case actionTypes.FILTER_CUSTOMERS_BY_YEAR:return filterCustomersByYear(state,action);
         default: return state;
     }
@@ -114,6 +116,14 @@ const setAppointments = (state, action) => {
   console.log("setAppointments",action);
     return updateObject(state, {
       Allappointments:action.appointments,
+      error: null,
+      loading: false
+    });
+};
+const getAppointmentsByID = (state, action) => {
+  console.log("getAppointmentsByID",action);
+    return updateObject(state, {
+      appointmentsById:action.appointments,
       error: null,
       loading: false
     });
