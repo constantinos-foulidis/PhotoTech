@@ -17,7 +17,7 @@ class Rantevou extends Component {
              this.showDetailAppointments = this.showDetailAppointments.bind(this);
              this.handleCloseDetailAppointments = this.handleCloseDetailAppointments.bind(this);
              this.state = {
-               ShowDetailedCalendar: false,
+               ShowPopover: false,
                date:new Date(Date.now()),
                Month:null,
                year:null,
@@ -50,8 +50,8 @@ class Rantevou extends Component {
 }
 
   showDetailAppointments()  {
-    console.log("mpika sto modal");
-    this.setState({ showmodalDetail: true });
+
+    this.setState({ ShowPopover: true });
   }
   handleCloseDetailAppointments() {
     this.setState({ showmodalDetail: false });
@@ -71,11 +71,12 @@ class Rantevou extends Component {
 
   render() {
    let appointment=null;
+   let popover=null;
    console.log(this.state.filteredAppointmets);
   if(this.state.filteredAppointmets !=null){
    appointment = (
      this.state.filteredAppointmets.map((appointments,index) => (
-       <div  key={index} onClick={this.showDetailAppointments}>
+       <div className="cursorClick"  key={index} onClick={this.showDetailAppointments}>
       <div className="row justify-content-center" >
        <div className="col-1 mr-3">
      <p className="smallText" >{appointments.time}</p>
@@ -87,6 +88,23 @@ class Rantevou extends Component {
      </div>
    )))
  }
+ if(this.state.ShowPopover===true){
+  popover = (
+    this.state.filteredAppointmets.map((appointments,index) => (
+ <Popover id="popover-basic arrow" key={index}>
+   <Popover.Content className="popoverWidth_Height detailSailler">
+     <div className="smallText detailSailler" > Ημερομηνία : {appointments.day}/{appointments.month}/{appointments.year}</div>
+     <div className="smallText detailSailler smallFormpop" > Ωρα : {appointments.time} </div>
+     <div className="smallText detailSailler smallFormpop" > Σxoleio : {appointments.school}  </div>
+     <div className="smallText detailSailler smallFormpop" > Topothesia : {appointments.topothesh} </div>
+     <div className="smallText detailSailler smallFormpop" > onoma ipefthinou : {appointments.NameResponse}  </div>
+     <div className="smallText detailSailler smallFormpop" > thl ipefthinou :  {appointments.PhoneResponse} </div>
+     <div className="smallText detailSailler smallFormpop" > email :  {appointments.email}  </div>
+   </Popover.Content>
+ </Popover>
+)));
+
+}
 
     return (<React.Fragment>
 
@@ -107,7 +125,14 @@ class Rantevou extends Component {
           <h5 className="text-center">{this.state.date.toLocaleDateString()}</h5>
           </div>
         </div>
-         {appointment}
+        <div className="row">
+          <div className="col-auto offset-5">
+            {appointment}
+          </div>
+          <div className="col-auto">
+            {popover}
+          </div>
+         </div>
       </div>
 
     </React.Fragment>)

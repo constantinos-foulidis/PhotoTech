@@ -16,3 +16,6 @@
 .smallText{
   font-size: small;
 }
+.cursorClick{
+  cursor: pointer;
+}
