@@ -25,7 +25,7 @@ class NavigationPhotografers extends Component {
               &times;
             </Link>
             <Link className="linkItemForDrawer mb-3"  to="/photografer/rantevou">Ραντεβού</Link>
-            <Link className="linkItemForDrawer mb-3" to="/office/ProductsGrafeiou">Φωτογραφίσεις</Link>
+            <Link className="linkItemForDrawer mb-3" to="/photografer/photografiseis">Φωτογραφίσεις</Link>
           </div>
         </div>
       </React.Fragment>
