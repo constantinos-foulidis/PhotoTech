@@ -38,7 +38,8 @@ class SellersContent extends Component {
                PhoneYpeuthinou:null,
                topothesia:null,
                showPopoverDetail:null,
-               showmodalDetail:false
+               showmodalDetail:false,
+               hideButtons:false
              }
 
 
@@ -114,9 +115,10 @@ class SellersContent extends Component {
         day:day,
         date:new Date(year,month-1,day),
         filteredAppointmets:test,
+        hideButtons:true,
       });
     }else{
-      this.setState({ShowDetailedCalendar:true,
+      this.setState({ShowDetailedCalendar:true,hideButtons:true,
       });
     }
   }
@@ -231,6 +233,7 @@ class SellersContent extends Component {
       </div>))}
       </>
     )
+       if(this.state.hideButtons===false){
       selects= (<Form.Group controlId="exampleForm.SelectCustom">
             <Form.Label>Ανα/μήνα</Form.Label>
             <Form.Control as="select" custom="custom" onChange={this.MonthChangeHandler}>
@@ -255,6 +258,8 @@ class SellersContent extends Component {
           <Button className="mb-3" variant="info">Εκτύπωση</Button>
            </>
         )
+        }
+
             buttonsRantevou=(<Button className="mb-3 mt-5" variant="info" onClick={this.handleNeWAppointment}>+Νέο ραντεβού</Button>);
     };
     if(this.state.showmodalDetail){
