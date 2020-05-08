@@ -2,7 +2,7 @@
 import * as actionTypes from '../../actionTypes';
 import { updateObject } from '../../utility';
 const initialState = {
-    isLogedIn: null,
+    isLogedInGrafeio: false,
     sellerCode:'',
     userName:"none",
     loading:false,
@@ -21,7 +21,7 @@ const authSuccess = (state, action) => {
     return updateObject( state, {
         userName: action.username,
         sellerCode: action.sellerCode,
-        isLogedIn:true,
+        isLogedInGrafeio:true,
         error: null,
         loading: false
      } );
@@ -37,7 +37,7 @@ const authFail = (state, action) => {
 
 const authLogout = (state, action) => {
 //  localStorage.clear();
-    return updateObject(state, { sellerCode: null, isLogedIn: null,userName: null });
+    return updateObject(state, { sellerCode: null, isLogedInGrafeio: false,userName: null });
 };
 
  const loginAuthReducer = (state = initialState, action) => {

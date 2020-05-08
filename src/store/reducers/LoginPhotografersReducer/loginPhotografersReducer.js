@@ -38,7 +38,7 @@ const authFail = (state, action) => {
 
 const authLogout = (state, action) => {
 //  localStorage.clear();
-    return updateObject(state, { sellerCode: null, isLogedIn: null,userName: null });
+    return updateObject(state, { sellerCode: null, isLogedInPhoto: false,userName: null });
 };
 
  const loginAuthPhotografersReducer = (state = initialState, action) => {

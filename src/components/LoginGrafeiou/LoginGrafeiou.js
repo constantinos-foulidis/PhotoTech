@@ -56,7 +56,7 @@ class LoginGrafeiou extends Component {
     if (this.props.error) {
       errorMessage = (<p>{this.props.error.message}</p>);
     }
-     if(this.props.isLogedIn!== false){
+     if(this.props.isLogedInGrafeio!== false){
        console.log(this.props.isAdmin);
        this.props.history.push({
          pathname: "/office/sellers/greeting",
@@ -98,10 +98,10 @@ class LoginGrafeiou extends Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    username: state.login.userName,
-    isLogedIn: state.login.isLogedIn,
-    loading: state.login.loading,
-    error: state.login.error,
+    username: state.loginGrafeiou.userName,
+    isLogedIn: state.loginGrafeiou.isLogedInGrafeio,
+    loading: state.loginGrafeiou.loading,
+    error: state.loginGrafeiou.error,
     ...props
   }
 };
