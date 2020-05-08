@@ -6,7 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import {connect} from 'react-redux';
 import Button from "react-bootstrap/Button";
-
+import { navigationToggleButton as NavigationToggleButton } from '../NavigationPhotografers/NavigationPhotografers'
+import NavigationPhotografers from "../NavigationPhotografers/NavigationPhotografers";
 import Calendar from 'react-calendar';
 import {getSeller} from '../../../store/actions/Grafeio/sallers';
 
@@ -39,21 +40,31 @@ class Photografiseis extends Component {
    }))
  }
     return (<React.Fragment>
+      <NavigationPhotografers/>
+       <NavigationToggleButton/>
+      <div className="container mb-5 p-relative">
 
-      <div className="container mb-5 ">
-        <h1 className="text-center mb-5">Φωτογραφίσεις</h1>
+        <h1 className="text-center mb-4">Φωτογραφίσεις</h1>
         <div className="row">
+          <div className="col-auto offset-4 mb-5">
+            <Button  variant="info">Καρτέλες</Button>
+          </div>
+          <div className="col-auto">
+          <Button  variant="info">Συμπλήρωση νεας καρτέλας</Button>
+          </div>
+        </div>
+        <div className="row  offset-2">
             <div className="col-auto">
-              <Button  variant="info">Καρτέλες</Button>
+              <Button  variant="info">Ολοκληρωμένα</Button>
             </div>
             <div className="col-auto">
-            <Button  variant="info">Συμπλήρωση νεας καρτέλας</Button>
+            <Button  variant="info">Εκρεμεί</Button>
             </div>
             <div className="col offset-3">
               <Button className="mb-1" variant="info">αλφαβητικά</Button>
             </div>
         </div>
-        <div className="row">
+        <div className="row offset-2">
         <table className="table table-bordered">
           <thead>
             <tr>

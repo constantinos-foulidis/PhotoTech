@@ -2,7 +2,7 @@
 import * as actionTypes from '../../actionTypes';
 import { updateObject } from '../../utility';
 const initialState = {
-    isLogedIn: null,
+    isLogedInPhoto: false,
     photograferData:null,
     userName:"none",
     photograferID:null,
@@ -22,7 +22,7 @@ const authSuccess = (state, action) => {
     return updateObject( state, {
         PhotograferName: action.userName,
         photograferData: action.data,
-        isLogedIn:true,
+        isLogedInPhoto:true,
         error: null,
         loading: false
      } );
@@ -43,10 +43,10 @@ const authLogout = (state, action) => {
 
  const loginAuthPhotografersReducer = (state = initialState, action) => {
      switch(action.type){
-       case actionTypes.AUTH_START:return authStart(state,action);
-       case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
-       case actionTypes.AUTH_FAIL: return authFail(state, action);
-       case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
+       case actionTypes.AUTH_STARTPHOTO:return authStart(state,action);
+       case actionTypes.AUTH_SUCCESSPHOTO: return authSuccess(state, action);
+       case actionTypes.AUTH_FAILPHOTO: return authFail(state, action);
+       case actionTypes.AUTH_LOGOUTPHOTO: return authLogout(state, action);
        default:
            return state;
      }

@@ -4,6 +4,11 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
+export const AUTH_STARTPHOTO = 'AUTH_STARTPHOTO';
+export const AUTH_SUCCESSPHOTO = 'AUTH_SUCCESSPHOTO';
+export const AUTH_FAILPHOTO = 'AUTH_FAILPHOTO';
+export const AUTH_LOGOUTPHOTO = 'AUTH_LOGOUTPHOTO';
+
 //Users
 export const CALL_START = 'CALL_START';
 export const CALL_SUCCESS = 'CALL_SUCCESS';

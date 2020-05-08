@@ -3,7 +3,7 @@ import * as actionTypes from '../../actionTypes';
 
 export const authStart = () => {
     return {
-        type: actionTypes.AUTH_START
+        type: actionTypes.AUTH_STARTPHOTO
     };
 };
 
@@ -18,7 +18,7 @@ export const authSuccess = (username, data) => {
 
 
     return {
-        type: actionTypes.AUTH_SUCCESS,
+        type: actionTypes.AUTH_SUCCESSPHOTO,
         userName: username,
         data: data.user
     };
@@ -26,7 +26,7 @@ export const authSuccess = (username, data) => {
 
 export const authFail = (error) => {
     return {
-        type: actionTypes.AUTH_FAIL,
+        type: actionTypes.AUTH_FAILPHOTO,
         error: error
     };
 };
@@ -34,13 +34,13 @@ export const logout = () => {
   console.log("inside logout");
   localStorage.clear();
     return {
-        type: actionTypes.AUTH_LOGOUT
+        type: actionTypes.AUTH_LOGOUTPHOTO
     };
 };
 export const saveResult = (res) =>{
   console.log(res);
   return{
-     type: actionTypes.AUTH_SUCCESS,
+     type: actionTypes.AUTH_SUCCESSPHOTO,
      result: res
    };
 }

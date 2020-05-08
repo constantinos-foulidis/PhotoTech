@@ -56,8 +56,8 @@ class LoginPhotografers extends Component {
     if (this.props.error) {
       errorMessage = (<p>{this.props.error.message}</p>);
     }
-     if(this.props.isLogedIn!== false){
-       console.log(this.props.isAdmin);
+     if(this.props.isLogedInPhoto !== false){
+
        this.props.history.push({
          pathname: "/photografer/greetings",
          username:this.props.username
@@ -98,10 +98,10 @@ class LoginPhotografers extends Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    username: state.login.userName,
-    isLogedIn: state.login.isLogedIn,
-    loading: state.login.loading,
-    error: state.login.error,
+    username: state.loginPhotografers.userName,
+    isLogedIn: state.loginPhotografers.isLogedIn,
+    loading: state.loginPhotografers.loading,
+    error: state.loginPhotografers.error,
     ...props
   }
 };

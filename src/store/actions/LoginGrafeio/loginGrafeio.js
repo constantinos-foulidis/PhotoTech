@@ -11,6 +11,7 @@ export const authSuccess = (username, sellerCode,photograferCode) => {
     console.log("userName",username);
     console.log("isadmin",sellerCode);
     console.log("isadmin",photograferCode);
+
     localStorage.setItem('officeLogedin', JSON.stringify(true));
     localStorage.setItem('userName', JSON.stringify(username));
     localStorage.setItem('sellerID', JSON.stringify(sellerCode));

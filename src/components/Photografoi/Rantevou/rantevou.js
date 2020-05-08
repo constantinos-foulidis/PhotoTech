@@ -6,7 +6,8 @@ import Calendar from 'react-calendar';
 import {getSeller,createSellersAppointment} from '../../../store/actions/Grafeio/sallers';
 import Button from "react-bootstrap/Button";
 
-
+import { navigationToggleButton as NavigationToggleButton } from '../NavigationPhotografers/NavigationPhotografers'
+import NavigationPhotografers from "../NavigationPhotografers/NavigationPhotografers";
 import 'react-calendar/dist/Calendar.css';
 import Overlay from 'react-bootstrap/Overlay';
 import { Popover } from 'react-bootstrap';
@@ -107,7 +108,8 @@ class Rantevou extends Component {
 }
 
     return (<React.Fragment>
-
+      <NavigationPhotografers/>
+              <NavigationToggleButton/>
       <div className="container mb-5">
       <h5 className="text-center">Ραντεβού</h5>
         <div className="row ">
