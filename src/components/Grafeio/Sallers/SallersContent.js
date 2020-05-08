@@ -50,7 +50,7 @@ class SellersContent extends Component {
     const year=date.toLocaleDateString().substring(4,9).replace('/','');
     const month=date.toLocaleDateString().substring(0,2).replace('/','');
     const day=date.toLocaleDateString().substring(2,4).replace('/','');
-    this.setState({ date:date,filteredAppointmets:test,year:year,month:month,day:day});
+    this.setState({ date:date,filteredAppointmets:test,year:year,month:month,day:day,showPopoverDetail:false});
   }
   handleAddnew = () => {
     console.log(this.props);
@@ -61,7 +61,7 @@ class SellersContent extends Component {
 
   }
   handleNeWAppointment(){
-     this.setState({ showmodalDetail: true });
+     this.setState({ showmodalDetail: true,showPopoverDetail:false });
   }
   showDetailAppointments()  {
     console.log("mpika sto modal");
