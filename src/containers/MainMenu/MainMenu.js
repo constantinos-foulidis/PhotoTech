@@ -31,7 +31,7 @@ if (JSON.parse(localStorage.getItem('isLogedIn')) === true) {
         </div>
         <div className="row justify-content-center">
           <div className="col ">
-            <Cards refe="/sellers" name="Πωλητές" />
+            <Cards refe="/LoginSellers" name="Πωλητές" />
           </div>
           <div className="col">
             <Cards refe="/LoginPhotografers" name="Φωτογράφοι" />
