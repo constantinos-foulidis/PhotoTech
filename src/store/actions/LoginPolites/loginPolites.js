@@ -13,7 +13,7 @@ export const authSuccess = (username, data) => {
 
   //  localStorage.setItem('officeLogedin', JSON.stringify(true));
     localStorage.setItem('userName', JSON.stringify(username));
-  //  localStorage.setItem('sellerID', JSON.stringify(sellerCode));
+    localStorage.setItem('selleruniqueID', JSON.stringify(data.user._id));
   //  localStorage.setItem('photograferID', JSON.stringify(photograferCode));
 
 

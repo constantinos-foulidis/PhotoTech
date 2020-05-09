@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import PolitesHeader from "../PolitesHeader/politesHeader";
 import { Switch,Route } from "react-router-dom";
 import greetingPolites from "../GreetingsPolites/greetingPolites";
-//import Rantevou from "../Rantevou/rantevou";
+import RantevouPoliton from "../RantevouPoliton/rantevouPoliton";
 const PolitesContainer = (props) => {
  console.log(props);
     return (
@@ -15,6 +15,7 @@ const PolitesContainer = (props) => {
       <Row>
         <Switch>
         <Route exact path="/sellers/greetings" component={greetingPolites} />
+        <Route exact path="/sellers/rantevou" component={RantevouPoliton} />
 
         </Switch>
       </Row>

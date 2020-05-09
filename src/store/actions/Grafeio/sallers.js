@@ -7,6 +7,7 @@ const uniqueSellers = '/under';
 const updateUri='/update';
 const sellersAppointmentUri='api/appointments';
 const customersUri='api/customers';
+const uniqueID='/id';
 export const GET_SELLERS = "GET_SELLERS";
 export const GET_APPOINTMENTS = "GET_APPOINTMENTS";
 export const GET_CUSTOMERS = "GET_CUSTOMERS";
@@ -18,6 +19,7 @@ export const FILTER_APPOINTMENTS = "FILTER_APPOINTMENTS";
 export const FILTER_CUSTOMERS = "FILTER_CUSTOMERS";
 export const FILTER_CUSTOMERS_BY_YEAR = "FILTER_CUSTOMERS_BY_YEAR";
 export const FILTER_CUSTOMERS_BY_NAME = "FILTER_CUSTOMERS_BY_NAME";
+export const GET_SELLER_APPOINTMENTSBYID = "GET_SELLER_APPOINTMENTSBYID";
 
 
 
@@ -43,6 +45,13 @@ const getCustomerSuccess = (customers) => {
         customers: customers
     };
 }
+const getAppointmentByIDSuccess = (appointments) => {
+
+    return {
+        type: GET_SELLER_APPOINTMENTSBYID,
+        appointments: appointments
+    };
+};
 
 const getSellerSuccess = (sellers) => {
     console.log("sellerd edw ",sellers);
@@ -148,7 +157,25 @@ export const getCustomers = () => {
         })
     }
 };
+export const getSellerAppointmentsByID = (id) => {
+  console.log(id);
+  const data = {
+    sellerid:id
+  }
+  console.log(data);
+    return (dispatch, getState) => {
+        dispatch(loading());
+        Axios.post(baseUrl + sellersAppointmentUri+uniqueID,data).then(response => {
+            console.log(response.data);
+            if(response.data.error){
+                dispatch(error(response.data));
+            }else{
+                dispatch(getAppointmentByIDSuccess(response.data));
+            }
 
+        })
+    }
+};
 
 const error = errorMessage => {
     return {

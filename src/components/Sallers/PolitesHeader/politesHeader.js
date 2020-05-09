@@ -4,6 +4,8 @@ import {filterProductsBySearchBar} from '../../../store/actions/products';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
+import {getSellerAppointmentsByID} from '../../../store/actions/Grafeio/sallers'
+
 
 class PolitesHeader extends Component {
 
@@ -23,6 +25,15 @@ class PolitesHeader extends Component {
   //    signOut() {
   //      localStorage.clear();
   //    }
+  componentDidMount() {
+      //Φωτογραφος Γ
+      if(JSON.parse(localStorage.getItem('selleruniqueID'))!= null){
+        const data = JSON.parse(localStorage.getItem('selleruniqueID'))
+         console.log(JSON.parse(localStorage.getItem('selleruniqueID')));
+
+          this.props.getApointmentsById(JSON.parse(localStorage.getItem('selleruniqueID')));
+      }
+    }
   handleSearch(event) {
     this.setState({search: event.target.value});
     //this.props.filterProductsBySearchBar(event.target.value);
@@ -101,7 +112,7 @@ const mapDispatchToProps = dispatch => {
   return {
 
     logout: () => dispatch(logout()),
-   filterProductsBySearchBar: (productCategory) => dispatch(filterProductsBySearchBar(productCategory))
+   getApointmentsById: (id) => dispatch(getSellerAppointmentsByID(id))
   }
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolitesHeader));
