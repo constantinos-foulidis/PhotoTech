@@ -17,6 +17,8 @@ const authStart = ( state, action ) => {
 const authSuccess = (state, action) => {
   console.log("Photografers login",action);
  localStorage.setItem('uniqueSellerID', JSON.stringify(action.data._id));
+ localStorage.setItem('isLogedIn', JSON.stringify(true));
+
 
 
     return updateObject( state, {
