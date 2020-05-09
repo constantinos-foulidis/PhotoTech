@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {login} from '../../../store/actions/LoginPhotografers/loginPhotografers';
+import {login} from '../../../store/actions/LoginPolites/loginPolites';
 import {connect} from 'react-redux';
 import {Checkbox} from '@material-ui/core';
 import Spinner from 'react-bootstrap/Spinner'
@@ -31,7 +31,7 @@ class LoginPolites extends Component {
     console.log(event.preventDefault());
     console.log(this.state.username);
     const formdata = {
-      photografername: this.state.username,
+      sallerName: this.state.username,
       password: this.state.password
     };
     this.props.onAuth(formdata);

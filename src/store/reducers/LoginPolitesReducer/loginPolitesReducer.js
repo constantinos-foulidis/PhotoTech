@@ -3,9 +3,9 @@ import * as actionTypes from '../../actionTypes';
 import { updateObject } from '../../utility';
 const initialState = {
     isLogedInPOLITES: false,
-    photograferData:null,
+    sellerData:null,
     userName:"none",
-    photograferID:null,
+    sellerID:null,
     loading:false,
     error:null
 };
@@ -16,12 +16,12 @@ const authStart = ( state, action ) => {
 
 const authSuccess = (state, action) => {
   console.log("Photografers login",action);
- localStorage.setItem('uniquePhotograferID', JSON.stringify(action.data._id));
+ localStorage.setItem('uniqueSellerID', JSON.stringify(action.data._id));
 
 
     return updateObject( state, {
-        PhotograferName: action.userName,
-        photograferData: action.data,
+        userName: action.userName,
+        sellerData: action.data,
         isLogedInPOLITES:true,
         error: null,
         loading: false

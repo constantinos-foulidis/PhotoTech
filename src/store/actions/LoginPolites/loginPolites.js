@@ -51,14 +51,14 @@ export const login = (formdata) => {
  return dispatch => {
     dispatch(authStart());
    //todo async actions
-   let url = `http://localhost:4040/api/auth/Photografoi/login`;
+   let url = `http://localhost:4040/api/auth/Sellers/login`;
    //lo
   axios.post(url,formdata).
   then(res => {
     if(res.data.error){
         dispatch(authFail(res.data.error));
     }else{
-    dispatch(authSuccess(res.data.user.photografername,res.data));
+    dispatch(authSuccess(res.data.user.sellername,res.data));
   }
     // dispatch(authSuccess(res));
   //  dispatch(saveResult(res));
