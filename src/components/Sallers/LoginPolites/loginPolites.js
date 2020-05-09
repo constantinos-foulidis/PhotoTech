@@ -60,7 +60,7 @@ class LoginPolites extends Component {
      if(this.props.isLogedInPOLITES === true){
 
        this.props.history.push({
-         pathname: "/photografer/greetings",
+         pathname: "/sellers/greetings",
          username:this.props.username
        });
    }

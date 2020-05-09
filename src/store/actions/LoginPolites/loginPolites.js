@@ -31,7 +31,7 @@ export const authFail = (error) => {
     };
 };
 export const logout = () => {
-  console.log("inside logout");
+
   localStorage.clear();
     return {
         type: actionTypes.AUTH_LOGOUTPOLITES
@@ -46,8 +46,8 @@ export const saveResult = (res) =>{
 }
 
 export const login = (formdata) => {
-  //photografername
-  console.log("here data",formdata);
+
+
  return dispatch => {
     dispatch(authStart());
    //todo async actions
@@ -58,6 +58,7 @@ export const login = (formdata) => {
     if(res.data.error){
         dispatch(authFail(res.data.error));
     }else{
+
     dispatch(authSuccess(res.data.user.sellername,res.data));
   }
     // dispatch(authSuccess(res));
