@@ -13,6 +13,7 @@ import  loginGrafeiouAuthReducer  from './store/reducers/LoginGrafeioReducer/log
 import  userReducer from './store/reducers/userReducer';
 import productsReducer from './store/reducers/products';
 import photografersReducer from './store/reducers/Grafeio/photografers';
+import loginAuthPolitesReducer from './store/reducers/LoginPolitesReducer/loginPolitesReducer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import sellerReducer from './store/reducers/Grafeio/sallers';
 
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     products: productsReducer,
     photografers:photografersReducer,
     loginPhotografers:loginAuthPhotografersReducer,
+    loginPolites:loginAuthPolitesReducer,
 });
 const store = createStore(rootReducer,applyMiddleware(thunk));
 
