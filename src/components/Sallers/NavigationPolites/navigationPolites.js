@@ -24,7 +24,7 @@ class NavigationPolites extends Component {
             <Link to="#" onClick={this.props.closeNav} className="close-nav">
               &times;
             </Link>
-            <Link className="linkItemForDrawer mb-3"  to="/sellers/rantevou">Προιόντα</Link>
+            <Link className="linkItemForDrawer mb-3"  to="/sellers/products">Προιόντα</Link>
             <Link className="linkItemForDrawer mb-3" to="/sellers/pellates">Πελάτες</Link>
             <Link className="linkItemForDrawer mb-3"  to="/sellers/rantevou">Προσφορές</Link>
             <Link className="linkItemForDrawer mb-3" to="/sellers/rantevou">Ραντεβού</Link>
