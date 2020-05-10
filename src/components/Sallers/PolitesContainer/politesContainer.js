@@ -5,6 +5,7 @@ import PolitesHeader from "../PolitesHeader/politesHeader";
 import { Switch,Route } from "react-router-dom";
 import greetingPolites from "../GreetingsPolites/greetingPolites";
 import RantevouPoliton from "../RantevouPoliton/rantevouPoliton";
+import PellatesPoliton from "../PellatesPoliton/pellatesPoliton";
 const PolitesContainer = (props) => {
  console.log(props);
     return (
@@ -16,6 +17,7 @@ const PolitesContainer = (props) => {
         <Switch>
         <Route exact path="/sellers/greetings" component={greetingPolites} />
         <Route exact path="/sellers/rantevou" component={RantevouPoliton} />
+        <Route exact path="/sellers/pellates" component={PellatesPoliton} />
 
         </Switch>
       </Row>

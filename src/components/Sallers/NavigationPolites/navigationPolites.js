@@ -25,7 +25,7 @@ class NavigationPolites extends Component {
               &times;
             </Link>
             <Link className="linkItemForDrawer mb-3"  to="/sellers/rantevou">Προιόντα</Link>
-            <Link className="linkItemForDrawer mb-3" to="/sellers/photografiseis">Πελάτες</Link>
+            <Link className="linkItemForDrawer mb-3" to="/sellers/pellates">Πελάτες</Link>
             <Link className="linkItemForDrawer mb-3"  to="/sellers/rantevou">Προσφορές</Link>
             <Link className="linkItemForDrawer mb-3" to="/sellers/rantevou">Ραντεβού</Link>
           </div>
