@@ -2,9 +2,10 @@
 import * as actionTypes from '../../actionTypes';
 import { updateObject } from '../../utility';
 const initialState = {
-    isLogedInGrafeio: false,
-    sellerCode:'',
+    isLogedInPhoto: false,
+    photograferData:null,
     userName:"none",
+    photograferID:null,
     loading:false,
     error:null
 };
@@ -14,14 +15,14 @@ const authStart = ( state, action ) => {
 };
 
 const authSuccess = (state, action) => {
-  console.log("username for sending",action.username);
-  localStorage.setItem('isLogedIn', JSON.stringify(true));
+  console.log("Photografers login",action);
+ localStorage.setItem('uniquePhotograferID', JSON.stringify(action.data._id));
 
 
     return updateObject( state, {
-        userName: action.username,
-        sellerCode: action.sellerCode,
-        isLogedInGrafeio:true,
+        PhotograferName: action.userName,
+        photograferData: action.data,
+        isLogedInPhoto:true,
         error: null,
         loading: false
      } );
@@ -37,15 +38,15 @@ const authFail = (state, action) => {
 
 const authLogout = (state, action) => {
 //  localStorage.clear();
-    return updateObject(state, { sellerCode: null, isLogedInGrafeio: false,userName: null });
+    return updateObject(state, { sellerCode: null, isLogedInPhoto: false,userName: null });
 };
 
- const loginAuthReducer = (state = initialState, action) => {
+ const loginAuthPhotografersReducer = (state = initialState, action) => {
      switch(action.type){
-       case actionTypes.AUTH_START:return authStart(state,action);
-       case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
-       case actionTypes.AUTH_FAIL: return authFail(state, action);
-       case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
+       case actionTypes.AUTH_STARTPHOTO:return authStart(state,action);
+       case actionTypes.AUTH_SUCCESSPHOTO: return authSuccess(state, action);
+       case actionTypes.AUTH_FAILPHOTO: return authFail(state, action);
+       case actionTypes.AUTH_LOGOUTPHOTO: return authLogout(state, action);
        default:
            return state;
      }
@@ -62,4 +63,4 @@ const authLogout = (state, action) => {
     */
 };
 
-export default loginAuthReducer;
+export default loginAuthPhotografersReducer;

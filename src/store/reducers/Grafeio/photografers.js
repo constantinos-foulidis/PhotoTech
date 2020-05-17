@@ -5,12 +5,14 @@ import { updateObject } from '../../utility';
 const initialState = {
     photografers: null,
     appointments:null,
+    appointmentsById:null,
     customers:null,
     newCustomers:null,
     customersByYear:null,
     filterphotografers:null,
     filterAppointments:null,
     filterCustomers:null,
+    filterApointmetsByid:null,
     loading: false,
     error: null,
     success: false,
@@ -28,6 +30,7 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.GET_APPOINTMENTS:return setAppointments(state,action);
         case actionTypes.GET_CUSTOMERS:return setCustomers(state,action);
         case actionTypes.CREATE_APPOINTMENT:return createdAppointment(state,action);
+        case actionTypes.GET_APPOINTMENTSBYID:return getAppointmentsByID(state,action);
       //  case actionTypes.FILTER_CUSTOMERS_BY_YEAR:return filterCustomersByYear(state,action);
         default: return state;
     }
@@ -43,10 +46,12 @@ const sellerReducer = (state = initialState, action) => {
 // };
 const filterAppointments = (state, id) => {
    state.filterAppointments=state.photografers;
-
+   var local=state.Allappointments;
    let updateAppointments=state.filterAppointments.filter(appointments => appointments._id === id );
+   let updateAppointmentsByID=local.filter(appointments => appointments.sellerid === id );
      return updateObject(state, {
        appointments:updateAppointments,
+       filterApointmetsByid:updateAppointmentsByID,
      });
  };
 // const filterCustomers = (state, sellerName) => {
@@ -110,7 +115,15 @@ const createdAppointment = (state, action) => {
 const setAppointments = (state, action) => {
   console.log("setAppointments",action);
     return updateObject(state, {
-      appointments:action.appointments,
+      Allappointments:action.appointments,
+      error: null,
+      loading: false
+    });
+};
+const getAppointmentsByID = (state, action) => {
+  console.log("getAppointmentsByID",action);
+    return updateObject(state, {
+      appointmentsById:action.appointments,
       error: null,
       loading: false
     });
