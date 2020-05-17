@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import * as actions from '../../../store/actions/products';
 import {filterCustomerByname,getCustomers} from  '../../../store/actions/Grafeio/sallers';
-
+import Dropdown from 'react-bootstrap/Dropdown'
 import NavigationGrafeio from "../NavigationGrafeio/NavigationGrafeio";
 import { Popover } from 'react-bootstrap';
 
@@ -19,7 +19,7 @@ class productsGrafeiou  extends Component {
 
       this.state = {
         productForDelete:'',
-        number:1,
+        number:0,
         search:"test",
         focused:false
 
@@ -33,13 +33,27 @@ class productsGrafeiou  extends Component {
        //this.setState({number:event.target.value});
        this.props.filterCustomerByname(event.target.value);
     }
-    quantityHandler = (event) =>{
-       this.setState({number:event.target.value});
+    handlePellates = (event) =>{
+      console.log(event.target.value);
+       //this.setState({number:event.target.value});
+       //this.props.filterCustomerByname(event.target.value);
     }
-    add2Cart = (product) => {
-
-      this.props.addtoCart(product);
+    quantityHandler = (event,index) =>{
+      console.log(event.target.value);
+      console.log(index);
+      var number = [];
+           number[index] = [...event.target.value];
+       this.setState(number);
+       console.log(this.state);
+    }
+    add2Cart = (product,quantity) => {
+   console.log(quantity);
+      if(quantity != undefined){
+      this.props.addtoCart(product,quantity[0]);
      console.log(product);
+   }else{
+     window.alert("Επιλεξτε ποσοτητα για να προσθεθει στο καλάθι");
+   }
     }
     componentDidMount(){
       this.props.getCustomers();
@@ -89,12 +103,24 @@ if(  this.props.customers!= null){
           <NavigationGrafeio/>
       <div className="Container ">
         <div className="row">
-          <div className="col-auto">
+          <div className="col-12">
             <ProductHeaderGrafeiou />
           </div>
         </div>
         <div className="row">
-          <div className="col-auto">
+          <div className="row offset-3">
+            <Dropdown className="mr-2">
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              ειδικός ή κανονικός
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className="dropDownColor" >
+                  <Dropdown.Item  value="ειδικός" onClick={(e) =>this.handlePellates(e)}>ειδικός</Dropdown.Item>
+                  <Dropdown.Item  value="κανονικός" onClick={(e) =>this.handlePellates(e)}>κανονικός</Dropdown.Item>
+            </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <div className="row-auto">
              <OverlayTrigger  trigger="click" placement="right" overlay={popover}>
             <input
               style={{width : "200px",left:"200px",position:"relative",height:"30px",borderRadius:"10px",marginBottom:"20px"}}
@@ -107,7 +133,7 @@ if(  this.props.customers!= null){
           </div>
         </div>
         <div className="row offset-2">
-          {products.map((product) => {
+          {products.map((product,index) => {
             //  imagePath = props.product.originalname;
             const port = ":4040";
             imagePath = [
@@ -134,7 +160,7 @@ if(  this.props.customers!= null){
                     Κωδικός : {product.productCode}
                   </p>
                   <p className="smallText ">
-                    Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} value={this.state.number} onChange={this.quantityHandler} ></input>
+                    Ποσότητα : <input type="number" style={{height: "17%",width: "27%"}} name="number"  value={this.state.number[index]} onChange={(event) => this.quantityHandler(event,index)} ></input>
                   </p>
                   <p className="smallText border-bottom ">
                     Τάξεις : {product.productOrder}
@@ -142,7 +168,7 @@ if(  this.props.customers!= null){
                   <Button
                     className="productItembtn mb-2"
                     variant="info"
-                    onClick={() => this.add2Cart(product)}
+                    onClick={() => this.add2Cart(product,this.state[index])}
                   >
                     Προσθήκη στο πακέτο
                   </Button>
@@ -173,7 +199,7 @@ const mapDispatchToProps = dispatch => {
     getCustomers:() => dispatch(getCustomers()),
     setProductSpecks: (productSpecks) => dispatch(actions.setProductsSpecks(productSpecks)),
     filterCustomerByname: (CustName) => dispatch(filterCustomerByname(CustName)),
-    addtoCart: (product) => dispatch(actions.addtoCart(product))
+    addtoCart: (product,number) => dispatch(actions.addtoCart(product,number))
   }
 }
 

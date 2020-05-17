@@ -22,9 +22,10 @@ class SellersContent extends Component {
              super(props);
              this.showDetailAppointments = this.showDetailAppointments.bind(this);
              this.handleCloseDetailAppointments = this.handleCloseDetailAppointments.bind(this);
+             this.handleNeWAppointment = this.handleNeWAppointment.bind(this);
              this.state = {
                ShowDetailedCalendar: false,
-               date:new Date(2020,0,1),
+               date:new Date(Date.now()),
                Month:null,
                year:null,
                day:null,
@@ -36,7 +37,9 @@ class SellersContent extends Component {
                nameYpeuthinou:null,
                PhoneYpeuthinou:null,
                topothesia:null,
-               showmodalDetail:false
+               showPopoverDetail:null,
+               showmodalDetail:false,
+               hideButtons:false
              }
 
 
@@ -48,7 +51,7 @@ class SellersContent extends Component {
     const year=date.toLocaleDateString().substring(4,9).replace('/','');
     const month=date.toLocaleDateString().substring(0,2).replace('/','');
     const day=date.toLocaleDateString().substring(2,4).replace('/','');
-    this.setState({ date:date,filteredAppointmets:test,year:year,month:month,day:day});
+    this.setState({ date:date,filteredAppointmets:test,year:year,month:month,day:day,showPopoverDetail:false});
   }
   handleAddnew = () => {
     console.log(this.props);
@@ -58,9 +61,14 @@ class SellersContent extends Component {
     });
 
   }
+  handleNeWAppointment(){
+     this.setState({ showmodalDetail: true,showPopoverDetail:false });
+  }
   showDetailAppointments()  {
     console.log("mpika sto modal");
-    this.setState({ showmodalDetail: true });
+  //  this.setState({ showmodalDetail: true });showPopoverDetail
+    this.setState({ showPopoverDetail: true });
+
   }
   handleCloseDetailAppointments() {
     this.setState({ showmodalDetail: false });
@@ -95,8 +103,24 @@ class SellersContent extends Component {
     console.log(event);
     this.setState({ email: event.target.value});
   }
-  NewAppointmentHandler = () => {
-      this.setState({ShowDetailedCalendar:true});
+  //new appointment 2 ussages from button or from SpesificView
+  NewAppointmentHandler = (month=null,year=null,day=null) => {
+    console.log(month);
+    if(month!=null && year!=null && day!=null){
+      let temp=this.props.appointments;
+      let test=  temp.filter(appointments => new Date(parseInt(appointments.year,10),parseInt(appointments.month,10)-1,parseInt(appointments.day,10)).toLocaleDateString() ===  new Date(parseInt(year,10),parseInt(month,10)-1,parseInt(day,10)).toLocaleDateString() );
+      this.setState({ShowDetailedCalendar:true,
+        Month:month,
+        year:year,
+        day:day,
+        date:new Date(year,month-1,day),
+        filteredAppointmets:test,
+        hideButtons:true,
+      });
+    }else{
+      this.setState({ShowDetailedCalendar:true,hideButtons:true,
+      });
+    }
   }
   appointmetShowHandler = () => {
       this.setState({ShowDetailedCalendar:false});
@@ -142,13 +166,18 @@ class SellersContent extends Component {
   }
 
   render() {
+    let popover = null;
     let sellers = null;
     let showSellers = null;
     let SpesificView = null;
     let appointment=null;
     let detailAppointments=null;
     let buttonsRantevou=null;
+    let selects=null;
+    let buttons =null;
+    let popoverShow=null;
 
+    let centerApointments=null;
 
    if(this.state.filteredAppointmets !==null){
      console.log(this.state.filteredAppointmets);
@@ -171,22 +200,72 @@ class SellersContent extends Component {
         </div>
     ))
     )
+    if(this.state.showPopoverDetail===true){
+    popoverShow=(
+
+     this.state.filteredAppointmets.map((appointments, index) => (
+      <Popover id="popover-basic arrow" key={index}>
+        <Popover.Content className="popoverWidth_Height detailSailler">
+          <div className="smallText detailSailler" > Ημερομηνία :{appointments.day}/{appointments.month}/{appointments.year}  </div>
+          <div className="smallText detailSailler smallFormpop" > Ωρα :{appointments.time}  /> </div>
+          <div className="smallText detailSailler smallFormpop" > Σxoleio :   </div>
+          <div className="smallText detailSailler smallFormpop" > Topothesia :   /> </div>
+          <div className="smallText detailSailler smallFormpop" > onoma ipefthinou : />  </div>
+          <div className="smallText detailSailler smallFormpop" > thl ipefthinou :  /> </div>
+          <div className="smallText detailSailler smallFormpop" > email : /> </div>
+
+        </Popover.Content>
+      </Popover>
+    )))
+    }
    }
 
     if (this.props.sellers != null) {
-      showSellers = this.props.sellers.map((sellers, index) => (<div key={index}>
+      showSellers = (
+        <>
+         <h5>Στοιχεία πωλητη:</h5>
+        {this.props.sellers.map((sellers, index) => (<div key={index}>
         <p className="smallText">Ονομα:{sellers.sellername}</p>
         <p className="smallText">email: {sellers.email}</p>
         <p className="smallText">Τηλ: 6978492740</p>
         <p className="smallText">Περιοχες: {sellers.region}</p>
         <p className="smallText">username: {sellers.fullName}</p>
-      </div>))
-    };
-    if(this.state.ShowDetailedCalendar){
+      </div>))}
+      </>
+    )
+       if(this.state.hideButtons===false){
+      selects= (<Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Label>Ανα/μήνα</Form.Label>
+            <Form.Control as="select" custom="custom" onChange={this.MonthChangeHandler}>
+              <option>Ιανουάριος</option>
+              <option>Φεβρουάριος</option>
+              <option>Μαρτιος</option>
+              <option>Απρίλιος</option>
+              <option>Μαιος</option>
+              <option>Ιουνος</option>
+              <option>Ιουλιος</option>
+              <option>Αυγουστος</option>
+              <option>Σεμπτεμβριος</option>
+              <option>Οκτωμβριος</option>
+              <option>Νοεμβριος</option>
+              <option>Δεκεμβριος</option>
+            </Form.Control>
+               <Button className="mb-3 mr-2" variant="info" onClick={this.NewAppointmentHandler}>Εμφάνηση</Button>
+          </Form.Group>)
+          buttons=(
+            <>
+          <Button className="mb-3 mr-2" variant="info">Εξαγωγή pdf</Button>
+          <Button className="mb-3" variant="info">Εκτύπωση</Button>
+           </>
+        )
+        }
 
-      const popover = (
-      <Popover id="popover-basic arrow">
-        <Popover.Content className="popoverWidth_Height detailSailler">
+            buttonsRantevou=(<Button className="mb-3 mt-5" variant="info" onClick={this.handleNeWAppointment}>+Νέο ραντεβού</Button>);
+    };
+    if(this.state.showmodalDetail){
+
+       popover = (
+      <div>
           <div className="smallText detailSailler" > Ημερομηνία : {this.state.date.toLocaleDateString()}</div>
           <div className="smallText detailSailler smallFormpop" > Ωρα :  <input type="time"style={{width: "70%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}} className="smallText detailSailler" name="name" onChange={this.timeOnChangeHandler} /> </div>
           <div className="smallText detailSailler smallFormpop" > Σxoleio : <input type="text" style={{width: "70%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}}className="smallText detailSailler" name="name" onChange={this.SchoolnameOnChangeHandler}/>  </div>
@@ -195,44 +274,48 @@ class SellersContent extends Component {
           <div className="smallText detailSailler smallFormpop" > thl ipefthinou :  <input type="number" className="smallText detailSailler pStyle" name="name"style={{width: "60%",height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden"}} onChange={this.PhoneYpeuthinouOnChangeHandler} /> </div>
           <div className="smallText detailSailler smallFormpop" > email :  <input type="email" name="name" style={{width: "70%" ,height: "25px","borderTop": "hidden","borderLeft": "hidden","borderRight": "hidden" }}className="smallText detailSailler" onChange={this.emailOnChangeHandler}/> </div>
           <Button className="mb-3 mt-5" variant="info" onClick={this.NewAppointmentcall}>Νέο ραντεβού</Button>
-        </Popover.Content>
-      </Popover>
+      </div>
       );
+     //  if(this.state.filteredAppointmets !=null){
+     //
 
-     buttonsRantevou=(<Button className="mb-3 mt-5" variant="info" onClick={this.appointmetShowHandler}>Ραντεβού</Button>)
+   }
+     if(this.state.ShowDetailedCalendar){
       SpesificView=(
-        <>
+
         <Calendar
          className="mb-5"
          onChange={this.onChange}
          value={this.state.date}
          onSelect={this.onClickCalendar}
        />
-
+   )
+   centerApointments=(
      <div className="row">
-       <div className="col-5">
-     <h5 className="text-center" >{this.state.date.toLocaleDateString()}</h5>
+       <div className="col-auto offset-5">
+     <h5>{this.state.date.toLocaleDateString()}</h5>
           {appointment}
        </div>
-       <div className="col offset-5">
-          {popover}
+       <div className="col-auto">
+          {popoverShow}
        </div>
       </div>
-      </>
+
       )
     }else{
       if(this.props.appointments!=null){
       SpesificView=(
-
-          this.props.appointments.map((appointments,index) => (
+           <div className="col-4 border">
+          {this.props.appointments.map((appointments,index) => (
             <div key={index}>
-          <p>{appointments.day}/{appointments.month}/{appointments.year}</p>
+          <p onClick={() => this.NewAppointmentHandler(appointments.month,appointments.year,appointments.day)}>{appointments.day}/{appointments.month}/{appointments.year}</p>
           </div>
-          ))
 
+        ))}
+       </div>
       )
 
-      buttonsRantevou=(<Button className="mb-3 mt-5" variant="info" onClick={this.NewAppointmentHandler}>+Νέο ραντεβού</Button>);
+
     }
     }
     return (<React.Fragment>
@@ -241,8 +324,7 @@ class SellersContent extends Component {
         <div className="row">
           <div className="col-4 mr-5">
             <div className="row">
-              <div className="col border detailSailler">
-                <h5>Στοιχεία πωλητη:</h5>
+              <div className="col  detailSailler">
                 {showSellers}
               </div>
             </div>
@@ -250,41 +332,26 @@ class SellersContent extends Component {
               {buttonsRantevou}
             </div>
             <div className="row">
-              <Form.Group controlId="exampleForm.SelectCustom">
-                <Form.Label>Ανα/μήνα</Form.Label>
-                <Form.Control as="select" custom="custom" onChange={this.MonthChangeHandler}>
-                  <option>Ιανουάριος</option>
-                  <option>Φεβρουάριος</option>
-                  <option>Μαρτιος</option>
-                  <option>Απρίλιος</option>
-                  <option>Μαιος</option>
-                  <option>Ιουνος</option>
-                  <option>Ιουλιος</option>
-                  <option>Αυγουστος</option>
-                  <option>Σεμπτεμβριος</option>
-                  <option>Οκτωμβριος</option>
-                  <option>Νοεμβριος</option>
-                  <option>Δεκεμβριος</option>
-                </Form.Control>
-              </Form.Group>
+              <div className="col-auto">
+                {selects}
+              </div>
             </div>
           </div>
-          <div className="col-4 border">
               {SpesificView}
-          </div>
+
           <div className="row">
             <div className="col">
-              <Button className="mb-3 mr-2" variant="info">Εξαγωγή pdf</Button>
-              <Button className="mb-3" variant="info">Εκτύπωση</Button>
+            {buttons}
             </div>
           </div>
         </div>
+          {centerApointments}
         <Modal show={this.state.showmodalDetail} onHide={this.handleCloseDetailAppointments}>
          <Modal.Header closeButton>
            <Modal.Title>Ραντεβού</Modal.Title>
          </Modal.Header>
          <Modal.Body>
-          {detailAppointments}
+          {popover}
          </Modal.Body>
        </Modal>
       </div>

@@ -5,6 +5,7 @@ import { updateObject } from '../../utility';
 const initialState = {
     sellers: null,
     appointments:null,
+    appointmentsById:null,
     customers:null,
     newCustomers:null,
     customersByYear:null,
@@ -30,6 +31,7 @@ const sellerReducer = (state = initialState, action) => {
         case actionTypes.CREATE_APPOINTMENT:return createdAppointment(state,action);
         case actionTypes.FILTER_CUSTOMERS_BY_YEAR:return filterCustomersByYear(state,action);
         case actionTypes.FILTER_CUSTOMERS_BY_NAME:return filterCustomersByName(state,action.cName);
+        case actionTypes.GET_SELLER_APPOINTMENTSBYID:return getAppointmentsByID(state,action.appointments);
         default: return state;
     }
 }
@@ -89,6 +91,15 @@ const filterCustomersByYear = (state) => {
   });
 };
 
+const getAppointmentsByID = (state, action) => {
+  console.log("getAppointmentsByID",action);
+    return updateObject(state, {
+      appointmentsById:action,
+      error: null,
+      loading: false
+    });
+};
+
 function monthDiff(dateFrom, dateTo) {
   let year = dateTo.substring(0,4);
   let month= dateTo.substring(5,7);
@@ -107,7 +118,6 @@ const setSellers = (state, action) => {
 const createdAppointment = (state, action) => {
 
     return updateObject(state, {
-      appointments:[...state.appointments,action.createdAppointment],
       error: null,
       loading: false
     });

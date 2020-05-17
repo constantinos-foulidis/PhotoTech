@@ -8,10 +8,12 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { navigatorReducer } from './store/reducers/navigator';
 import  loginAuthReducer  from './store/reducers/loginAuth';
+import  loginAuthPhotografersReducer  from './store/reducers/LoginPhotografersReducer/loginPhotografersReducer';
 import  loginGrafeiouAuthReducer  from './store/reducers/LoginGrafeioReducer/loginGrafeio';
 import  userReducer from './store/reducers/userReducer';
 import productsReducer from './store/reducers/products';
 import photografersReducer from './store/reducers/Grafeio/photografers';
+import loginAuthPolitesReducer from './store/reducers/LoginPolitesReducer/loginPolitesReducer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import sellerReducer from './store/reducers/Grafeio/sallers';
 
@@ -23,6 +25,8 @@ const rootReducer = combineReducers({
     sellers:sellerReducer,
     products: productsReducer,
     photografers:photografersReducer,
+    loginPhotografers:loginAuthPhotografersReducer,
+    loginPolites:loginAuthPolitesReducer,
 });
 const store = createStore(rootReducer,applyMiddleware(thunk));
 
